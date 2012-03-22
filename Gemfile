@@ -5,14 +5,14 @@ gem 'rack', '1.3.3'
 gem 'mysql2', '>= 0.3'
 gem 'capistrano'
 gem 'capistrano-ext'
-gem "haml"
-gem "haml-rails"
-gem "cancan"
-gem 'rabl'
-gem 'geocoder' # https://github.com/alexreisner/geocoder#readme
-gem 'omniauth'
-gem "jquery-rails"
-gem 'kaminari' # rails g kaminari:views default
+# gem "haml"
+# gem "haml-rails"
+# gem "cancan"
+# gem 'rabl'
+# gem 'geocoder' # https://github.com/alexreisner/geocoder#readme
+# gem 'omniauth'
+# gem "jquery-rails"
+# gem 'kaminari' # rails g kaminari:views default
 # gem 'nifty-generators', :group => :development # rails g nifty:scaffold authentication user_id:integer provider:string uid:string index create destroy
 # gem 'omniauth-twitter' # needed for rails 3.1
 # gem 'omniauth-facebook' # needed for rails 3.1
@@ -54,17 +54,17 @@ Billys-MacBook-Pro ~/Projects/victoria: rails g nifty:scaffold Account name:stri
       create  spec/controllers/accounts_controller_spec.rb
 =end
 
-group :assets do
-  # gem 'sass-rails', "  ~> 3.1.0"
-  gem 'coffee-rails', "~> 3.1.0"
-  gem 'uglifier'
-end
-
-gem "rspec-rails", ">= 2.6.1",        :group => [:development, :test]
-gem "factory_girl_rails", ">= 1.1.0", :group => :test
-gem "cucumber-rails", ">= 1.0.2",     :group => :test
-gem "capybara", ">= 1.0.1",           :group => :test
-gem "database_cleaner", ">= 0.6.7",   :group => :test
-gem "launchy", ">= 2.0.5",            :group => :test
-gem "devise", ">= 1.4.4" # https://github.com/plataformatec/devise#readme, after installing the gem: rails generate devise:install
-gem "mocha", :group => :test
+# group :assets do
+#   # gem 'sass-rails', "  ~> 3.1.0"
+#   gem 'coffee-rails', "~> 3.1.0"
+#   gem 'uglifier'
+# end
+# 
+# gem "rspec-rails", ">= 2.6.1",        :group => [:development, :test]
+# gem "factory_girl_rails", ">= 1.1.0", :group => :test
+# gem "cucumber-rails", ">= 1.0.2",     :group => :test
+# gem "capybara", ">= 1.0.1",           :group => :test
+# gem "database_cleaner", ">= 0.6.7",   :group => :test
+# gem "launchy", ">= 2.0.5",            :group => :test
+# gem "devise", ">= 1.4.4" # https://github.com/plataformatec/devise#readme, after installing the gem: rails generate devise:install
+# gem "mocha", :group => :test
