@@ -50,6 +50,7 @@ $LOAD_PATH.unshift File.join(File.dirname(__FILE__), 'deploy')
 
 set :rvm_bin_path, "$HOME/.rvm/bin"
 set :rvm_type, :user
+set :shared_children,   %w(log pids)
 
 puts "******************* deploy.rb: require capistrano_database **********************"
 
