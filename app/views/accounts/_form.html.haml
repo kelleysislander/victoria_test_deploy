@@ -1,0 +1,39 @@
+.grey-form
+  = form_for @account do |f|
+    -if @account.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@account.errors.count, "error")} prohibited this Account from being saved:"
+        %ul
+          - @account.errors.full_messages.each do |msg|
+            %li= msg
+
+    .field
+      = f.label :name
+      = f.text_field :name
+    .field
+      = f.label :description
+      = f.text_field :description
+    .field
+      = f.label :address
+      = f.text_field :address
+    .field
+      = f.label :city
+      = f.text_field :city
+    .field
+      = f.label :country
+      = f.text_field :state
+    -# .field
+    -#   = f.label :zip
+    -#   = f.text_field :zip
+    .field
+      = f.label :phone
+      = f.text_field :phone
+    .field
+      = f.label :contact_name
+      = f.text_field :contact_name
+    .field
+      = f.label :contact_email
+      = f.text_field :contact_email
+    .actions
+      = submit_button('Save')
+

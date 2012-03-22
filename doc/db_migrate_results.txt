@@ -1,0 +1,90 @@
+Billys-MacBook-Pro ~/Projects/victoria: cap staging deploy:migrate
+rvm_path => /Users/billy/.rvm
+  * executing `staging'
+    triggering start callbacks for `deploy:migrate'
+  * executing `multistage:ensure'
+  * executing `deploy:migrate'
+  * executing "ls -x /var/www/vhosts/victoria.semaphoremobile.com/releases"
+    servers: ["127.0.0.1"]
+    [127.0.0.1:4444] executing command
+    command finished in 412ms
+  * executing "cd /var/www/vhosts/victoria.semaphoremobile.com/releases/20111025163907 && bundle exec rake RAILS_ENV=staging  db:migrate"
+    servers: ["127.0.0.1"]
+    [127.0.0.1:4444] executing command
+ ** [out :: 127.0.0.1:4444] ==  AddDeviseToUsers: migrating ===============================================
+ ** [out :: 127.0.0.1:4444] -- create_table(:users)
+ ** [out :: 127.0.0.1:4444] -> 0.0456s
+ ** [out :: 127.0.0.1:4444] -- add_index(:users, :email, {:unique=>true})
+ ** [out :: 127.0.0.1:4444] -> 0.0416s
+ ** [out :: 127.0.0.1:4444] -- add_index(:users, :reset_password_token, {:unique=>true})
+ ** [out :: 127.0.0.1:4444] -> 0.0510s
+ ** [out :: 127.0.0.1:4444] ==  AddDeviseToUsers: migrated (0.1391s) ======================================
+ ** [out :: 127.0.0.1:4444] 
+ ** [out :: 127.0.0.1:4444] ==  CreateRoles: migrating ====================================================
+ ** [out :: 127.0.0.1:4444] -- create_table(:roles)
+ ** [out :: 127.0.0.1:4444] -> 0.0272s
+ ** [out :: 127.0.0.1:4444] ==  CreateRoles: migrated (0.0273s) ===========================================
+ ** [out :: 127.0.0.1:4444] 
+ ** [out :: 127.0.0.1:4444] ==  CreateRolesUsers: migrating ===============================================
+ ** [out :: 127.0.0.1:4444] -- create_table(:roles_users)
+ ** [out :: 127.0.0.1:4444] -> 0.0288s
+ ** [out :: 127.0.0.1:4444] ==  CreateRolesUsers: migrated (0.0289s) ======================================
+ ** [out :: 127.0.0.1:4444] 
+ ** [out :: 127.0.0.1:4444] ==  AddRoleToUsers: migrating =================================================
+ ** [out :: 127.0.0.1:4444] -- add_column(:users, :role, :string)
+ ** [out :: 127.0.0.1:4444] -> 0.0488s
+ ** [out :: 127.0.0.1:4444] ==  AddRoleToUsers: migrated (0.0489s) ========================================
+ ** [out :: 127.0.0.1:4444] 
+ ** [out :: 127.0.0.1:4444] ==  AddRolesMaskToUsers: migrating ============================================
+ ** [out :: 127.0.0.1:4444] -- add_column(:users, :roles_mask, :integer)
+ ** [out :: 127.0.0.1:4444] -> 0.0456s
+ ** [out :: 127.0.0.1:4444] ==  AddRolesMaskToUsers: migrated (0.0457s) ===================================
+ ** [out :: 127.0.0.1:4444] 
+ ** [out :: 127.0.0.1:4444] ==  DropRoles: migrating ======================================================
+ ** [out :: 127.0.0.1:4444] -- drop_table(:roles)
+ ** [out :: 127.0.0.1:4444] -> 0.0081s
+ ** [out :: 127.0.0.1:4444] ==  DropRoles: migrated (0.0082s) =============================================
+ ** [out :: 127.0.0.1:4444] 
+ ** [out :: 127.0.0.1:4444] ==  DropRolesUsers: migrating =================================================
+ ** [out :: 127.0.0.1:4444] -- drop_table(:roles_users)
+ ** [out :: 127.0.0.1:4444] -> 0.0094s
+ ** [out :: 127.0.0.1:4444] ==  DropRolesUsers: migrated (0.0094s) ========================================
+ ** [out :: 127.0.0.1:4444] 
+ ** [out :: 127.0.0.1:4444] ==  CreateRetailers: migrating ================================================
+ ** [out :: 127.0.0.1:4444] -- create_table(:retailers)
+ ** [out :: 127.0.0.1:4444] -> 0.0222s
+ ** [out :: 127.0.0.1:4444] ==  CreateRetailers: migrated (0.0223s) =======================================
+ ** [out :: 127.0.0.1:4444] 
+ ** [out :: 127.0.0.1:4444] ==  CreateDeals: migrating ==================================================
+ ** [out :: 127.0.0.1:4444] -- create_table(:deals)
+ ** [out :: 127.0.0.1:4444] -> 0.0195s
+ ** [out :: 127.0.0.1:4444] ==  CreateDeals: migrated (0.0196s) =========================================
+ ** [out :: 127.0.0.1:4444] 
+ ** [out :: 127.0.0.1:4444] ==  AddNameToUsers: migrating =================================================
+ ** [out :: 127.0.0.1:4444] -- change_table(:users)
+ ** [out :: 127.0.0.1:4444] -> 0.0453s
+ ** [out :: 127.0.0.1:4444] ==  AddNameToUsers: migrated (0.0454s) ========================================
+ ** [out :: 127.0.0.1:4444] 
+ ** [out :: 127.0.0.1:4444] ==  RemoveRoleFromUser: migrating =============================================
+ ** [out :: 127.0.0.1:4444] -- remove_column(:users, :role)
+ ** [out :: 127.0.0.1:4444] -> 0.0689s
+ ** [out :: 127.0.0.1:4444] ==  RemoveRoleFromUser: migrated (0.0690s) ====================================
+ ** [out :: 127.0.0.1:4444] 
+ ** [out :: 127.0.0.1:4444] ==  CreatePosts: migrating ====================================================
+ ** [out :: 127.0.0.1:4444] -- create_table(:posts)
+ ** [out :: 127.0.0.1:4444] -> 0.0180s
+ ** [out :: 127.0.0.1:4444] ==  CreatePosts: migrated (0.0181s) ===========================================
+ ** [out :: 127.0.0.1:4444] 
+ ** [out :: 127.0.0.1:4444] ==  CreateRedemptions: migrating ==============================================
+ ** [out :: 127.0.0.1:4444] -- create_table(:redemptions)
+ ** [out :: 127.0.0.1:4444] -> 0.0236s
+ ** [out :: 127.0.0.1:4444] ==  CreateRedemptions: migrated (0.0237s) =====================================
+ ** [out :: 127.0.0.1:4444] 
+ ** [out :: 127.0.0.1:4444] ==  AddLatitudeAndLongitudeToRetailers: migrating =============================
+ ** [out :: 127.0.0.1:4444] -- add_column(:retailers, :latitude, :float)
+ ** [out :: 127.0.0.1:4444] -> 0.0462s
+ ** [out :: 127.0.0.1:4444] -- add_column(:retailers, :longitude, :float)
+ ** [out :: 127.0.0.1:4444] -> 0.0426s
+ ** [out :: 127.0.0.1:4444] ==  AddLatitudeAndLongitudeToRetailers: migrated (0.0889s) ====================
+ ** [out :: 127.0.0.1:4444] 
+    command finished in 9640ms

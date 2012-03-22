@@ -1,0 +1,21 @@
+- title "Mobile User Event"
+
+%p
+  %strong Device Uid:
+  = @mobile_user_event.device_uid
+%p
+  %strong User Event:
+  = @mobile_user_event.user_event
+%p
+  %strong Description:
+  = @mobile_user_event.description
+%p
+  %strong User Event Date:
+  = @mobile_user_event.user_event_date
+
+%p
+  = link_to "Edit", edit_mobile_user_event_path(@mobile_user_event)
+  |
+  = link_to "Destroy", @mobile_user_event, :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View All", mobile_user_events_path

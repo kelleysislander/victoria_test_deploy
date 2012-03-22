@@ -1,0 +1,21 @@
+- title "Deal Types"
+
+%table
+  %tr
+    %th Deal Type
+    %th Description
+    %th{:colspan => 3, :style => "text-align:center;"} Actions
+
+  - @deal_types.each do |deal_type|
+    %tr
+      %td= deal_type.deal_type
+      %td= deal_type.description
+      %td= link_to 'Show', deal_type
+      %td= link_to 'Edit', edit_deal_type_path(deal_type)
+      %td= link_to 'Destroy', deal_type, :confirm => 'Are you sure?', :method => :delete
+
+= paginate @deal_types
+
+%br
+
+= link_to 'New Deal type', new_deal_type_path

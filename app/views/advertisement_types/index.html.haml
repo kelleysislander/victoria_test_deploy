@@ -1,0 +1,21 @@
+- title "Advertisement Types"
+
+%table
+  %tr
+    %th Name
+    %th Description
+    %th{:colspan => 3, :style => "text-align:center;"} Actions
+
+  - @advertisement_types.each do |advertisement_type|
+    %tr
+      %td= advertisement_type.advertisement_type
+      %td= advertisement_type.description
+      %td= link_to 'Show', advertisement_type
+      %td= link_to 'Edit', edit_advertisement_type_path(advertisement_type)
+      %td= link_to 'Destroy', advertisement_type, :confirm => 'Are you sure?', :method => :delete
+
+= paginate @advertisement_types
+
+%br
+
+= link_to 'New Advertisement type', new_advertisement_type_path

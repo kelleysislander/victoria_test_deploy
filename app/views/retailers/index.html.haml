@@ -1,0 +1,37 @@
+- title "Retailers"
+
+%table
+  %tr
+    %th Account
+    %th Retailer
+    %th Address
+    %th City
+    %th Country
+    -# %th Zip
+    -# %th Contact
+    -# %th Email
+    %th Geo?
+    %th Deals
+    %th Ads
+    %th{:colspan => 3, :style => "text-align:center;"} Actions
+
+  - @retailers.each do |retailer|
+    %tr
+      %td= retailer.account.name
+      %td= retailer.name
+      %td= retailer.address
+      %td= retailer.city
+      %td= retailer.state
+      -# %td= retailer.zip
+      %td= is_geocoded?( retailer.latitude, retailer.longitude )
+      %td= retailer.deals.size
+      %td= retailer.advertisements.size
+      %td= link_to 'Show', retailer
+      %td= link_to 'Edit', edit_retailer_path(retailer)
+      %td= link_to_if (retailer.deals.size == 0), 'Del', retailer, :confirm => 'Are you sure?', :method => :delete
+
+= paginate @retailers
+
+%br
+
+= link_to 'New Retailer', new_retailer_path

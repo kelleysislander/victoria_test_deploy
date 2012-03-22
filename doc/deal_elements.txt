@@ -1,0 +1,29 @@
+DEAL ELEMENTS
+                          
+    Element Name            DB    Dynamic Comments
+=======================    ===    ======= ==================================================        
+1.  Retailer Name           Y             retailers.name
+                            
+2.  Retailer Address        Y             retailers.address, city, state, zip
+                            
+3.  Deal Duration           Y        Y    deals.end_date used to compute days left
+                            
+4.  Deal Description        Y             deals.description
+                            
+5.  Deal Image              Y             deals.image uploaded graphical image
+                            
+6.  Deal Tag                Y             deals.deal_tag_text
+                            
+7.  Discount Amount Text    Y             deals.discount_amount_text
+                            
+8.  Num Redeemed            Y        Y    redemptions.num_redeemed, display based on the value in the DB
+
+9.  Discount Percent Text   Y             deals.discount_percent_text
+
+10. Price Text              Y             deals.price_text
+
+11. Fine Print Text         Y             deals.fine_print_text
+
+12. Retailer Phone          Y             retailers.phone
+
+13. Deal Badge              Y             deals.badge_text used to overlay a static background image

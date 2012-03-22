@@ -1,0 +1,58 @@
+.grey-form{:style => "padding:25px"}
+  %p
+    - title "Advertisement"
+
+  %p
+    %b Name:
+    = @advertisement.name
+  %p
+    %b Type:
+    = @advertisement.advertisement_type.advertisement_type
+  %p
+    %b Image:<br>
+    - case @advertisement.advertisement_type.advertisement_type
+      - when "Splash"
+        = image_tag @advertisement.image_url(:splash)
+      - when "Featured Sponsored"
+        = image_tag @advertisement.image_url(:featured_sponsored)
+      - when "Regular Sponsored"
+        = image_tag @advertisement.image_url(:regular_sponsored)
+  %p
+    %b Retailer:
+    = @advertisement.retailer.name
+  %p
+    %b Advertiser:
+    = @advertisement.advertiser.name
+  %p
+    %b Description:
+    = @advertisement.description
+  %p
+    %b Beg date:
+    = @advertisement.beg_date
+  %p
+    %b End date:
+    = @advertisement.end_date
+
+  -# %p
+  -#   %b Image url
+  -#   = @advertisement.image.url
+  -# 
+  -# %p
+  -#   %b Splash url
+  -#   = @advertisement.image.url(:splash)
+  -# 
+  -# %p
+  -#   %b featured_sponsored url
+  -#   = @advertisement.image.url(:featured_sponsored)
+  -# 
+  -# %p
+  -#   %b regular_sponsored url
+  -#   = @advertisement.image.url(:regular_sponsored)
+%br
+= link_to 'Edit', edit_advertisement_path(@advertisement)
+\|
+= link_to 'Back', advertisements_path
+
+-# "Splash",           
+-# "Featured Sponsored"
+-# "Regular Sponsored"

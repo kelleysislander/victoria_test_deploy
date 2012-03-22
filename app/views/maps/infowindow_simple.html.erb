@@ -1,0 +1,55 @@
+
+<link href="http://code.google.com/apis/maps/documentation/javascript/examples/default.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript">
+  function initialize() {
+    var myLatlng = new google.maps.LatLng(<%= @coords %>);
+    var myOptions = {
+      zoom: 14,
+      center: myLatlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+
+    var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+    // var contentString = '<div id="content">'+
+    //     '<div id="siteNotice">'+
+    //     '</div>'+
+    //     '<h1 id="firstHeading" class="firstHeading">Uluru</h1>'+
+    //     '<div id="bodyContent">'+
+    //     '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
+    //     'sandstone rock formation in the southern<br>part of the '+
+    //     'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) '+
+    //     'south west of the<br>nearest large town, Alice Springs; 450&#160;km '+
+    //     '(280&#160;mi) by road. Kata Tjuta and Uluru are the<br>two major '+
+    //     'features of the Uluru - Kata Tjuta National Park. Uluru is '+
+    //     'sacred to the<br>Pitjantjatjara and Yankunytjatjara, the '+
+    //     'Aboriginal people of the area. It has many springs,<br>waterholes, '+
+    //     'rock caves and ancient paintings. Uluru is listed as a World '+
+    //     'Heritage Site.</p>'+
+    //     '<p>Attribution: Uluru, <a href="http://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
+    //     'http://en.wikipedia.org/w/index.php?title=Uluru</a> '+
+    //     '<br>(last visited June 22, 2009).</p>'+
+    //     '</div>'+
+    //     '</div>';
+        
+    var infowindow = new google.maps.InfoWindow({
+        content: '<%= raw @content_string %>',
+        maxWidth: 400
+    });
+
+    var marker = new google.maps.Marker({
+        position: myLatlng,
+        map: map,
+        title: 'Kelleys Island, OH'
+    });
+    google.maps.event.addListener(marker, 'click', function() {
+      infowindow.open(map,marker);
+    });
+  }
+
+</script>
+
+<body onload="initialize()">
+  <div id="map_canvas" style="width:1400px; height:850px"></div>
+</body>

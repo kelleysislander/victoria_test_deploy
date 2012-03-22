@@ -1,0 +1,9 @@
+id	name	                  address	                      city	    state	zip	        phone	        contact_name	      contact_email	            created_at	          updated_at	          latitude	longitude	retailer_category_id
+1	  Kohl's	                "5750 Skillman St."	          Dallas	    TX	75214	      555-555-1212	"Bob Evans"	        bob.e@kohls.com	          "2011-11-15 16:04:55"	"2011-11-15 16:04:55"	32.8575	  -96.7558	      10
+2	  "Radio Shack"	          "5618 E Mockingbird Ln"	      Dallas	    TX	75206	      555-555-1212	"George McCartney"	georgemc@radioshack.com	  "2011-11-15 16:04:56"	"2011-11-15 16:04:56"	32.8365	  -96.7714	      3
+3	  Sears	                  "13331 Preston Rd"	          Dallas	    TX	75240-5223	555-555-1212	"Edgar Winter"	    edgwinter@sears.com	      "2011-11-15 16:04:56"	"2011-11-15 16:04:56"	32.9293	  -96.8081	      10
+4	  "Billy's Heli Shop"	    "9666 Whitehurst Dr"	        Dallas	    TX	75243	      555-555-1212	"Billy Kiskin"	    bill@semaphoremobile.com	"2011-11-15 16:04:57"	"2011-11-15 16:04:57"	32.9011	  -96.7295	      9
+5	  "Darlene's Boutique"	  "5000 Greenville Av"	        Dallas	    TX	75206	      555-555-1212	"Billy Kiskin"	    luc@renoemail.com	        "2011-11-15 16:04:57"	"2011-11-15 16:04:57"	32.848	  -96.7698	      11
+6	  "Half Price Books"	    "5803 East Northwest Highway"	Dallas	    TX	75232	      555-555-1212	"Ariel Lucky"	      ariel@hpbooks.com	        "2011-11-15 16:04:57"	"2011-11-15 16:04:57"	32.8659	  -96.7647	      9
+7	  "Kristian's Scuba King"	"411 Buckingham Rd"	          Richardson	TX	75081	      555-555-1212	"Kristian Takvham"	kt@scubaking.com	        "2011-11-15 16:04:57"	"2011-11-15 16:04:57"	32.9348	  -96.7288	      9
+8	  "Walgreen's Pharmacy"	  "6505 Abrams Road"	          Dallas	    TX	75243	      555-555-1212	"Darrel Divins"	    ddivins@walgreens.com	    "2011-11-15 16:04:57"	"2011-11-15 16:04:57"	32.8632	  -96.7449	      9

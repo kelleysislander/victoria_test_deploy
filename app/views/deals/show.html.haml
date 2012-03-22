@@ -1,0 +1,64 @@
+
+- if @deal.preview_flag == 1
+  %h1 Deal (preview)
+- else
+  %h1 Deal
+= render :partial => "show" 
+
+= link_to 'Edit', edit_deal_path( @deal )
+
+
+-# %table
+-#   %tr
+-#     %td{:width => 100} <h1>Deal</h1>
+-#     %td
+-#       = image_tag( @deal.badge_path )
+-#       = image_tag( @deal.image_url )
+-#     -# %td #{image_tag(@deal.badge_path, :size => '75x75')}
+-# %p
+-#   %b Account:
+-#   = (@deal.retailer) ? @deal.retailer.account.name : ""
+-# %p
+-#   %b Retailer:
+-#   = (@deal.retailer) ? @deal.retailer.name : ""
+-# %p
+-#   %b Advertiser:
+-#   = (@deal.advertiser) ? @deal.advertiser.name : ""
+-# %p
+-#   %b Name:
+-#   = @deal.name
+-# %p
+-#   %b Featured:
+-#   = featured( @deal.featured_flag )
+-# %p
+-#   %b Num Offered
+-#   = @deal.num_offered
+-# %p
+-#   %b Num Available
+-#   = @deal.num_available
+-# %p
+-#   %b Description:
+-#   = @deal.description
+-# %p
+-#   %b Content:
+-#   %br 
+-#   = text_area_tag( "content", @deal.content, :rows => 10, :cols => 20 )
+-# %p
+-#   %b Effective Date:
+-#   = @deal.beg_date
+-# %p
+-#   %b End Date:
+-#   = @deal.end_date
+-# 
+-# = link_to 'Edit', edit_deal_path(@deal)
+-# \|
+-# = link_to 'Back', deals_path
+-# 
+-# NOTE: The badge is stored in "/Users/billy/Projects/victoria/app/assets/badges"; Rails 3.1 looks for the badge in these paths, so we do not need to explicitly name the path:
+-# >> puts Rails.application.config.assets.paths
+-# /Users/billy/Projects/victoria/app/assets/badges
+-# /Users/billy/Projects/victoria/app/assets/images
+-# /Users/billy/Projects/victoria/app/assets/javascripts
+-# /Users/billy/Projects/victoria/app/assets/stylesheets
+-# /Users/billy/Projects/victoria/vendor/assets/stylesheets
+-# /Users/billy/.rvm/gems/ruby-1.9.2-p290@victoria/gems/jquery-rails-1.0.16/vendor/assets/javascripts

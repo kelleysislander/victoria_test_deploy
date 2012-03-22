@@ -1,0 +1,73 @@
+-# <style type="text/css">.inputs {display:none;}</style>
+.grey-form
+  = form_for @advertiser do |f|
+    -if @advertiser.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@advertiser.errors.count, "error")} prohibited this advertiser from being saved:"
+        %ul
+          - @advertiser.errors.full_messages.each do |msg|
+            %li= msg
+
+    .field
+      = f.label :advertiser_type_id
+      = f.select :advertiser_type_id, AdvertiserType.find(:all).collect { |at| [ at.advertiser_type, at.id ] }, {:include_blank => "Choose Advertiser Type"}, :style => "width: auto;"
+
+    .field
+      = f.label :retailer_id
+      = f.select :retailer_id, Retailer.find(:all).collect { |r| [ "#{r.name} #{r.address}", r.id ] }, {:include_blank => "If Advertiser = Retailer, Choose the Retailer here"}, :style => "width: auto;"
+
+
+    .inputs
+      .field
+        = f.label :name
+        = f.text_field :name
+      .field
+        = f.label :address
+        = f.text_field :address
+      .field
+        = f.label :city
+        = f.text_field :city
+      .field
+        = f.label :country
+        = f.select :state, guatemala_country
+      .field
+        = f.label :zip
+        = f.text_field :zip
+      
+    .actions
+      = submit_button('Save')
+
+    -# NOTE: if the advertiser_id == retailer_id then the advertiser is also the retailer (sole proprietorship, Mom & Pop shop, etc)
+    -# if the advertiser_id != retailer_id then they are both distinct, yet related entities
+  -# .field
+  -#   = f.label :advertiser_id
+  -#   <select id="advertisement_advertiser_id" name="advertisement[advertiser_id]" style="width: auto;"><option value="">Choose Advertiser</option>
+  -#   - Advertiser.find(:all, :include => :retailer).each do |a|
+  -#     - if a.retailer_id # if the Advertiser record has a retailer_id then we show that Advertiser as "selected"
+  -#       <option value=#{a.retailer.id} #{(a.retailer.id == @advertisement.retailer_id) ? selected="selected" : ""} >#{a.retailer.name} (R)</option>
+  -#     - else # The Advertiser does not have a retailer_id so we show as "selected" where the Advertiser.id == @advertisement.advertiser_id
+  -#       <option value=#{a.id} #{(a.id == @advertisement.advertiser_id) ? selected="selected" : ""}>#{a.name} (A)</option>
+  -#   </select>
+
+:javascript
+
+  // basic show and hide from a selectbox
+  $(document).ready(function () {    
+    $("#advertiser_retailer_id").bind("change", function () {
+      if ($(this).val() == "") {
+        $(".inputs").slideDown();
+      }
+      else if($(this).val() !="") {
+        $(".inputs").slideUp();
+      }
+    });
+  });
+  
+  var advertiser_retailer_id = #{@advertiser.retailer_id ? @advertiser.retailer_id : false};
+  
+  if (advertiser_retailer_id) {
+    $(".inputs").slideUp();
+  }
+
+
+

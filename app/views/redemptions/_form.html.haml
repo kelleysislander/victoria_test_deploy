@@ -1,0 +1,27 @@
+
+.grey-form
+  = form_for @redemption do |f|
+
+    -if @redemption.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@redemption.errors.count, "error")} prohibited this redemption from being saved:"
+        %ul
+          - @redemption.errors.full_messages.each do |msg|
+            %li= msg
+
+    .field
+      = f.label :deal_id
+      - if current_user.has_role?([:admin,:superadmin])
+        = f.select :deal_id, Deal.includes( :advertiser, {:retailer => :account}).where("num_available > 0 ").collect { |deal| [ "#{deal.retailer.name[0..30]} - #{deal.name[0..30]}", deal.id ] }, {:include_blank => "Choose Deal"}, :style => "width: auto;"
+      - else
+        = f.select :deal_id, Deal.includes( :advertiser, {:retailer => :account}).where("num_available > 0 AND #{current_user.account_id} = retailers.account_id").collect { |deal| [ "#{deal.retailer.name[0..30]} - #{deal.name[0..30]}", deal.id ] }, {:include_blank => "Choose Deal"}, :style => "width: auto;"
+    
+    -# :active scope, account_id for the deal's retailer matches the account_id for the user doing the redemption
+
+    .field
+      = f.label :num_redeemed
+      = f.text_field :num_redeemed, :size => 3
+
+    .actions
+      = submit_button('Save')
+

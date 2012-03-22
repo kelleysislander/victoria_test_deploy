@@ -1,0 +1,13 @@
+%p
+  - title "Deal Type"
+
+%p
+  %b Deal type:
+  = @deal_type.deal_type
+%p
+  %b Description:
+  = @deal_type.description
+
+= link_to 'Edit', edit_deal_type_path(@deal_type)
+\|
+= link_to 'Back', deal_types_path

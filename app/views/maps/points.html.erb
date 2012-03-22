@@ -1,0 +1,75 @@
+<!-- <%#= @locations.size %>
+<%# @locations.each do |loc| %>
+  <%#= loc.latitude %>
+
+<%# end %> -->
+
+<link href="http://code.google.com/apis/maps/documentation/javascript/examples/default.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?sensor=false"></script>
+
+<script type="text/javascript">
+// Old
+  // var latitudes = []; var longitudes = []; 
+  // var retailernames = [];
+  // var dealcounts = [];
+
+// New
+  var retailers = [];
+  var deals = [];
+  var markers = [];
+  var iterator = 0;
+
+  var map;
+  var recentered = false;
+  
+  var startloc = new google.maps.LatLng(<%= @locations[0].latitude %>, <%= @locations[0].longitude %>); // first location
+  var locations = [
+    <% @locations.each_with_index do |loc, idx| %>
+     new google.maps.LatLng(<%=loc.latitude %>, <%=loc.longitude %>),
+    <% end %>
+  ];
+  <% @locations.each_with_index do |loc, idx| %>
+    retailers.push("<%= loc.name %>");
+    deals.push("<%= loc.deals.size %>")
+  <% end %>
+  
+  function initialize() {
+    var mapOptions = {
+      zoom: 12,
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      center: startloc
+    };
+
+    map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+  }
+  
+  function drop() {
+    for (var i = 0; i < locations.length; i++) {
+      setTimeout(function() {
+        addMarker();
+      }, i * 500);
+    }
+  }
+
+  function addMarker() {
+    markers.push(new google.maps.Marker({
+      position: locations[iterator],
+      map: map,
+      draggable: false,
+      animation: google.maps.Animation.DROP,
+      title: retailers[iterator]
+    }));
+    iterator++;
+  }
+
+  function filler(){
+    null // just used to delay the first drop
+  };
+  
+</script>
+
+<body onload="initialize(); setTimeout(function() {filler();}, 200);drop();">
+  <div id="map_canvas" style="width:1000px; height:650px"></div>
+  <!-- <button id="drop" onclick="drop()">Drop Markers</button> -->
+</body>
+

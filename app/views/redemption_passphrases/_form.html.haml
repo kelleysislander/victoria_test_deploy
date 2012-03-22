@@ -1,0 +1,30 @@
+.grey-form
+  = form_for(@redemption_passphrase, :html => { :class => "miiform"} )  do |f|
+    -if @redemption_passphrase.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@redemption_passphrase.errors.count, "error")} prohibited this passphrase from being saved:"
+        %ul
+          - @redemption_passphrase.errors.full_messages.each do |msg|
+            %li= msg
+
+    %p
+      Please complete the form below. Mandatory fields marked.
+      %em
+        *
+    %fieldset{:id => "main"}
+      %legend
+        Redemption Passphrase
+      %ol
+      %li
+        %label{:for => "passphrase", :id => "passphrase_label"} Passphrase<em>*</em>
+        = f.text_field :passphrase, :size => 40
+      %ol
+      %li
+        %label{:for => "beg_date", :id => "beg_date_label"} Beginning Date<em>*</em>
+        = f.text_field :beg_date, :class => 'date_picker start_date small', :value => day_mon_year(@redemption_passphrase.beg_date) || day_mon_year(Date.today)
+      %li
+        %label{:for => "end_date", :id => "end_date_label"} End Date<em>*</em>
+        = f.text_field :end_date, :class => 'date_picker end_date small', :value => day_mon_year(@redemption_passphrase.end_date) || day_mon_year(Date.today)
+
+      %li
+        = f.submit 'Save', :class => 'miisubmit'

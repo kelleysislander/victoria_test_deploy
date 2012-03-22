@@ -1,0 +1,21 @@
+- title "Device Redemptions"
+
+%table
+  %tr
+    %th Device UID
+    %th Deal
+    %th Redemption Type
+    %th Redemption Date
+    %th{:colspan => 2, :style => "text-align:center;"} Actions
+    
+  - @device_redemptions.each do |dr| 
+    %tr
+      %td= dr.device_uid
+      %td= dr.deal_id
+      %td= redemption_type( dr.redemption_type )
+      %td= dr.redemption_date
+      %td= link_to 'Show', dr
+      %td= link_to 'Destroy', device_redemption, :confirm => 'Are you sure?', :method => :delete
+
+= paginate @device_redemptions
+

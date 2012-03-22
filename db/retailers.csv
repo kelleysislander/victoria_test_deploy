@@ -1,0 +1,9 @@
+id,name,address,city,state,zip,contact_name,contact_email,created_at,updated_at,latitude,longitude,retailer_category_id
+2,Kohl's,"5750 Skillman St.",Dallas,TX,75214,"Bob Evans",bob.e@kohls.com,"2011-10-20 15:43:27","2011-10-28 20:26:08",32.8575,-96.7558,NULL
+3,"Radio Shack","5618 E Mockingbird Ln",Dallas,TX,75206,"George McCartneys",georgemc@radioshack.com,"2011-10-20 15:46:35","2011-10-28 20:25:53",32.8365,-96.7714,NULL
+4,Sears,"13331 Preston Rd.",Dallas,TX,75240-5223,"Edgar Winter",edgwinter@sears.com,"2011-10-20 15:49:01","2011-10-28 20:26:20",32.9293,-96.8081,NULL
+5,"Billy's Heli Shop","9666 Whitehurst Dr",Dallas,TX,75243,bill,bill@semaphoremobile.com,"2011-10-20 20:56:24","2011-10-31 15:06:21",32.9011,-96.7295,NULL
+6,Darlene,"5000 Greenville Av",Dallas,TX,75206,Darlene,luc@renoemail.com,"2011-10-24 14:04:18","2011-10-31 14:13:16",32.848,-96.7698,NULL
+7,"Half Price Books","5803 East Northwest Highway",Dallas,TX,75231,Ariel,ariel@hpbooks.com,"2011-11-02 19:06:51","2011-11-02 19:07:21",32.8659,-96.7647,NULL
+8,"Kristian's Scuba King","411 Buckingham Rd",Richardson,TX,75081,"Kristian T.",kt@scubaking.com,"2011-11-02 19:09:07","2011-11-02 19:09:07",32.9348,-96.7288,NULL
+9,"Walgreen's Pharmacy","6505 Abrams Road",Dallas,TX,75243,"Darrel Divins",ddivins@walgreens.com,"2011-11-10 18:02:04","2011-11-10 18:02:04",32.8632,-96.7449,NULL

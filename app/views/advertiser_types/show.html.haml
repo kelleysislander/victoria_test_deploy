@@ -1,0 +1,13 @@
+%p
+  - title "Advertiser Type"
+
+%p
+  %b Advertiser Type:
+  = @advertiser_type.advertiser_type
+%p
+  %b Description:
+  = @advertiser_type.description
+
+= link_to 'Edit', edit_advertiser_type_path(@advertiser_type)
+\|
+= link_to 'Back', advertiser_types_path

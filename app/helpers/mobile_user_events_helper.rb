@@ -1,0 +1,2 @@
+module MobileUserEventsHelper
+end

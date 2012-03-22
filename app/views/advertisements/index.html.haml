@@ -1,0 +1,46 @@
+- title "Advertisements"
+
+%table
+  %tr
+    %th Image
+    %th Type
+    %th Advertiser
+    %th Ad Name
+    %th Retailer
+    %th Account
+    -# %th{:style => "width : 260px;"} Description
+    -# %th Content
+    %th Beg Date
+    %th End Date
+    %th{:colspan => 3, :style => "text-align:center;"} Actions
+
+  - @advertisements.each do |advertisement|
+    %tr
+      - case advertisement.advertisement_type.advertisement_type
+        - when "Splash"
+          %td= advertisement.image_url ? image_tag( advertisement.image_url(:splash), :size => "#{Victoria::Application::SPLASH_INDEX}" ) : nil
+        - when "Featured Sponsored"
+          %td= advertisement.image_url ? image_tag( advertisement.image_url(:featured_sponsored), :size => "#{Victoria::Application::FEAT_INDEX}" ) : nil
+        - when "Regular Sponsored"
+          %td= advertisement.image_url ? image_tag( advertisement.image_url(:regular_sponsored), :size => "#{Victoria::Application::REG_INDEX}" ) : nil
+        - else
+          %td nil
+      %td= advertisement.advertisement_type.advertisement_type.split(" ").first
+      %td= (advertisement.advertiser.name) ? "#{advertisement.advertiser.name} (A)" : "#{advertisement.retailer.name} (R)"
+      %td= advertisement.name
+      %td= advertisement.retailer ? advertisement.retailer.name : "na"
+      %td= advertisement.retailer ? advertisement.retailer.account.name : "na"
+      -# %td= advertisement.retailer.deals
+      -# %td= advertisement.description
+      -# %td= advertisement.content
+      %td= disp_date(advertisement.beg_date)
+      %td= disp_date(advertisement.end_date)
+      %td= link_to 'Show', advertisement
+      %td= link_to 'Edit', edit_advertisement_path(advertisement)
+      %td= link_to 'Destroy', advertisement, :confirm => 'Are you sure?', :method => :delete
+
+= paginate @advertisements
+
+%br
+
+= link_to 'New Advertisement', new_advertisement_path

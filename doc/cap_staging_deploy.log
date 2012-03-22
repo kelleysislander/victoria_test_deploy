@@ -1,0 +1,493 @@
+03/22/2012:
+Billys-MacBook-Pro ~/Projects/victoria: cap staging deploy
+ENV['rvm_path']
+rvm_path => /Volumes/MainHD/Users/billy/.rvm
+END ENV['rvm_path']
+
+******************* deploy.rb: require capistrano_database **********************
+capistano_database.rb: NEXT: db:setup
+capistano_database.rb: NEXT: after deploy:finalize_update, db:symlink
+  * executing `staging'
+    triggering start callbacks for `deploy'
+  * executing `multistage:ensure'
+  * executing `deploy'
+  * executing `deploy:update'
+ ** transaction: start
+  * executing `deploy:update_code'
+    executing locally: "git ls-remote git@github.com:semaphoremobile/Victoria.git master"
+    command finished in 1525ms
+  * executing "git clone git@github.com:semaphoremobile/Victoria.git /var/www/vhosts/victoria.semaphoremobile.com/releases/20120321205719 && cd /var/www/vhosts/victoria.semaphoremobile.com/releases/20120321205719 && git checkout -b deploy 8e3f0e41de565018b729ced2c2fedb9e60d69dab && (echo 8e3f0e41de565018b729ced2c2fedb9e60d69dab > /var/www/vhosts/victoria.semaphoremobile.com/releases/20120321205719/REVISION)"
+    servers: ["50.56.211.64"]
+Password: 
+    [50.56.211.64] executing command
+ ** [50.56.211.64 :: out] Cloning into /var/www/vhosts/victoria.semaphoremobile.com/releases/20120321205719...
+ ** [50.56.211.64 :: out] remote: Counting objects: 3233, done.
+ ** remote: Compressing objects:   0% (1/1444)   
+remote: Compressing objects:   2% (29/1444)   
+remote: Compressing objects:   4% (58/1444)   
+remote: Compressing objects:  16% (232/1444)   
+ ** [50.56.211.64 :: out] remote: Compressing objects:  17% (246/1444)   
+remote: Compressing objects:  20% (289/1444)   
+ ** [50.56.211.64 :: out] remote: Compressing objects:  21% (304/1444)   
+ ** [50.56.211.64 :: out] remote: Compressing objects:  22% (318/1444)   
+ ** [50.56.211.64 :: out] remote: Compressing objects:  23% (333/1444)   
+remote: Compressing objects:  25% (361/1444)   
+ ** [50.56.211.64 :: out] remote: Compressing objects:  26% (376/1444)   
+remote: Compressing objects:  28% (405/1444)   
+remote: Compressing objects:  32% (463/1444)   
+remote: Compressing objects:  39% (564/1444)   
+remote: Compressing objects:  41% (593/1444)   
+ ** [50.56.211.64 :: out] remote: Compressing objects:  42% (607/1444)   
+remote: Compressing objects:  46% (665/1444)   
+remote: Compressing objects:  52% (751/1444)   
+remote: Compressing objects:  55% (795/1444)   
+remote: Compressing objects:  95% (1372/1444)   
+remote: Compressing objects: 100% (1444/1444), done.
+Receiving objects:   1% (33/3233)33)   
+ ** [50.56.211.64 :: out] Receiving objects:   2% (65/3233)
+Receiving objects:   5% (162/3233)   bjects:   3% (97/3233)   
+ ** [50.56.211.64 :: out] Receiving objects:   6% (194/3233)
+Receiving objects:  11% (356/3233), 2.74 MiB | 5.15 MiB/s   , 2.74 MiB | 5.15 MiB/s   
+ ** [50.56.211.64 :: out] Receiving objects:  12% (388/3233), 2.74 MiB | 5.15 MiB/s
+Receiving objects:  17% (550/3233), 2.74 MiB | 5.15 MiB/s   , 2.74 MiB | 5.15 MiB/s   
+Receiving objects:  25% (809/3233), 2.74 MiB | 5.15 MiB/s   , 2.74 MiB | 5.15 MiB/s   
+ ** [50.56.211.64 :: out] Receiving objects:  26% (841/3233), 2.74 MiB | 5.15 MiB/s
+Receiving objects:  29% (938/3233), 6.14 MiB | 5.94 MiB/s   , 6.14 MiB | 5.94 MiB/s   
+Receiving objects:  40% (1294/3233), 6.14 MiB | 5.94 MiB/s    6.14 MiB | 5.94 MiB/s   
+Receiving objects:  44% (1423/3233), 6.14 MiB | 5.94 MiB/s   , 6.14 MiB | 5.94 MiB/s   
+Receiving objects:  64% (2070/3233), 6.14 MiB | 5.94 MiB/s   , 6.14 MiB | 5.94 MiB/s   
+Receiving objects:  70% (2264/3233), 6.14 MiB | 5.94 MiB/s   , 6.14 MiB | 5.94 MiB/s   
+Receiving objects:  94% (3040/3233), 6.14 MiB | 5.94 MiB/s   , 6.14 MiB | 5.94 MiB/s   
+ ** [50.56.211.64 :: out] remote: Total 3233 (delta 2146), reused 2782 (delta 1695)
+Receiving objects: 100% (3233/3233), 7.91 MiB | 5.94 MiB/s, done.
+Resolving deltas:  13% (280/2146)     
+Resolving deltas:  28% (606/2146)   deltas:  14% (302/2146)   
+Resolving deltas:  44% (958/2146)   deltas:  29% (640/2146)   
+Resolving deltas:  63% (1355/2146)   eltas:  45% (980/2146)   
+Resolving deltas:  68% (1467/2146)   eltas:  64% (1390/2146)   
+Resolving deltas:  73% (1567/2146)   eltas:  70% (1506/2146)   
+Resolving deltas:  95% (2043/2146)   eltas:  74% (1590/2146)   
+Resolving deltas: 100% (2146/2146), done.s:  97% (2088/2146)   
+ ** [50.56.211.64 :: out] Switched to a new branch 'deploy'
+    command finished in 4893ms
+  * executing `deploy:finalize_update'
+  * executing "chmod -R g+w /var/www/vhosts/victoria.semaphoremobile.com/releases/20120321205719"
+    servers: ["50.56.211.64"]
+    [50.56.211.64] executing command
+    command finished in 633ms
+  * executing "rm -rf /var/www/vhosts/victoria.semaphoremobile.com/releases/20120321205719/log /var/www/vhosts/victoria.semaphoremobile.com/releases/20120321205719/public/system /var/www/vhosts/victoria.semaphoremobile.com/releases/20120321205719/tmp/pids &&\\\n      mkdir -p /var/www/vhosts/victoria.semaphoremobile.com/releases/20120321205719/public &&\\\n      mkdir -p /var/www/vhosts/victoria.semaphoremobile.com/releases/20120321205719/tmp &&\\\n      ln -s /var/www/vhosts/victoria.semaphoremobile.com/shared/log /var/www/vhosts/victoria.semaphoremobile.com/releases/20120321205719/log &&\\\n      ln -s /var/www/vhosts/victoria.semaphoremobile.com/shared/system /var/www/vhosts/victoria.semaphoremobile.com/releases/20120321205719/public/system &&\\\n      ln -s /var/www/vhosts/victoria.semaphoremobile.com/shared/pids /var/www/vhosts/victoria.semaphoremobile.com/releases/20120321205719/tmp/pids"
+    servers: ["50.56.211.64"]
+    [50.56.211.64] executing command
+    command finished in 647ms
+  * executing "find /var/www/vhosts/victoria.semaphoremobile.com/releases/20120321205719/public/images /var/www/vhosts/victoria.semaphoremobile.com/releases/20120321205719/public/stylesheets /var/www/vhosts/victoria.semaphoremobile.com/releases/20120321205719/public/javascripts -exec touch -t 201203212057.29 {} ';'; true"
+    servers: ["50.56.211.64"]
+    [50.56.211.64] executing command
+    command finished in 782ms
+    triggering after callbacks for `deploy:finalize_update'
+  * executing `bundle:install'
+  * executing "ls -x /var/www/vhosts/victoria.semaphoremobile.com/releases"
+    servers: ["50.56.211.64"]
+    [50.56.211.64] executing command
+    command finished in 599ms
+  * executing "cd /var/www/vhosts/victoria.semaphoremobile.com/releases/20120321205719 && bundle install --gemfile /var/www/vhosts/victoria.semaphoremobile.com/releases/20120321205719/Gemfile --path /var/www/vhosts/victoria.semaphoremobile.com/shared/bundle --deployment --without development test"
+    servers: ["50.56.211.64"]
+    [50.56.211.64] executing command
+ ** [out :: 50.56.211.64] Using rake (0.9.2)
+ ** [out :: 50.56.211.64] Using multi_json (1.0.3)
+ ** [out :: 50.56.211.64] Using activesupport (3.1.0)
+ ** [out :: 50.56.211.64] Using bcrypt-ruby (3.0.1)
+ ** [out :: 50.56.211.64] Using builder (3.0.0)
+ ** [out :: 50.56.211.64] Using i18n (0.6.0)
+ ** [out :: 50.56.211.64] Using activemodel (3.1.0)
+ ** [out :: 50.56.211.64] Using erubis (2.7.0)
+ ** [out :: 50.56.211.64] Using rack (1.3.3)
+ ** [out :: 50.56.211.64] Using rack-cache (1.0.3)
+ ** [out :: 50.56.211.64] Using rack-mount (0.8.3)
+ ** [out :: 50.56.211.64] Using rack-test (0.6.1)
+ ** [out :: 50.56.211.64] Using hike (1.2.1)
+ ** [out :: 50.56.211.64] Using tilt (1.3.3)
+ ** [out :: 50.56.211.64] Using sprockets (2.0.3)
+ ** [out :: 50.56.211.64] Using actionpack (3.1.0)
+ ** [out :: 50.56.211.64] Using mime-types (1.16)
+ ** [out :: 50.56.211.64] Using polyglot (0.3.2)
+ ** [out :: 50.56.211.64] Using treetop (1.4.10)
+ ** [out :: 50.56.211.64] Using mail (2.3.0)
+ ** [out :: 50.56.211.64] Using actionmailer (3.1.0)
+ ** [out :: 50.56.211.64] Using arel (2.2.1)
+ ** [out :: 50.56.211.64] Using tzinfo (0.3.30)
+ ** [out :: 50.56.211.64] Using activerecord (3.1.0)
+ ** [out :: 50.56.211.64] Using activeresource (3.1.0)
+ ** [out :: 50.56.211.64] Using addressable (2.2.6)
+ ** [out :: 50.56.211.64] Using cancan (1.6.7)
+ ** [out :: 50.56.211.64] Using highline (1.6.2)
+ ** [out :: 50.56.211.64] Using net-ssh (2.2.1)
+ ** [out :: 50.56.211.64] Using net-scp (1.0.4)
+ ** [out :: 50.56.211.64] Using net-sftp (2.0.5)
+ ** [out :: 50.56.211.64] Using net-ssh-gateway (1.1.0)
+ ** [out :: 50.56.211.64] Using capistrano (2.9.0)
+ ** [out :: 50.56.211.64] Using capistrano-ext (1.2.1)
+ ** [out :: 50.56.211.64] Using carrierwave (0.5.8)
+ ** [out :: 50.56.211.64] Using coffee-script-source (1.1.2)
+ ** [out :: 50.56.211.64] Using execjs (1.2.9)
+ ** [out :: 50.56.211.64] Using coffee-script (2.2.0)
+ ** [out :: 50.56.211.64] Using rack-ssl (1.3.2)
+ ** [out :: 50.56.211.64] Using json (1.6.1)
+ ** [out :: 50.56.211.64] Using rdoc (3.10)
+ ** [out :: 50.56.211.64] Using thor (0.14.6)
+ ** [out :: 50.56.211.64] Using railties (3.1.0)
+ ** [out :: 50.56.211.64] Using coffee-rails (3.1.1)
+ ** [out :: 50.56.211.64] Using date_validator (0.6.2)
+ ** [out :: 50.56.211.64] Using orm_adapter (0.0.5)
+ ** [out :: 50.56.211.64] Using warden (1.0.6)
+ ** [out :: 50.56.211.64] Using devise (1.4.8)
+ ** [out :: 50.56.211.64] Using multipart-post (1.1.3)
+ ** [out :: 50.56.211.64] Using faraday (0.7.5)
+ ** [out :: 50.56.211.64] Using geocoder (1.0.4)
+ ** [out :: 50.56.211.64] Using haml (3.1.3)
+ ** [out :: 50.56.211.64] Using haml-rails (0.3.4)
+ ** [out :: 50.56.211.64] Using hashie (1.2.0)
+ ** [out :: 50.56.211.64] Using jquery-rails (1.0.16)
+ ** [out :: 50.56.211.64] Using bundler (1.0.21)
+ ** [out :: 50.56.211.64] Using rails (3.1.0)
+ ** [out :: 50.56.211.64] Using kaminari (0.12.4)
+ ** [out :: 50.56.211.64] Using libv8 (3.3.10.4)
+ ** [out :: 50.56.211.64] Using subexec (0.1.0)
+ ** [out :: 50.56.211.64] Using mini_magick (3.3)
+ ** [out :: 50.56.211.64] Using mysql2 (0.3.7)
+ ** [out :: 50.56.211.64] Using nifty-generators (0.4.6)
+ ** [out :: 50.56.211.64] Using oauth (0.4.5)
+ ** [out :: 50.56.211.64] Using oauth2 (0.5.1)
+ ** [out :: 50.56.211.64] Using omniauth (1.0.0)
+ ** [out :: 50.56.211.64] Using omniauth-oauth2 (1.0.0)
+ ** [out :: 50.56.211.64] Using omniauth-facebook (1.0.0.rc2)
+ ** [out :: 50.56.211.64] Using omniauth-oauth (1.0.0)
+ ** [out :: 50.56.211.64] Using omniauth-twitter (0.0.6)
+ ** [out :: 50.56.211.64] Using rabl (0.5.0)
+ ** [out :: 50.56.211.64] Using rmagick (2.13.1)
+ ** [out :: 50.56.211.64] Using therubyracer (0.9.9)
+ ** [out :: 50.56.211.64] Using uglifier (1.0.3)
+ ** [out :: 50.56.211.64] Your bundle is complete! It was installed into /var/www/vhosts/victoria.semaphoremobile.com/shared/bundle
+    command finished in 2112ms
+  * executing `db:symlink'
+************ running: capistrano_database.rb: symlinking database.yml: ln -nfs /var/www/vhosts/victoria.semaphoremobile.com/shared/config/database.yml /var/www/vhosts/victoria.semaphoremobile.com/releases/20120321205719/config/database.yml
+  * executing "ln -nfs /var/www/vhosts/victoria.semaphoremobile.com/shared/config/database.yml /var/www/vhosts/victoria.semaphoremobile.com/releases/20120321205719/config/database.yml"
+    servers: ["50.56.211.64"]
+    [50.56.211.64] executing command
+    command finished in 869ms
+  * executing `deploy:symlink'
+  * executing "rm -f /var/www/vhosts/victoria.semaphoremobile.com/current && ln -s /var/www/vhosts/victoria.semaphoremobile.com/releases/20120321205719 /var/www/vhosts/victoria.semaphoremobile.com/current"
+    servers: ["50.56.211.64"]
+    [50.56.211.64] executing command
+    command finished in 635ms
+    triggering after callbacks for `deploy:symlink'
+  * executing `deploy:rvmrc:symlink'
+************ running: deploy.rb: symlinking .rvmrc: ln -nfs /var/www/vhosts/victoria.semaphoremobile.com/shared/config/.rvmrc /var/www/vhosts/victoria.semaphoremobile.com/releases/20120321205719/config/.rvmrc
+  * executing "mv -vf /var/www/vhosts/victoria.semaphoremobile.com/releases/20120321205719/.rvmrc /var/www/vhosts/victoria.semaphoremobile.com/shared/config/.rvmrc"
+    servers: ["50.56.211.64"]
+    [50.56.211.64] executing command
+ ** [out :: 50.56.211.64] `/var/www/vhosts/victoria.semaphoremobile.com/releases/20120321205719/.rvmrc' -> `/var/www/vhosts/victoria.semaphoremobile.com/shared/config/.rvmrc'
+    command finished in 689ms
+************ running: ln -nfs /var/www/vhosts/victoria.semaphoremobile.com/shared/config/.rvmrc /var/www/vhosts/victoria.semaphoremobile.com/releases/20120321205719/.rvmrc
+  * executing "ln -nfs /var/www/vhosts/victoria.semaphoremobile.com/shared/config/.rvmrc /var/www/vhosts/victoria.semaphoremobile.com/releases/20120321205719/.rvmrc"
+    servers: ["50.56.211.64"]
+    [50.56.211.64] executing command
+    command finished in 619ms
+ ** transaction: commit
+  * executing `deploy:restart'
+************ running => task :restart, :roles => :app, :except => { :no_release => true }
+  * executing "touch /var/www/vhosts/victoria.semaphoremobile.com/current/tmp/restart.txt"
+    servers: ["50.56.211.64"]
+    [50.56.211.64] executing command
+    command finished in 633ms
+
+
+Billys-MacBook-Pro ~/Projects/victoria: cap staging deploy
+ENV['rvm_path']
+rvm_path => /Users/billy/.rvm
+END ENV['rvm_path']
+
+******************* deploy.rb: require capistrano_database **********************
+capistano_database.rb: NEXT: db:setup
+capistano_database.rb: NEXT: after deploy:finalize_update, db:symlink
+  * executing `staging'
+    triggering start callbacks for `deploy'
+  * executing `multistage:ensure'
+  * executing `deploy'
+  * executing `deploy:update'
+ ** transaction: start
+  * executing `deploy:update_code'
+    executing locally: "git ls-remote git@github.com:semaphoremobile/Victoria.git master"
+    command finished in 5229ms
+  * executing "git clone git@github.com:semaphoremobile/Victoria.git /var/www/vhosts/victoria.semaphoremobile.com/releases/20120125182017 && cd /var/www/vhosts/victoria.semaphoremobile.com/releases/20120125182017 && git checkout -b deploy f978b9679d36fedcd28e4bb7abdfd92671ccc27e && (echo f978b9679d36fedcd28e4bb7abdfd92671ccc27e > /var/www/vhosts/victoria.semaphoremobile.com/releases/20120125182017/REVISION)"
+    servers: ["50.56.211.64"]
+Password: 
+    [50.56.211.64] executing command
+ ** [50.56.211.64 :: out] Cloning into /var/www/vhosts/victoria.semaphoremobile.com/releases/20120125182017...
+ ** [50.56.211.64 :: out] remote: Counting objects: 1657, done.
+remote: Compressing objects:   2% (21/1041)   
+remote: Compressing objects:   8% (84/1041)   
+remote: Compressing objects:  18% (188/1041)   
+remote: Compressing objects:  22% (230/1041)   
+remote: Compressing objects:  28% (292/1041)   
+remote: Compressing objects:  30% (313/1041)   
+remote: Compressing objects:  35% (365/1041)   
+ ** [50.56.211.64 :: out] remote: Compressing objects:  36% (375/1041)   
+remote: Compressing objects:  44% (459/1041)   
+ ** [50.56.211.64 :: out] remote: Compressing objects:  45% (469/1041)   
+remote: Compressing objects:  48% (500/1041)   
+remote: Compressing objects:  56% (583/1041)   
+remote: Compressing objects:  77% (802/1041)   
+remote: Compressing objects:  93% (969/1041)   
+remote: Compressing objects: 100% (1041/1041), done.
+ ** [50.56.211.64 :: out] Receiving objects:   0% (1/1657)
+Receiving objects:   2% (34/1657)ng objects:   1% (17/1657)   
+ ** [50.56.211.64 :: out] Receiving objects:   3% (50/1657)
+ ** [50.56.211.64 :: out] Receiving objects:   4% (67/1657)
+ ** [50.56.211.64 :: out] Receiving objects:   5% (83/1657)
+Receiving objects:   7% (116/1657)g objects:   6% (100/1657)   
+Receiving objects:   9% (150/1657)g objects:   8% (133/1657)   
+Receiving objects:  14% (232/1657)   bjects:  10% (166/1657)   
+Receiving objects:  18% (299/1657)   bjects:  15% (249/1657)   
+Receiving objects:  21% (348/1657)   bjects:  19% (315/1657)   
+Receiving objects:  24% (398/1657), 108.00 KiB | 190 KiB/s    108.00 KiB | 190 KiB/s   
+Receiving objects:  26% (431/1657), 108.00 KiB | 190 KiB/s7), 108.00 KiB | 190 KiB/s   
+Receiving objects:  29% (481/1657), 108.00 KiB | 190 KiB/s    108.00 KiB | 190 KiB/s   
+ ** [50.56.211.64 :: out] Receiving objects:  29% (491/1657), 268.00 KiB | 243 KiB/s
+ ** [50.56.211.64 :: out] Receiving objects:  30% (498/1657), 460.00 KiB | 280 KiB/s
+ ** [50.56.211.64 :: out] Receiving objects:  31% (514/1657), 460.00 KiB | 280 KiB/s
+ ** [50.56.211.64 :: out] Receiving objects:  32% (531/1657), 460.00 KiB | 280 KiB/s
+Receiving objects:  34% (564/1657), 460.00 KiB | 280 KiB/s    460.00 KiB | 280 KiB/s   
+ ** [50.56.211.64 :: out] Receiving objects:  35% (580/1657), 716.00 KiB | 326 KiB/s
+Receiving objects:  43% (713/1657), 716.00 KiB | 326 KiB/s    716.00 KiB | 326 KiB/s   
+ ** [50.56.211.64 :: out] Receiving objects:  44% (730/1657), 716.00 KiB | 326 KiB/s
+ ** [50.56.211.64 :: out] Receiving objects:  45% (746/1657), 716.00 KiB | 326 KiB/s
+ ** [50.56.211.64 :: out] Receiving objects:  46% (763/1657), 716.00 KiB | 326 KiB/s
+Receiving objects:  52% (862/1657), 716.00 KiB | 326 KiB/s    716.00 KiB | 326 KiB/s   
+Receiving objects:  59% (978/1657), 716.00 KiB | 326 KiB/s    716.00 KiB | 326 KiB/s   
+Receiving objects:  68% (1127/1657), 716.00 KiB | 326 KiB/s   716.00 KiB | 326 KiB/s   
+Receiving objects:  82% (1359/1657), 1004.00 KiB | 371 KiB/s   1004.00 KiB | 371 KiB/s   
+ ** [50.56.211.64 :: out] remote: Total 1657 (delta 992), reused 1220 (delta 555)
+Receiving objects: 100% (1657/1657), 1.03 MiB | 371 KiB/s, done.   
+Resolving deltas:   7% (73/992)      
+Resolving deltas:  33% (328/992)    deltas:  13% (132/992)   
+Resolving deltas:  60% (604/992)    deltas:  34% (342/992)   
+ ** [50.56.211.64 :: out] Resolving deltas:  61% (615/992)
+Resolving deltas:  83% (824/992)    deltas:  62% (624/992)   
+Resolving deltas: 100% (992/992), done.tas:  84% (841/992)   
+ ** [50.56.211.64 :: out] Switched to a new branch 'deploy'
+    command finished in 6437ms
+  * executing `deploy:finalize_update'
+  * executing "chmod -R g+w /var/www/vhosts/victoria.semaphoremobile.com/releases/20120125182017"
+    servers: ["50.56.211.64"]
+    [50.56.211.64] executing command
+    command finished in 975ms
+  * executing "rm -rf /var/www/vhosts/victoria.semaphoremobile.com/releases/20120125182017/log /var/www/vhosts/victoria.semaphoremobile.com/releases/20120125182017/public/system /var/www/vhosts/victoria.semaphoremobile.com/releases/20120125182017/tmp/pids &&\\\n      mkdir -p /var/www/vhosts/victoria.semaphoremobile.com/releases/20120125182017/public &&\\\n      mkdir -p /var/www/vhosts/victoria.semaphoremobile.com/releases/20120125182017/tmp &&\\\n      ln -s /var/www/vhosts/victoria.semaphoremobile.com/shared/log /var/www/vhosts/victoria.semaphoremobile.com/releases/20120125182017/log &&\\\n      ln -s /var/www/vhosts/victoria.semaphoremobile.com/shared/system /var/www/vhosts/victoria.semaphoremobile.com/releases/20120125182017/public/system &&\\\n      ln -s /var/www/vhosts/victoria.semaphoremobile.com/shared/pids /var/www/vhosts/victoria.semaphoremobile.com/releases/20120125182017/tmp/pids"
+    servers: ["50.56.211.64"]
+    [50.56.211.64] executing command
+    command finished in 1173ms
+  * executing "find /var/www/vhosts/victoria.semaphoremobile.com/releases/20120125182017/public/images /var/www/vhosts/victoria.semaphoremobile.com/releases/20120125182017/public/stylesheets /var/www/vhosts/victoria.semaphoremobile.com/releases/20120125182017/public/javascripts -exec touch -t 201201251820.30 {} ';'; true"
+    servers: ["50.56.211.64"]
+    [50.56.211.64] executing command
+    command finished in 1222ms
+    triggering after callbacks for `deploy:finalize_update'
+  * executing `bundle:install'
+  * executing "ls -x /var/www/vhosts/victoria.semaphoremobile.com/releases"
+    servers: ["50.56.211.64"]
+    [50.56.211.64] executing command
+    command finished in 1113ms
+  * executing "cd /var/www/vhosts/victoria.semaphoremobile.com/releases/20120125182017 && bundle install --gemfile /var/www/vhosts/victoria.semaphoremobile.com/releases/20120125182017/Gemfile --path /var/www/vhosts/victoria.semaphoremobile.com/shared/bundle --deployment --without development test"
+    servers: ["50.56.211.64"]
+    [50.56.211.64] executing command
+ ** [out :: 50.56.211.64] Fetching source index for http://rubygems.org/
+ ** [out :: 50.56.211.64] Installing rake (0.9.2)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing multi_json (1.0.3)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing activesupport (3.1.0)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing bcrypt-ruby (3.0.1)
+ ** [out :: 50.56.211.64] with native extensions
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing builder (3.0.0)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing i18n (0.6.0)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing activemodel (3.1.0)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing erubis (2.7.0)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing rack (1.3.3)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing rack-cache (1.0.3)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing rack-mount (0.8.3)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing rack-test (0.6.1)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing hike (1.2.1)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing tilt (1.3.3)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing sprockets (2.0.3)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing actionpack (3.1.0)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing mime-types (1.16)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing polyglot (0.3.2)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing treetop (1.4.10)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing mail (2.3.0)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing actionmailer (3.1.0)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing arel (2.2.1)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing tzinfo (0.3.30)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing activerecord (3.1.0)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing activeresource (3.1.0)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing addressable (2.2.6)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing cancan (1.6.7)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing highline (1.6.2)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing net-ssh (2.2.1)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing net-scp (1.0.4)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing net-sftp (2.0.5)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing net-ssh-gateway (1.1.0)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing capistrano (2.9.0)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing capistrano-ext (1.2.1)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing carrierwave (0.5.8)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing coffee-script-source (1.1.2)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing execjs (1.2.9)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing coffee-script (2.2.0)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing rack-ssl (1.3.2)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing json (1.6.1)
+ ** [out :: 50.56.211.64] with native extensions
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing rdoc (3.10)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing thor (0.14.6)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing railties (3.1.0)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing coffee-rails (3.1.1)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing date_validator (0.6.2)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing orm_adapter (0.0.5)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing warden (1.0.6)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing devise (1.4.8)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing multipart-post (1.1.3)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing faraday (0.7.5)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing geocoder (1.0.4)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing haml (3.1.3)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing haml-rails (0.3.4)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing hashie (1.2.0)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing jquery-rails (1.0.16)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Using bundler (1.0.21)
+ ** [out :: 50.56.211.64] Installing rails (3.1.0)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing kaminari (0.12.4)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing libv8 (3.3.10.4)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing subexec (0.1.0)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing mini_magick (3.3)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing mysql2 (0.3.7)
+ ** [out :: 50.56.211.64] with native extensions
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing nifty-generators (0.4.6)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing oauth (0.4.5)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing oauth2 (0.5.1)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing omniauth (1.0.0)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing omniauth-oauth2 (1.0.0)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing omniauth-facebook (1.0.0.rc2)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing omniauth-oauth (1.0.0)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing omniauth-twitter (0.0.6)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing rabl (0.5.0)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing rmagick (2.13.1)
+ ** [out :: 50.56.211.64] with native extensions
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing therubyracer (0.9.9)
+ ** [out :: 50.56.211.64] with native extensions
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Installing uglifier (1.0.3)
+ ** [out :: 50.56.211.64] 
+ ** [out :: 50.56.211.64] Your bundle is complete! It was installed into /var/www/vhosts/victoria.semaphoremobile.com/shared/bundle
+    command finished in 204614ms
+  * executing `db:symlink'
+capistrano_database.rb: symlinking database.yml: ln -nfs /var/www/vhosts/victoria.semaphoremobile.com/shared/config/database.yml /var/www/vhosts/victoria.semaphoremobile.com/releases/20120125182017/config/database.yml
+  * executing "ln -nfs /var/www/vhosts/victoria.semaphoremobile.com/shared/config/database.yml /var/www/vhosts/victoria.semaphoremobile.com/releases/20120125182017/config/database.yml"
+    servers: ["50.56.211.64"]
+    [50.56.211.64] executing command
+    command finished in 1023ms
+  * executing `deploy:symlink'
+  * executing "rm -f /var/www/vhosts/victoria.semaphoremobile.com/current && ln -s /var/www/vhosts/victoria.semaphoremobile.com/releases/20120125182017 /var/www/vhosts/victoria.semaphoremobile.com/current"
+    servers: ["50.56.211.64"]
+    [50.56.211.64] executing command
+    command finished in 818ms
+    triggering after callbacks for `deploy:symlink'
+  * executing `deploy:rvmrc:symlink'
+************ running: deploy.rb: symlinking .rvmrc: ln -nfs /var/www/vhosts/victoria.semaphoremobile.com/shared/config/.rvmrc /var/www/vhosts/victoria.semaphoremobile.com/releases/20120125182017/config/.rvmrc
+  * executing "mv -vf /var/www/vhosts/victoria.semaphoremobile.com/releases/20120125182017/.rvmrc /var/www/vhosts/victoria.semaphoremobile.com/shared/config/.rvmrc"
+    servers: ["50.56.211.64"]
+    [50.56.211.64] executing command
+ ** [out :: 50.56.211.64] `/var/www/vhosts/victoria.semaphoremobile.com/releases/20120125182017/.rvmrc' -> `/var/www/vhosts/victoria.semaphoremobile.com/shared/config/.rvmrc'
+    command finished in 1023ms
+************ running: ln -nfs /var/www/vhosts/victoria.semaphoremobile.com/shared/config/.rvmrc /var/www/vhosts/victoria.semaphoremobile.com/releases/20120125182017/.rvmrc
+  * executing "ln -nfs /var/www/vhosts/victoria.semaphoremobile.com/shared/config/.rvmrc /var/www/vhosts/victoria.semaphoremobile.com/releases/20120125182017/.rvmrc"
+    servers: ["50.56.211.64"]
+    [50.56.211.64] executing command
+    command finished in 1024ms
+    triggering after callbacks for `deploy:rvmrc:symlink'
+  * executing `deploy:restart'
+running => task :restart, :roles => :app, :except => { :no_release => true }
+  * executing "touch /var/www/vhosts/victoria.semaphoremobile.com/current/tmp/restart.txt"
+    servers: ["50.56.211.64"]
+    [50.56.211.64] executing command
+    command finished in 920ms
+ ** transaction: commit
+  * executing `deploy:restart'
+running => task :restart, :roles => :app, :except => { :no_release => true }
+  * executing "touch /var/www/vhosts/victoria.semaphoremobile.com/current/tmp/restart.txt"
+    servers: ["50.56.211.64"]
+    [50.56.211.64] executing command
+    command finished in 819ms

@@ -1,0 +1,13 @@
+<%= session[:events] %>
+<!-- <%# title "User Dashboard" %> -->
+<h1>User Dashboard</h1>
+
+<% if can? :manage, @users %>
+  <p>Hello, you are an Admin.  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  <!-- <h2>Users</h2>
+  <%# for user in @users %>
+    <p><%#= user.name %> <%#= user.email %> <%#= link_to "Edit User", edit_user_path(user) %> <%#= link_to "Delete User", user, :confirm => "Are you sure?", :method => :delete %>
+  <%# end %> -->
+<% else %>
+  <p>Hello, you are not an Admin</p>
+<% end %>

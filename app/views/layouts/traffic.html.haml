@@ -1,0 +1,69 @@
+!!!
+%html
+
+  %head
+    %title
+      = yield(:title) || "Untitled"
+    %meta{"http-equiv"=>"Content-Type", :content=>"text/html; charset=utf-8"}/
+    
+    = stylesheet_link_tag "application"
+    = javascript_include_tag "application"
+    
+    = csrf_meta_tag
+    = yield(:head)
+  
+  %body
+    #container
+      #header
+        #homelink.clear
+          = link_to image_tag("miinfo-logo.png"), root_url
+          -# %br
+          -# %br
+          -# %br
+          -# %br
+          
+        #user_status
+          - if user_signed_in?
+            = link_to "My Account", edit_user_registration_path
+            = link_to "Log Out", destroy_user_session_path
+            %br
+            %p Logged in as: #{current_user.email} [#{current_user.print_roles}]
+            -# = current_user.email
+            -# = "[#{current_user.print_roles}]"
+            -# = current_user.role? 'admin'
+        #navigation
+          - if user_signed_in?
+            %ul
+              - if current_user.has_role? [:deal, :advertisement, :redemption, :traffic, :admin, :superadmin]
+                %li
+                  = link_to 'Accounts', accounts_path
+                %li
+                  = link_to 'Users', user_index_path
+
+              - if current_user.has_role? [:traffic, :admin, :superadmin]
+                %li
+                  = link_to 'Historical Data', traffic_condition_historicals_path 
+                %li
+                  = link_to 'Traffic Data Types', traffic_data_types_path
+                %li
+                  = link_to 'Traffic Ratings', traffic_ratings_path
+                %li
+                  = link_to 'Traffic Cams', traffic_cameras_path
+                %li
+                  = link_to 'List Cond. / Alerts', traffic_conditions_path
+                %li
+                  = link_to 'Enter Cond. / Alerts', new_traffic_condition_path(:traffic_data_type_id => TrafficDataType.where(:name => "LiveCam").first.id)
+                  
+      #content
+        - flash.each do |name, msg|
+          = content_tag :div, msg, :id => "flash_#{name}"
+    
+        - if show_title?
+          %h1= yield(:title)
+
+        = yield
+      
+      #footer
+        #copyright
+          © 2012 Miinfo
+          -# = link_to " | Developed by Semaphore Mobile", "http://semaphoremobile.com"

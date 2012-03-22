@@ -1,0 +1,14 @@
+.grey-form{:style => "padding:25px"}
+  %p
+    - title "Retailer Category"
+
+  %p
+    %b Name:
+    = @retailer_category.retailer_category
+  %p
+    %b Description:
+    = @retailer_category.description
+%br
+= link_to 'Edit', edit_retailer_category_path(@retailer_category)
+\|
+= link_to 'Back', retailer_categories_path

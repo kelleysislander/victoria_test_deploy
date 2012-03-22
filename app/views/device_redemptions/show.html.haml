@@ -1,0 +1,21 @@
+- title "Device Redemption"
+
+%p
+  %strong Device Uid:
+  = @device_redemption.device_uid
+%p
+  %strong Deal:
+  = @device_redemption.deal_id
+%p
+  %strong Redemption Type:
+  = @device_redemption.redemption_type
+%p
+  %strong Redemption Date:
+  = @device_redemption.redemption_date
+
+%p
+  = link_to "Edit", edit_device_redemption_path(@device_redemption)
+  |
+  = link_to "Destroy", @device_redemption, :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View All", device_redemptions_path

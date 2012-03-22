@@ -1,0 +1,50 @@
+- title "Redemptions"
+
+%table
+  -# %tr
+  -#   %th Deal
+  -#   %th Retailer
+  -#   %th Account
+  -#   %th Redeemed
+  -#   %th{:colspan => 2} Available
+  -#   %th Date
+  -#   %th{:colspan => 3, :style => "text-align:center;"} Actions
+  -# %tr
+  -#   %th{:colspan => 4}
+  -#   %th then
+  -#   %th now
+  -#   %th
+  -#   %th{:colspan => 3}
+    
+  %tr
+    %th Deal
+    %th Retailer
+    %th Account
+    %th Reedemed
+    %th Reedmd Tot
+    %th Avail aft Redem
+    %th Avail as of =>
+    %th Date
+    %th{:colspan => 3, :style => "text-align:center;"} Actions
+  - for redemption in @redemptions
+    %tr
+      %td= redemption.deal.name
+      %td= redemption.deal.retailer.name
+      %td= redemption.deal.retailer.account.name
+      -# Redeemed
+      %td= redemption.num_redeemed        
+      -# Reedmd Tot
+      %td= redemption.deal.num_redeemed
+      -# Avail aft Redem
+      %td= redemption.num_available
+      -# Avail@Redem
+      %td= redemption.deal.num_available  
+      %td= disp_date_hms(redemption.created_at)
+      %td= link_to 'Show', redemption
+      %td= link_to 'Edit', edit_redemption_path(redemption)
+      %td= link_to 'Destroy', redemption, :confirm => 'Are you sure?', :method => :delete
+
+%p{:style => "padding:25px 0;"}
+  = link_to "New Redemption", new_redemption_path
+
+-# Time.now.utc.in_time_zone("Eastern Time (US & Canada)")

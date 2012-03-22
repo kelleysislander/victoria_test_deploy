@@ -1,0 +1,54 @@
+
+<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+= javascript_include_tag "traffic_cameras"
+.grey-form
+  = form_for @traffic_camera do |f|
+    -if @traffic_camera.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@traffic_camera.errors.count, "error")} prohibited this Traffic Camera from being saved:"
+        %ul
+          - @traffic_camera.errors.full_messages.each do |msg|
+            %li= msg
+    .field
+      = f.label :name
+      = f.text_field :name
+    .field
+      = f.label :compass_point_id
+      = f.select :compass_point_id, CompassPoint.find(:all).collect   { |cp| [ "#{cp.name} - #{cp.description}", cp.id ] }, {:include_blank => "Choose Traffic Flow Direction"}, :style => "width: auto;"
+    .field
+      = f.label :camera_url
+      = f.text_field :url
+    .field
+      = f.label 'Geocode by Address?'
+      = f.select :geocode_flag, TrafficCamera::GeocodeFlags, {:include_blank => "Geocode by Address?"}, :style => "width: auto;", :onchange => "hide_or_show_traffic_camera(this.value);"
+      -# = f.select :traffic_data_type_id, TrafficDataType.find(:all).collect { |tdt| [ "#{tdt.name} - #{tdt.description}", tdt.id ] }, {:include_blank => false}, :style => "width: auto", :onchange => "str=this.options[selectedIndex].text;hide_or_show_traffic_condition(str.substring(0, str.indexOf(' - ')));"
+    
+    .field
+      = f.label :address, :id => "address_label"
+      = f.text_field :address, :size => 40, :onblur => "geocode_address( this.value )"
+    .field
+      = f.label :latitude, :id => "latitude_label"
+      = f.number_field :latitude, :size => 8
+    .field
+      = f.label :longitude, :id => "longitude_label"
+      = f.number_field :longitude, :size => 8
+    .field
+      = f.label 'Status'
+      = f.select :status, TrafficCamera::StatusFlags, {:include_blank => "Choose Status"}, :style => "width: auto;"
+    
+    -# = f.hidden_field 'latitude'
+    -# = f.hidden_field 'longitude'
+
+    .actions
+      = submit_button('Submit')
+
+  #geocode_results
+
+  - if params[:traffic_camera]
+    - if params[:traffic_camera]['geocode_flag'] == ""
+      %body{ :onload => "hide_fields();" }
+    - else
+      %body{ :onload => "hide_or_show_traffic_camera( #{params[:traffic_camera][:geocode_flag]} );" } 
+  - else
+    %body{ :onload => "hide_fields();" }
+  

@@ -1,0 +1,179 @@
+#main {
+	position: relative;
+}
+
+#details_top {
+	position: absolute;
+	top: 168px;
+	left: 38px;
+}
+
+#share_to_unlock_pct {
+	position: absolute;
+	top: 96px;
+	left: 188px;
+	color: #22ABCD;
+	font-size: 16px;
+    font-weight: bold;
+}
+
+#main #retailer_name {
+	position: absolute;
+	top: 315px;
+	left: 50px;
+	font-size: 18px;
+    font-weight: bold;
+    height: 20px;
+}
+
+#main #retailer_address {
+	position: absolute;
+	top: 338px;
+	left: 48px;
+}
+
+#retailer_address span {
+	padding: 2px;
+	font-size: 11px;
+}
+
+#deal_duration_image {
+	position: absolute;
+	top: 307px;
+	left: 258px;
+	width: 100px;
+	font-size: 12px;
+	color: #fff;
+}
+
+#deal_duration_top {
+	position: absolute;
+	top: 2px;
+	left: 52px;
+}
+
+#deal_duration_bot {
+	position: absolute;
+	top: 16px;
+	left: 64px;
+}
+
+#deal_tag {
+	position: absolute;
+	top: 369px;
+	left: 180px;
+	width: 108px;
+	height: 42px;
+	text-align: center;
+	border-radius: 10px;
+	background-color: #ce4124;
+}
+
+.deal_tag_text_left, .deal_tag_text_right {
+	display: block;
+	height: 48px;
+	padding: 2px;
+	color: #fff;
+}
+
+.deal_tag_text_left {
+	position: absolute;
+	top: 12px;
+	left: 8px;
+	font-size: 12px;
+	text-align: left;
+}
+
+.deal_tag_text_right {
+	position: absolute;
+	top: 10px;
+	left: 52px;
+	font-size: 18px;
+	font-weight: bold;
+	text-align: right;
+}
+
+#discount_amount {
+	position: absolute;
+	top: 370px;
+	left: 306px;
+	color: #8E8E8E;
+	font-size: 12px;
+}
+
+.discount_amount_text_bot {
+	position: absolute;
+	top: 18px;
+	left: 6px;
+	font-size: 15px;
+	font-weight: bold;
+	color: #8e8e8e;
+}
+
+#deal_bar {
+	position: absolute;
+	top: 416px;
+	left: 186px;
+	width: 175px;
+}
+
+.part_1_top, .part_2_top, .part_3_top {
+	position: absolute;
+	width: 56px;
+	font-size: 10px;
+	color: #8E8E8E;
+}
+
+.part_2_top {
+	left: 52px;	
+}
+
+.part_3_top {
+	left: 112px;	
+}
+
+.part_3_bot {
+	position: absolute;
+	top: 18px;
+	left: 9px;
+	font-size: 14px;
+	font-weight: bold;
+	color: #A7A7A7;
+}
+
+#num_redeemed {
+	position: absolute;
+	top: 462px;
+	left: 180px;
+}
+
+.num_redeemed_text {
+	position: absolute;
+	top: 6px;
+	left: 32px;
+	font-size: 11px;
+	color: #999;
+}
+
+#deal_image_border {
+	position: absolute;
+	top: 370px;
+	left: 50px;
+	width: 116px;
+	height: 116px;
+	background-color: #fff;
+}
+
+#deal_description_show {
+	position: absolute;
+	top: 500px;
+	left: 48px;
+	width: 300px;
+	height: 72px;
+	font-size: 12px;
+	line-height: 130%;
+}
+
+
+
+

@@ -1,0 +1,161 @@
+-# skeleton_flag:
+-# = @deal.skeleton_flag
+-# preview_flag
+-# = @deal.preview_flag
+
+= javascript_include_tag "deals"
+
+-# - if @deal.id && @deal.preview_flag == 1 && !@deal.errors.any?
+-#   %h1 Deal (preview)
+  
+-# <div id="form_div">
+.grey-form
+  = form_for(@deal, :html => { :class => "miiform"} )  do |f|
+    -if @deal.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@deal.errors.count, "error")} prohibited this deal from being saved:"
+        %ul
+          - @deal.errors.full_messages.each do |msg|
+            %li= msg
+
+    -# Required as a "skeleton"
+    %p
+      Please complete the form below. Mandatory fields marked.
+      %em
+        *
+    %fieldset{:id => "common"}
+      %legend
+        Deal
+      %ol
+      %li
+        %label{:for => "name", :id => "name_label"} Name<em>*</em>
+        = f.text_field :name, :size => 40
+      %li
+        %label{:for => "featured_flag", :id => "featured_flag_label"} Featured?<em>*</em>
+        - if @deal.skeleton_flag == 1
+          = f.select :featured_flag, Deal::Flags, {:include_blank => "Choose Featured Flag"}
+        - else
+          = featured( @deal.featured_flag )
+      %li
+        %label{:for => "retailer_id", :id => "retailer_id_label"} Retailer<em>*</em>    
+        = f.select :retailer_id, Retailer.find(:all).collect { |r| [ "#{r.name} - #{r.address}", r.id ] }, {:include_blank => "Choose Retailer"}
+        -# NOTE: if the advertiser_id == retailer_id then the advertiser is also the retailer (sole proprietorship, Mom & Pop shop, etc)
+        -# if the advertiser_id != retailer_id then they are both distinct, yet related entities
+      
+      -# %li
+      -#   %label{:for => "advertiser_id", :id => "advertiser_id_label"} Advertiser<em>*</em>
+      -#   <select id="deal_advertiser_id" name="deal[advertiser_id]" style="width: auto;"><option value="">Choose Advertiser</option>
+      -#   - Advertiser.find(:all, :include => :retailer).each do |a|
+      -#     - if a.retailer_id then disp = "#{a.retailer.name} (A)" else disp = "#{a.name} (R)" end
+      -#     - if a.id == @deal.advertiser_id # if the Advertiser record has a retailer_id then we show that Advertiser as "selected"
+      -#       <option value="#{a.id}" selected="selected">#{disp}</option>
+      -#     - else # The Advertiser does not have a retailer_id so we show as "selected" where the Advertiser.id == @advertisement.advertiser_id
+      -#       <option value="#{a.id}">#{disp}</option>
+      -#   </select>
+      %li
+        %label{:for => "advertiser_id", :id => "advertiser_id_label"} Advertiser<em>*</em>
+        = f.select :advertiser_id, options_for_advertiser_list, :include_blank => "Choose Advertiser"
+
+      -# %li
+      -#   %label{:for => "deal_type_id", :id => "deal_type_id_label"} Deal Type<em>*</em>    
+      -#   = f.select :deal_type_id, DealType.find(:all).collect { |dt| [ "#{dt.deal_type} - #{dt.description}", dt.id ] }, {:include_blank => "Choose Deal Type"}
+
+    %fieldset{:id => "featured"}
+      %legend
+        Featured Image
+      %ol
+      %li
+        %label{:for => "featured_image_file", :id => "featured_image_file_label"} Image File<em>*</em>
+        = f.file_field :featured_image
+    
+    %fieldset{:id => "required"} 
+      %legend
+        Required
+      %ol
+      -# Required as a "preview" or non-"preview" record
+      %li
+        %label{:for => "active_flag", :id => "active_flag_label"} Active?<em>*</em>
+        = f.select :active_flag, Deal::Flags, {:include_blank => "Choose Active"}
+      %li
+        %label{:for => "gender", :id => "gender_label"} Gender?<em>*</em>
+        = f.select :gender, Deal::Genders, {:include_blank => "Choose Target Gender"}
+      %li
+        %label{:for => "description", :id => "description_label"} Description<em>*</em>    
+        = f.text_area :description, :rows => 3, :cols => 60
+      -# %li
+      -#   %label{:for => "badge_text", :id => "badge_text_label"} Badge Text<em>*</em>    
+      -#   = f.text_field :badge_text, :size => 8
+      %li
+        %label{:for => "image_file", :id => "image_file_label"} Image File<em>*</em>
+        = f.file_field :image
+      %li
+        %label{:for => "share_to_unlock_pct", :id => "share_to_unlock_pct_label"} Share to Unlock Discount<em>*</em>
+        = f.text_field :share_to_unlock_pct, :size => 8
+      %li
+        %label{:for => "deal_tag_text", :id => "deal_tag_text_label"} Deal Tag<em>*</em>
+        = f.text_field :deal_tag_text, :size => 8
+      %li
+        %label{:for => "discount_percent_text", :id => "discount_percent_text_label"} Discount Percent<em>*</em>
+        = f.text_field :discount_percent_text, :size => 8
+      %li
+        %label{:for => "discount_amount_text", :id => "discount_amount_text_label"} Discount Amount<em>*</em>    
+        = f.text_field :discount_amount_text, :size => 8
+      %li
+        %label{:for => "price_text", :id => "price_text_label"} Price<em>*</em>
+        = f.text_field :price_text, :size => 8
+      %li
+        %label{:for => "fine_print_text", :id => "fine_print_text_label"} Fine Print<em>*</em>
+        = f.text_field :fine_print_text
+      %li
+        %label{:for => "num_offered", :id => "num_offered_label"} Numbered Offered<em>*</em>
+        = f.text_field :num_offered, :size => 3
+      %li
+        %label{:for => "social_discount_interval", :id => "social_discount_interval_label"} Social Discount Interval<em>*</em>
+        = f.text_field :social_discount_interval, :size => 3
+      %li
+        %label{:for => "redemption_passphrase", :id => "redemption_passphrase_label"} Redemption Passphrase<em>*</em>
+        = f.text_field :redemption_passphrase, :size => 60
+
+    %fieldset{:id => "required"} 
+      %legend
+        Dates
+      %ol
+      %li
+        %label{:for => "beg_date", :id => "beg_date_label"} Beginning Date<em>*</em>
+        - if current_user.has_role?([:admin,:superadmin,:deal])
+          = f.text_field :beg_date, :class => 'date_picker start_date small', :value => day_mon_year(@deal.beg_date) || day_mon_year(Date.today)
+        - else
+          = f.text_field :beg_date, :value => day_mon_year(@deal.end_date) || day_mon_year(Date.today), :disabled => true
+      %li
+        %label{:for => "end_date", :id => "end_date_label"} End Date<em>*</em>
+        - if current_user.has_role?([:admin,:superadmin,:deal])
+          = f.text_field :end_date, :class => 'date_picker end_date small', :value => day_mon_year(@deal.end_date) || day_mon_year(Date.today)
+        - else
+          = f.text_field :end_date, :value => day_mon_year(@deal.end_date) || day_mon_year(Date.today), :disabled => true
+      %li
+        = f.submit 'Create Skeleton Preview', :class => 'miisubmit' if @deal.skeleton_flag == 1
+        = f.submit 'Preview', :class => 'miisubmit' if @deal.skeleton_flag == 0 && @deal.preview_flag == 1
+        = f.submit 'Save', :class => 'miisubmit' if @deal.skeleton_flag == 0
+        -# = submit_button('Create Skeleton Preview') if @deal.skeleton_flag == 1
+        -# = submit_button('Preview') if @deal.skeleton_flag == 0 && @deal.preview_flag == 1
+        -# = submit_button('Save') if @deal.skeleton_flag == 0
+      - if @deal.preview_flag == 0
+        %li
+          = link_to 'Show', @deal
+          \|
+          = link_to 'Back', deals_path
+          
+    -# NOTE: these get assigned the values from the retailers record
+    = f.hidden_field :retailer_latitude,  :value => @deal.retailer ? @deal.retailer.latitude  : nil
+    = f.hidden_field :retailer_longitude, :value => @deal.retailer ? @deal.retailer.longitude : nil
+    = f.hidden_field :retailer_zone,      :value => @deal.retailer ? @deal.retailer.zone      : nil
+  
+%body{ :onload => "hide_or_show_deal( #{@deal.skeleton_flag}, #{@deal.featured_flag} );" } 
+  
+-# - if @deal.id && @deal.preview_flag == 1
+-#   </div>
+-# - else
+  -# = link_to 'Show', @deal, :preview => 1
+  -# \|
+  -# = link_to 'Back', deals_path, :preview => 1
+  

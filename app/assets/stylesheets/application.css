@@ -1,0 +1,511 @@
+/*
+ * This is a manifest file that'll automatically include all the stylesheets available in this directory
+ * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+ * the top of the compiled file, but it's generally better to create a new file per style scope.
+ *= require_self
+ *= require_tree . 
+*/
+
+*= require jquery-ui-1.8.17.custom.css
+
+body {
+  display: inline-block;
+  background-color: white;
+  font-family: Verdana, Helvetica, Arial;
+  font-size: 14px; }
+
+/*a {
+  color: #626262;
+  text-decoration: none; }*/
+  a img {
+    border: none; }
+
+a:hover {
+  	color: #1c77b4; }
+
+.clear {
+  	clear: both;
+  	height: 0;
+  	overflow: hidden; }
+
+/*#container {
+  	margin: 0 auto;
+  	padding: 5px 10px; }*/
+
+#user_status {
+	float: right;
+	height: 50px;
+	width: 350px;
+	text-align: right;
+	padding-right: 20px;
+	font-size: 12px; 
+	padding-top: 5px;}
+
+#user_status li {
+	list-style-type: none;
+	float: right; }
+
+#user_status.username  {
+   	float: right;
+   	color: #344e77;
+   	margin-right: 25px; }
+
+#user_status a {
+   	float: right;
+   	color: #fff;
+   	margin-left: 20px;
+	padding-top: 5px; }
+	
+#user_status a:hover {
+	text-decoration: underline; }
+	
+/*#header {
+  	height: 102px;
+  	background-image: url("/assets/header_background.png"); }
+
+#homelink {
+  	width: 400px;
+  	height: 84px;
+  	margin-left: 25px;
+  	display: inline; }
+
+#navigation {
+  	height: 76px;
+  	background-image: url("/assets/nav_background.png"); }*/
+
+#navigation ul {
+	margin: 0px;
+	padding-top: 30px; }
+
+#navigation li {
+    display: inline;
+    list-style: none;
+    margin-right: 20px; }
+
+#navigation a {
+	color: #fff; }
+
+#navigation a:hover {
+	text-decoration: underline; }
+
+/*#content {
+  min-width: 950px;
+  padding: 10px 0; }*/
+
+#content table {
+    border-collapse: collapse;
+    width: 100%; }
+
+#content th {
+    padding: 10px;
+    background-color: #cc0001;
+    color: white;
+    text-align: left; }
+
+#content th a {
+    color: white; }
+
+#content th a:hover {
+    color: #b2f230; }
+
+#content tr a {
+    text-decoration: none; }
+
+#content td {
+    padding: 10px; }
+
+h1 {
+  	font-size: 20px; }
+
+/*form {
+  	padding: 20px 0;
+  	background-color: #efefef;
+  	margin-bottom: 40px; }*/
+
+/*input {
+  	margin: 10px; }*/
+
+.actions input {
+  	min-width: 100px;
+  	margin: 30px 0 0 0;
+/*  	clear: both;
+  	float: left;*/ }
+
+/*label {
+  	float: left;
+  	width: 120px;
+  	margin-top: 10px;
+  	clear: left; }*/
+
+/*select {
+  	width: 120px;
+  	margin-top: 10px; }*/
+
+.sel {
+  	margin-top: 10px; }
+
+.sel select {
+    width: 60px; }
+
+.odd {
+  	background-color: #ececec; }
+
+.even {
+  	background-color: #f6f6f6; }
+
+.forgot {
+  	width: 200px;
+  	float: left; }
+
+.forgot a {
+    color: #1c77b4; }
+
+.actions.login {
+  float: left;
+  width: 270px; }
+
+.pagination {
+  	float: right;
+  	margin: 10px 70px 10px 0;
+  	text-align: center;
+  	padding: 1em; }
+
+.pagination a, .pagination span {
+   	border: 1px solid #CC0001;
+    padding: 0.2em 0.3em; }
+
+.pagination span.disabled {
+    color: #aaaaaa;
+    border: 1px solid #aaaaaa; }
+
+.pagination em {
+    background-color: #1c77b4;
+    border: 1px solid #1c77b4;
+    padding: 0.2em 0.3em; }
+
+.pagination a {
+    text-decoration: none;
+    color: #CC0001; }
+
+.pagination a:hover, .pagination a:focus {
+    border: 1px solid #CC0001;
+ 	color: #000;}
+
+div#content .next a, div#content .last a, div#content .first a, div#content .prev a {
+	color: #CC0001;
+}
+
+div#content .page a {
+	color: #CC0001;
+}
+
+div#content table a {
+	color: #CC0001;
+}
+
+div#content table a:hover {
+	text-decoration: underline;;
+}
+
+div#content a.nyroModal {
+	color: #000;
+	text-decoration: none;
+}
+
+div#content a.nyroModal {
+	text-decoration: underline;
+}
+
+#listing_table .odd {
+  	background-color: white; }
+
+#user_details {
+  	padding: 10px 20px 10px 20px;
+  	background-color: #efefef;
+  	margin-bottom: 20px; }
+
+#footer {
+  font-size: 11px;
+  padding-top: 20px;
+  height: 34px;
+  border-top: 1px solid #d1d1d1; }
+
+#copyright {
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  color: #777777; }
+
+#copyright a {
+    color: #777777; }
+  
+#copyright a:hover {
+    color: #1c77b4; }
+
+#flash_notice,
+#flash_error,
+#flash_alert {
+  	padding: 5px 8px;
+  	margin: 10px 0; }
+
+#flash_notice {
+  	background-color: #ccffcc;
+  	border: solid 1px #66cc66; }
+
+#flash_error,
+#flash_alert {
+  	background-color: #ffcccc;
+  	border: solid 1px #cc6666; }
+
+.fieldWithErrors {
+  	display: inline; }
+
+.error_messages {
+	width: 400px;
+	border: 2px solid #cf0000;
+	padding: 0;
+	padding-bottom: 12px;
+	margin-bottom: 20px;
+	background-color: #f0f0f0;
+	font-size: 12px; }
+
+.error_messages h2 {
+    text-align: left;
+    padding: 5px 5px 5px 15px;
+    margin: 0;
+    font-weight: bold;
+    font-size: 12px;
+    background-color: #cc0000;
+    color: white; }
+
+.error_messages p {
+    margin: 8px 10px; }
+
+.error_messages ul {
+    margin: 0; }
+
+.pretty th .current {
+  	padding-right: 12px;
+  	background-repeat: no-repeat;
+  	background-position: right center; }
+
+.pretty th .asc {
+  	background-image: url(/images/up_arrow.gif); }
+
+.pretty th .desc {
+  	background-image: url(/images/down_arrow.gif); }
+
+.meter_fields .field {
+  	display: inline; }
+
+.meter_fields .field label {
+    clear: none;
+    float: none; }
+
+#dig_details {
+	width: 310px;
+	float: left;
+	padding: 0 10px 0 10px;
+}
+	
+#dig_details .title {
+	font-weight: bold;
+}
+
+#dig_details .message {
+	color: #555;
+	margin-bottom: 20px; }
+
+#dig_details .teams {
+	line-height: 50%; }
+	
+.team_image {
+	float: left; }
+
+#dig {
+	height: 210px;
+	width: 750px; }
+
+/* Added for Devise views*/
+ul.hmenu {
+  list-style: none;	
+  margin: 0 0 2em;
+  padding: 0;
+}
+ul.hmenu li {
+  display: inline;  
+}
+#flash_notice, #flash_alert {
+  padding: 5px 8px;
+  margin: 10px 0;
+}
+#flash_notice {
+  background-color: #CFC;
+  border: solid 1px #6C6;
+}
+#flash_alert {
+  background-color: #FCC;
+  border: solid 1px #C66;
+}
+/* END: Added for Devise views*/
+
+/*}*/
+
+/* OmniAuth*/
+
+.authentications {
+  margin-bottom: 30px;
+}
+
+.authentication {
+  width: 130px;
+  float: left;
+  background-color: #EEE;
+  border: solid 1px #999;
+  padding: 5px 10px;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  position: relative;
+  margin-right: 10px;
+}
+
+.authentication .remove {
+  text-decoration: none;
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  color: #333;
+  padding: 2px 4px;
+  font-size: 10px;
+}
+
+.authentication .remove:hover {
+  color: #CCC;
+  background-color: #777;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+}
+
+.authentication img {
+  float: left;
+  margin-right: 10px;
+}
+
+.authentication .provider {
+  font-weight: bold;
+}
+
+.authentication .uid {
+  color: #666;
+  font-size: 11px;
+}
+
+.auth_provider img {
+  display: block;
+}
+
+.auth_provider {
+  float: left;
+  text-decoration: none;
+  margin-right: 20px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+/* end of OmniAuth */
+
+/*NEW STYLES*/	
+
+#header {
+  	height: 120px;
+	margin: 0px auto;
+/*	width: 100%;*/
+	text-align: center;
+	position: relative;
+  	background-image: url("/images/red-background.jpg"); } 
+
+#navigation {
+	clear: right;
+  	height: 76px;
+	width: 980px;
+	text-align: center;
+}
+
+body, html { margin: 0; padding: 0; text-align:center; width: 100%; }
+
+#container {
+  	margin: 0px auto;
+	width: 980px;
+  	padding: 0; text-align: center; }
+
+#homelink {
+  	width: 60;
+  	height: 68px;
+	position: absolute;
+	top: 20px;
+	left: 50px;
+  	display: block; }
+
+.grey-form {
+	background-color: #efefef;
+}
+
+form {
+	display: block;
+	width: 200px;
+  	padding: 25px;
+	margin: 0;
+	text-align: left;
+}
+
+label {
+	display: block;
+}
+
+input {
+	height: 20px;
+	line-height: 12px;
+/*	padding: 8px 5px 0 5px;
+	margin: 0 0 8px 0;*/
+}
+
+#user_remember_me {
+	float: left;
+	display: block;
+	margin: 0 6px 0 0;
+}
+
+#content {
+	text-align: left;
+  	min-width: 950px;
+  	padding: 10px 0; 
+}
+
+a {
+  color: #626262;
+}
+
+#homelink a:hover {
+	text-decoration: none;
+}
+
+#user_status p {
+	color: #fff;
+}
+
+.nav-links {
+	clear: both;
+}
+
+.grey-form form {
+	padding: 25px;
+}
+
+#geocode_results {
+	clear: both;
+}
+
+.grey-form form {
+	padding: 25px;
+}
+
+/*END NEW STYLES*/

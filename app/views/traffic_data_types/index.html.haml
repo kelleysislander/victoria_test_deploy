@@ -1,0 +1,15 @@
+- title "Traffic Data Types"
+
+%table
+  %tr
+    %th Name
+    %th Description
+  - for traffic_data_type in @traffic_data_types
+    %tr
+      %td= traffic_data_type.name
+      %td= traffic_data_type.description
+      %td= link_to 'Show', traffic_data_type
+      %td= link_to 'Edit', edit_traffic_data_type_path(traffic_data_type)
+      %td= link_to 'Destroy', traffic_data_type, :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to "New Traffic Data Type", new_traffic_data_type_path

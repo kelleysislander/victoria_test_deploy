@@ -1,0 +1,17 @@
+.grey-form
+  = form_for @advertisement_type do |f|
+    -if @advertisement_type.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@advertisement_type.errors.count, "error")} prohibited this Advertisement Type from being saved:"
+        %ul
+          - @advertisement_type.errors.full_messages.each do |msg|
+            %li= msg
+
+    .field
+      = f.label :advertisement_type
+      = f.text_field :advertisement_type
+    .field
+      = f.label :description
+      = f.text_field :description
+    .actions
+      = submit_button('Save')

@@ -1,0 +1,11 @@
+one:
+  device_uid: MyString
+  deal_id: 1
+  redemption_type: MyString
+  redemption_date: 2012-03-08
+
+two:
+  device_uid: MyString
+  deal_id: 1
+  redemption_type: MyString
+  redemption_date: 2012-03-08

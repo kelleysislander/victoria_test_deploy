@@ -1,0 +1,90 @@
+/**********************************
+
+Use: miiform template
+
+***********************************/
+
+form.miiform fieldset { margin-bottom: 10px; }
+	
+form.miiform legend {
+	padding: 0 2px;
+	font-weight: bold;
+	_margin: 0 -7px; /* IE Win */
+	}
+	
+form.miiform label {
+	display: inline-block;
+	line-height: 1.8;
+	vertical-align: top;
+	}
+	
+form.miiform select {
+	width: auto;
+	}
+	
+form.miiform fieldset ol {
+	margin: 0;
+	padding: 0;
+	}
+	
+form.miiform fieldset li {
+	list-style: none;
+	padding: 5px;
+	margin: 0;
+	}
+	
+form.miiform fieldset fieldset {
+	border: none;
+	margin: 3px 0 0;
+	}
+	
+form.miiform fieldset fieldset legend {
+	padding: 0 0 5px;
+	font-weight: normal;
+	}
+	
+form.miiform fieldset fieldset label {
+	display: block;
+	width: auto;
+	}
+
+form.miiform em {
+	font-weight: bold;
+	font-style: normal;
+	color: #f00;
+	}
+
+form.miiform label { width: 120px; } /* Width of labels */
+form.miiform fieldset fieldset label { margin-left: 123px; } /* Width plus 3 (html space) */
+
+/*\*//*/ form.miiform legend { display: inline-block; } /* IE Mac legend fix */
+
+/**********************************
+
+Name: miiform Styles
+
+***********************************/
+
+form.miiform {
+	width: 370px;
+	font-size: 1.1em;
+	color: #333;
+	}
+	
+form.miiform legend { padding-left: 0; }
+	
+form.miiform legend,
+form.miiform label { color: #333; }
+
+form.miiform fieldset {
+	border: none;
+	border-top: 1px solid #999;
+	/*background: url(../images/miiform-fieldset.gif) left bottom repeat-x;*/
+	}
+	
+form.miiform fieldset fieldset { background: none; }
+	
+form.miiform fieldset li {
+	padding: 5px 10px 7px;
+	/*background: url(../images/miiform-divider.gif) left bottom repeat-x;*/
+	}

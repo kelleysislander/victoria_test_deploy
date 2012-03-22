@@ -1,0 +1,2 @@
+module TrafficConditionHistoricalsHelper
+end

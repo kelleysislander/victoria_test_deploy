@@ -1,0 +1,9 @@
+one:
+  rating: MyString
+  dsescription: MyString
+  icon_path: MyString
+
+two:
+  rating: MyString
+  dsescription: MyString
+  icon_path: MyString

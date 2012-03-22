@@ -1,0 +1,2 @@
+module TrafficConditionsHelper
+end

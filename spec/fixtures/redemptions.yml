@@ -1,0 +1,13 @@
+one:
+  account_id: 1
+  deal_id: 1
+  num_offered: 1
+  num_redemptions: 1
+  num_available: 1
+
+two:
+  account_id: 1
+  deal_id: 1
+  num_offered: 1
+  num_redemptions: 1
+  num_available: 1

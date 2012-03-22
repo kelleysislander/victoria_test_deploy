@@ -1,0 +1,36 @@
+- title "Accounts"
+-# = can? :index, Account
+
+%table
+  %tr
+    %th Name
+    %th Address
+    %th City
+    %th Country
+    -# %th Zip
+    %th Contact Name
+    %th Users
+    %th Retailers
+    %th{:colspan => 3, :style => "text-align:center;"} Actions
+
+  - @accounts.each do |account|
+    - num_users = account.users.size
+    - num_retailers = account.retailers.size
+    %tr
+      %td= account.name
+      %td= account.address
+      %td= account.city
+      %td= account.state
+      -# %td= account.zip
+      %td= account.contact_name
+      %td= num_users
+      %td= num_retailers
+      %td= link_to 'Show', account
+      %td= link_to 'Edit', edit_account_path(account)
+      %td= link_to_if( num_users == 0,  'Destroy', account, :confirm => 'Are you sure?', :method => :delete )
+
+= paginate @accounts
+
+%br
+
+= link_to 'New Account', new_account_path

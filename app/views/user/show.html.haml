@@ -1,0 +1,23 @@
+.grey-form{:style => "padding:25px"}
+  %p
+    - title "User"
+
+  %p
+    %b Email:
+    = @user.email
+  %p
+    %b Name:
+    = @user.name
+  %p
+    %b Roles:
+    = @user.print_roles
+  %p
+    %b Account:
+    = @user.account ? @user.account.name : nil
+%br  
+= link_to 'Edit', edit_user_path(@user)
+\|
+= link_to 'Back', user_index_path
+
+
+  

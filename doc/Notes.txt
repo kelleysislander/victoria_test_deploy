@@ -1,0 +1,276 @@
+Explanation of the way the data is structured and used in the Advertisers table, (also see db/advertisers.txt document)
+
+This is a representation of the data in the "Advertisers" table.  Note the firtst 2 recs... This is the  case where the advertiser = retailer, where
+the recs have a "retailer_id" that points to the "Retailers" table, hence the empty attributes of address, city, state, etc. since they are stored in
+the "Retailers" table  
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ADVERTISERS:
+
+id	advertiser_type_id	retailer_id	name	                  address	                          city	          state	zip	        phone	            contact_name	contact_email	created_at	          updated_at
+1	          2	              7	    NULL	                    NULL	                            NULL	          NULL	NULL	      NULL	              NULL	            NULL	  "2011-11-15 16:04:57"	"2011-11-15 16:04:57"
+2	          2	              5	    NULL	                    NULL	                            NULL	          NULL	NULL	      NULL	              NULL	            NULL	  "2011-11-15 16:04:57"	"2011-11-15 16:04:57"
+3	          2	              NULL	"Proctor & Gamble"	      "5299 Spring Grove Ave"	          Cincinnati	      OH	45202	      "(513) 983-1100"	  NULL	            NULL	  "2011-11-15 16:04:57"	"2011-11-15 16:04:57"
+4	          1	              NULL	"Amazon.com, Inc."	      "1200 12th Ave. South, Ste. 1200"	Seattle	          WA	98144-2734	206-266-1000	      NULL	            NULL	  "2011-11-15 16:04:57"	"2011-11-15 16:04:57"
+5	          2	              NULL	"Walgreens's Corporate"	  "200 Wilmot Road"	                Deerfield	        IL	60015	      206-266-1000	      NULL	            NULL	  "2011-11-15 16:04:57"	"2011-11-15 16:04:57"
+6	          2	              NULL	"Kohl's Corporate"	      "N56W17000 Ridgewood Drive"	      "Menomonee Falls"	WI	53201-0359	"(262) 703-7000"	  NULL	            NULL	  "2011-11-15 16:04:57"	"2011-11-15 16:04:57"
+7	          2	              NULL	"Radio Shack Corporate"	  "300 Radio Shack Circle"	        "Fort Worth"	    TX	76102-1964	"(817) 415-3700"	  NULL	            NULL	  "2011-11-15 16:04:57"	"2011-11-15 16:04:57"
+8	          2	              NULL	"Sears Corporate"	        "3333 Beverly Road"	              "Hoffman Estates"	IL	60179	      "(847) 286-2500 "	  NULL	            NULL	  "2011-11-15 16:04:57"	"2011-11-15 16:04:57"
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+RETAILERS:
+
+id	name	                  address	                      city	    state	zip	        phone	        contact_name	      contact_email	            created_at	          updated_at	          latitude	longitude	retailer_category_id
+1	  Kohl's	                "5750 Skillman St."	          Dallas	    TX	75214	      555-555-1212	"Bob Evans"	        bob.e@kohls.com	          "2011-11-15 16:04:55"	"2011-11-15 16:04:55"	32.8575	  -96.7558	      10
+2	  "Radio Shack"	          "5618 E Mockingbird Ln"	      Dallas	    TX	75206	      555-555-1212	"George McCartney"	georgemc@radioshack.com	  "2011-11-15 16:04:56"	"2011-11-15 16:04:56"	32.8365	  -96.7714	      3
+3	  Sears	                  "13331 Preston Rd"	          Dallas	    TX	75240-5223	555-555-1212	"Edgar Winter"	    edgwinter@sears.com	      "2011-11-15 16:04:56"	"2011-11-15 16:04:56"	32.9293	  -96.8081	      10
+4	  "Billy's Heli Shop"	    "9666 Whitehurst Dr"	        Dallas	    TX	75243	      555-555-1212	"Billy Kiskin"	    bill@semaphoremobile.com	"2011-11-15 16:04:57"	"2011-11-15 16:04:57"	32.9011	  -96.7295	      9
+5	  "Darlene's Boutique"	  "5000 Greenville Av"	        Dallas	    TX	75206	      555-555-1212	"Billy Kiskin"	    luc@renoemail.com	        "2011-11-15 16:04:57"	"2011-11-15 16:04:57"	32.848	  -96.7698	      11
+6	  "Half Price Books"	    "5803 East Northwest Highway"	Dallas	    TX	75232	      555-555-1212	"Ariel Lucky"	      ariel@hpbooks.com	        "2011-11-15 16:04:57"	"2011-11-15 16:04:57"	32.8659	  -96.7647	      9
+7	  "Kristian's Scuba King"	"411 Buckingham Rd"	          Richardson	TX	75081	      555-555-1212	"Kristian Takvham"	kt@scubaking.com	        "2011-11-15 16:04:57"	"2011-11-15 16:04:57"	32.9348	  -96.7288	      9
+8	  "Walgreen's Pharmacy"	  "6505 Abrams Road"	          Dallas	    TX	75243	      555-555-1212	"Darrel Divins"	    ddivins@walgreens.com	    "2011-11-15 16:04:57"	"2011-11-15 16:04:57"	32.8632	  -96.7449	      9
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+relationship between advertisements, retailers, and advertisers:
+
+SELECT
+  a.retailer_id as advertiser_retailer_id,
+  advment.retailer_id as advertisement_retailer_id,
+  advment.advertiser_id as advertisement_advertiser_id,
+  advment.name as advertisement_name,
+--  a.name as advertiser_name,
+  IFNULL(a.name, r.name) as advertiser,
+  r.name as retailer_name,
+  CASE 
+    WHEN a.retailer_id IS NULL
+    THEN 'N' 
+    ELSE 'Y' 
+  END as "advertiser_is_retailer?"
+FROM advertisements advment
+JOIN retailers r ON r.id = advment.retailer_id
+JOIN advertisers a ON a.id = advment.advertiser_id
+LEFT JOIN retailers r_as_a ON r_as_a.id = advment.retailer_id;
+
+
+
+Setting up the app on the remote server:
+
+1.  cap staging deploy:setup => creates the database.yml in shared/config
+
+2.  cap staging deploy => 
+  deploys code from git and creates the ".rvmrc" symlink in "current/" for shared/config.rvmrc, and creates the config/database.yml symlink for shared/congig/database.yml
+
+3.  cap staging deploy:migrate => runs the migrations
+
+4. Create the first Admin user =>
+  
+  deploy@ubuntu-server2:/var/www/vhosts/victoria.semaphoremobile.com/current$ RAILS_ENV=staging bundle exec rails c
+  
+  User.create!( :name => "Bill Kiskin", :email => "bill@semaphoremobile.com", :password => "please", :password_confirmation => "please", :roles_mask => "1")
+
+NOTE:  this last statement would not set the value of roles_mask so aftet the user is created we go into console:
+
+user = User.find 3
+user.update_attribute( :roles_mask, 1 )
+user.save
+
+To run console on the server:
+
+RAILS_ENV=staging bundle exec rails c
+
+Installing RVM on the server:
+
+sudo apt-get install build-essential
+sudo apt-get install curl
+sudo apt-get install zlib1g-dev libreadline5-dev libssl-dev libxml2-dev
+ 
+http://www.christopherirish.com/2010/08/25/how-to-install-rvm-on-ubuntu-10-04/
+
+Next steps:
+
+  mkdir Victoria
+  cd Victoria
+  git init
+  touch README
+  git add README
+  git commit -m 'first commit'
+  git remote add origin git@github.com:semaphoremobile/Victoria.git
+  git push -u origin master
+      
+
+Existing Git Repo?
+
+  cd existing_git_repo
+  git remote add origin git@github.com:semaphoremobile/Victoria.git
+  git push -u origin master
+
+****************************************
+sudo install_name_tool -change libmysqlclient.18.dylib /usr/local/mysql-5.5.15-osx10.6-x86_64/lib/libmysqlclient.18.dylib /Users/billy/.rvm/gems/ruby-1.9.2-p290@victoria/gems/mysql2-0.3.7/lib/mysql2/mysql2.bundle
+
+Installing capistrano (2.9.0) Invalid gemspec in [/Users/billy/.rvm/gems/ruby-1.9.2-p290@victoria/specifications/capybara-1.1.1.gemspec]: invalid date format in specification: "2011-09-04 00:00:00.000000000Z"
+Invalid gemspec in [/Users/billy/.rvm/gems/ruby-1.9.2-p290@victoria/specifications/cucumber-1.1.0.gemspec]: invalid date format in specification: "2011-09-22 00:00:00.000000000Z"
+Invalid gemspec in [/Users/billy/.rvm/gems/ruby-1.9.2-p290@victoria/specifications/gherkin-2.5.2.gemspec]: invalid date format in specification: "2011-10-13 00:00:00.000000000Z"
+Invalid gemspec in [/Users/billy/.rvm/gems/ruby-1.9.2-p290@victoria/specifications/json-1.6.1.gemspec]: invalid date format in specification: "2011-09-18 00:00:00.000000000Z"
+Invalid gemspec in [/Users/billy/.rvm/gems/ruby-1.9.2-p290@victoria/specifications/json_pure-1.6.1.gemspec]: invalid date format in specification: "2011-09-18 00:00:00.000000000Z"
+Invalid gemspec in [/Users/billy/.rvm/gems/ruby-1.9.2-p290@victoria/specifications/term-ansicolor-1.0.7.gemspec]: invalid date format in specification: "2011-10-13 00:00:00.000000000Z"
+
+To solve this for the original poster (the gem is fine):
+
+gem update --system
+rvm gemset empty yourgemsetname
+gem install bundler
+gem install
+
+This cleans your local installation and it will work fine. For certain gems you might want to add the following to your boot.rb file at the top:
+
+require 'yaml'
+YAML::ENGINE.yamler = 'syck'
+
+require 'rubygems'
+
+http://groups.google.com/group/plataformatec-devise/browse_thread/thread/2c387b8d3e4147d0?pli=1
+Devise
+	
+		
+Home
+Discussions
++ new post
+Members
+About this group
+Edit my membership
+	View this group in the new Google Groups
+		
+"undefined method `devise'" when using Rails3 beta2 with Devise 1.1rc0
+Options
+		
+[Click the star to watch this topic] 	
+	
+	  	4 messages - Collapse all  - 
+Report discussion as spam
+	
+	
+		
+drchiu   	
+View profile  
+	 More options Apr 4 2010, 7:57 am
+Just posting this here so nobody else has to bang their head against
+the wall for 10 minutes...
+
+I just upgraded my Rails app from beta1 => beta2, and upgraded Devise
+from pre2 => rc0
+
+Rails kept returning this whenever I spun it up:
+
+undefined method `devise' for #<Class:0x10789bea0> (NoMethodError)
+
+and
+
+undefined method `devise_modules' for #<Class:0x10789c0f8>
+(NoMethodError)
+
+I had previously configured my app for Devise in the routes.rb with a
+#devise_for call and in user.rb with a #devise method call, and these
+are what triggered the NoMethodError.
+
+Just comment out these parts first, then run "rails generate
+devise_install", and then uncomment again, and it should be fixed.
+
+    Reply to author      Forward       
+Report spam
+		
+	
+		
+José Valim   	
+View profile  
+	 More options Apr 4 2010, 9:38 am
+
+I'm sorry to hear that. I try to warn when the *devise* method is not
+defined in your models:
+
+http://github.com/plataformatec/devise/blob/master/lib/devise/rails/r...
+
+But for some reason it seems not be working.
+
+The migration should work smoothly, do you still have the backtraces so I
+can try to investigate what was happening?
+
+Thanks!
+
+- Show quoted text -
+
+-- 
+José Valim
+
+Director of Engineering - Plataforma Tecnologia
+Know more about us: http://plataformatec.com.br/en/
+
+    Reply to author      Forward       
+Report spam
+		
+	
+		
+Houdini   	
+View profile  
+	 More options Apr 6 2010, 3:09 am
+I have same issue:
+undefined method `devise' for User(Table doesn't exist):Class
+
+1.1rc0
+
+On Apr 4, 6:38 pm, José Valim <jose.va...@gmail.com> wrote:
+
+- Show quoted text -
+
+
+    Reply to author      Forward       
+Report spam
+		
+	
+		
+Levi Figueira   	
+View profile  
+	 More options Apr 6 2010, 10:13 am
+
+@Houdini
+
+It looks like you've set Devise to use the User model yet you haven't
+migrated to include said table in the database. If you've generated the User
+model already, try running "rake db:migrate". If you haven't, you should be
+running "rails g model User" along with the fields you wish to set said
+Model with. I'd encourage you to look into the Rails guides (
+http://guides.rails.info) for more info on migrations (if you're not
+familiar with those, that is).
+
+Hope this pointers got you going on the right path.
+
+~Levi Figueira
+
+- Show quoted text -
+
+~Levi Figueira
+
+_______________________________________
+*mobile PT. *+351 91 257 4321
+*mobile PT. *+351 96 494 1080
+*mobile US. *+1 (515) 966-4344
+*web. *http://levifig.com
+*gtalk. *me (at_ levifig.com)
+*skype. *levifig
+*twitter. *@levifig <http://twitter.com/levifig>
+
+END OF:  http://groups.google.com/group/plataformatec-devise/browse_thread/thread/2c387b8d3e4147d0?pli=1
+
+global search and replace
+for ruby files:
+perl -pi -e 's/coupon/deal/g' *.rb
+
+perl -pi -e 's/Coupon/Deal/g' *.rb
+
+for views, cd to the dir, then
+
+perl -pi -e 's/coupon/deal/g' *
+perl -pi -e 's/Coupon/Deal/g' *
+
+grep -r coupon .
+
+grep -r Coupon .

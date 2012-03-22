@@ -1,0 +1,45 @@
+.grey-form{:style => "padding:25px"}
+  %p
+    -# %h1 Retailer
+    - title "Retailer"
+
+  %p
+    %b Name:
+    = @retailer.name
+  %p
+    %b Account:
+    = @retailer.account.name
+  %p
+    %b Category:
+    = @retailer.retailer_category.retailer_category
+  %p
+    %b Address:
+    = @retailer.address
+  %p
+    %b City:
+    = @retailer.city
+  %p
+    %b Country:
+    = @retailer.state
+  -# %p
+  -#   %b Zip:
+  -#   = @retailer.zip
+  %p
+    %b Phone:
+    = @retailer.phone
+  %p
+    %b Contact:
+    = @retailer.contact_name
+  %p
+    %b Email:
+    = @retailer.contact_email
+  %p
+    %b Latitude:
+    = @retailer.latitude
+  %p
+    %b Longitude:
+    = @retailer.longitude
+%br
+= link_to 'Edit', edit_retailer_path(@retailer)
+\|
+= link_to 'Back', retailers_path

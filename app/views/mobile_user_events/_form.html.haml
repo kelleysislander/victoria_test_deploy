@@ -1,0 +1,53 @@
+
+.grey-form
+  = form_for @mobile_user_event do |f|
+
+    -if @mobile_user_event.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@mobile_user_event.errors.count, "error")} prohibited this mobile user event from being saved:"
+        %ul
+          - @redemption.errors.full_messages.each do |msg|
+            %li= msg
+
+    .field
+      = f.label :device_uid
+      = f.text_field :device_uid
+    
+    .field
+      = f.label :user_event
+      = f.text_field :user_event
+
+    .field
+      = f.label :description
+      = f.text_field :description
+
+    .field
+      %label{:for => "event_date"} Event Date
+      = f.text_field :eveny_date, :class => 'date_picker start_date small', :value => day_mon_year(@deal.beg_date) || day_mon_year(Date.today)
+
+    .actions
+      = submit_button('Save')
+
+
+
+-# = form_for @mobile_user_event do |f|
+-#   = f.error_messages
+-#   %p
+-#     = f.label :device_uid
+-#     %br
+-#     = f.text_field :device_uid
+-#   %p
+-#     = f.label :user_event
+-#     %br
+-#     = f.text_field :user_event
+-#   %p
+-#     = f.label :description
+-#     %br
+-#     = f.text_field :description
+-#   %p
+-#     = f.label :user_event_date
+-#     %br
+-#     = f.datetime_select :user_event_date
+-#   %p
+-#     = f.submit
+

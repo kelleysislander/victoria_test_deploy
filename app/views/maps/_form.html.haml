@@ -1,0 +1,44 @@
+.grey-form
+  = form_for @map do |f|
+
+    -if @map.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@map.errors.count, "error")} prohibited this search from being valid:"
+        %ul
+          - @map.errors.full_messages.each do |msg|
+            %li= msg
+
+    -# .field
+    -#   = f.label :retailer_category
+    -#   = f.select :retailer_category_id, RetailerCategory.find(:all).collect { |r| [ "#{r.retailer_category} => #{r.description[0..64]}", r.id ] }, {:include_blank => "Choose the Retailer Category"}, :style => "width: auto;"
+    -# .field
+    -#   = f.label :retailer_name
+    -#   = f.text_field :retailer_name
+    -# .field
+    -#   = f.label :retailer_addr
+    -#   = f.text_field :retailer_addr
+    -# .field
+    -#   = f.label "Location: 14.643109, -90.522800"
+    -#   = f.text_field :location_addr
+    .field
+      = f.label "Lat: 14.624795"
+      = f.text_field :current_lat, :value => "14.624795"
+    .field
+      = f.label "Lng: -90.532818"
+      = f.text_field :current_lng, :value => "-90.532818"
+    .field
+      = f.label :distance
+      = f.select :radius_distance, Map::RadiusDistances, {:include_blank => "Choose the Distance (radius) from the Location Address to search within for Deals (default = 5)"}, :title => "Choose the Distance (radius) from the Location Address to search within for Deals (default = 5)", :style => "width: auto;"
+
+    -# <select name="bk" id="bk">
+    -# =options_for_select([ [ "Denmark", 0], ["USA", {:style=>'font-weight:bold;'}, 1], ["Sweden",2] ])
+    -# </select>
+  
+    -# .field
+  
+    -#   = f.label :retailer_category
+    -#   = f.text_field :retailer_category_id
+
+    .actions
+      = submit_button('Search')
+

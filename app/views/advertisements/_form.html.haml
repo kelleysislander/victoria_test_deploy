@@ -1,0 +1,71 @@
+= javascript_include_tag "advertisements"
+.grey-form
+  = form_for @advertisement, :html => { :multipart => true } do |f|
+    -if @advertisement.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@advertisement.errors.count, "error")} prohibited this Advertisement from being saved:"
+        %ul
+          - @advertisement.errors.full_messages.each do |msg|
+            %li= msg
+
+    .field
+      = f.label :name
+      = f.text_field :name
+    .field
+      = f.label :advertisement_type_id
+      = f.select :advertisement_type_id, AdvertisementType.find(:all).collect { |at| [ at.advertisement_type, at.id ] }, {:include_blank => "Choose Advertisement Type"}, :style => "width: auto;", :onchange => "hide_or_show_url(this.options[selectedIndex].text)"
+    .field
+      = f.label :image_file
+      = f.file_field :image
+    
+    - if @advertisement.advertisement_type
+      - case @advertisement.advertisement_type.advertisement_type
+        - when "Splash"
+          = image_tag @advertisement.image_url(:splash)
+        - when "Featured Sponsored"
+          = image_tag @advertisement.image_url(:featured_sponsored)
+        - when "Regular Sponsored"
+          = image_tag @advertisement.image_url(:regular_sponsored)
+        - when "Full Screen"
+          = image_tag @advertisement.image_url(:splash)
+
+    .field
+      = f.label :url, :id => "url_label"
+      = f.text_field :url
+
+    .field
+      = f.label :retailer_id
+      = f.select :retailer_id, Retailer.find(:all).collect { |r| [ "#{r.name} - #{r.address}", r.id ] }, {:include_blank => "Choose the Retailer"}, :style => "width: auto;"
+
+    .field
+      = f.label :advertiser_id
+      <select id="advertisement_advertiser_id" name="advertisement[advertiser_id]" style="width: auto;"><option value="">Choose Advertiser</option>
+      - Advertiser.find(:all, :include => :retailer).each do |a|
+        - if a.retailer_id # if the Advertiser record has a retailer_id then we show that Advertiser as "selected"
+        -# <option value="#{a.retailer.id}" #{(a.retailer.id == @advertisement.retailer_id) ? selected="selected" : ""}>#{a.retailer.name} (R)</option>
+        <option value="#{a.id}" #{(a.retailer.id == @advertisement.retailer_id) ? selected="selected" : ""}>#{a.retailer.name} (R)</option>
+        - else # The Advertiser does not have a retailer_id so we show as "selected" where the Advertiser.id == @advertisement.advertiser_id
+          <option value="#{a.id}" #{(a.id == @advertisement.advertiser_id) ? selected="selected" : ""}>#{a.name} (A)</option>
+      </select>
+    
+    .field
+      = f.label :description
+      = f.text_field :description
+    -# .field
+    -#   = f.label :content
+    -#   = f.text_area :content
+    .field
+      = f.label :beg_date
+      = f.text_field :beg_date, :class => 'date_picker start_date small', :value => day_mon_year(@advertisement.beg_date) || day_mon_year(Date.today)
+    .field
+      = f.label :end_date
+      = f.text_field :end_date, :class => 'date_picker end_date small', :value => day_mon_year(@advertisement.end_date) || day_mon_year(Date.today)
+    .actions
+      = submit_button('Save')
+    
+      = f.hidden_field :retailer_zone, :value => @advertisement.retailer.zone
+    
+  - if @advertisement && @advertisement.advertisement_type_id = AdvertisementType.where(:advertisement_type => 'Splash').first.id
+    %body{ :onload => "hide_or_show_url('Splash')"}
+  - else
+    %body{ :onload => "hide_fields();" }

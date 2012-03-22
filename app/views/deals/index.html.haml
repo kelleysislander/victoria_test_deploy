@@ -1,0 +1,46 @@
+-# <style type="text/css">h1 {border-width: 1; border: solid; text-align: center}</style>
+<style type="text/css">#content td {padding: 2px; }</style>
+
+- title "Deals"
+
+%table{:border => 2}
+  %tr
+  %th Active
+  %th Feat?
+  -# %th Badge
+  %th Deal Image
+  %th Feat Image
+  %th Retailer
+  %th Advertiser
+  %th{:style => "width : 250px;"} Name
+  %th Offrd
+  %th Avail
+  %th Beg Date
+  %th End Date
+  %th{:colspan => 3, :style => "text-align:center;"} Actions
+
+  - @deals.each do |deal|
+    %tr
+      -# %td #{image_tag(deal.badge_path, :size => "60x60")}
+      %td= featured( deal.active_flag )
+      %td= featured( deal.featured_flag )
+      %td= deal.image_url ? image_tag( deal.image_url, :size => "#{Victoria::Application::DealIndex}" ) : nil
+      %td= deal.featured_image_url ? image_tag( deal.featured_image_url, :size => "#{Victoria::Application::FeaturedDealIndex}" ) : nil
+      %td= (deal.retailer.name.length > 24) ? "#{deal.retailer.name[0..24]}..." : deal.retailer.name
+      %td= (deal.advertiser.name) ? "#{deal.advertiser.name[0..20]} (A)" : "#{deal.retailer.name[0..20]} (R)"
+      -# %td= deal.name[0..30]
+      %td= (deal.name.length > 30) ? "#{deal.name[0..30]}..." : deal.name
+      %td= deal.num_offered
+      %td= deal.num_available
+      %td= disp_date(deal.beg_date)
+      %td= disp_date(deal.end_date)
+      %td= link_to 'Show', deal
+      %td= link_to 'Edit', edit_deal_path(deal)
+      - if deal.redemptions.size == 0
+        %td= link_to 'Destroy', deal, :confirm => 'Are you sure?', :method => :delete
+
+= paginate @deals
+
+%br
+
+= link_to 'New Deal', new_deal_path if current_user.has_role? [:deal, :admin, :superadmin]

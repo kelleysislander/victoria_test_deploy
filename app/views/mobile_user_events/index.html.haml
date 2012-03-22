@@ -1,0 +1,20 @@
+- title "Mobile User Events"
+
+%table
+  %tr
+    %th Device uid
+    %th User event
+    %th Description
+    %th User Event Date
+    %th{:colspan => 2, :style => "text-align:center;"} Actions
+  - for mobile_user_event in @mobile_user_events
+    %tr
+      %td= mobile_user_event.device_uid
+      %td= mobile_user_event.user_event
+      %td= mobile_user_event.description
+      %td= mobile_user_event.user_event_date
+      %td= link_to 'Show', mobile_user_event
+      -# %td= link_to 'Edit', edit_mobile_user_event_path(mobile_user_event)
+      %td= link_to 'Destroy', mobile_user_event, :confirm => 'Are you sure?', :method => :delete
+
+-# %p= link_to "New Mobile User Event", new_mobile_user_event_path

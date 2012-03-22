@@ -1,0 +1,23 @@
+= @deals_with_ads
+
+- title "Deals with Ads"
+
+%table
+  %tr
+    %th Type
+    %th Image
+    %th Retailer
+    %th Address
+    %th Disct Pct
+    %th Price
+    %th Dist
+    %th{:colspan => 1, :style => "text-align:center;"} Actions
+
+  - @deals_with_ads.each do |dwa|
+    %tr
+      %td= dwa[:type]
+      %td= dwa[:image]
+      %td= dwa[:retailer_name]
+      -# %td= dwa[:]
+      -# %td= (advertiser.retailer_id) ? "#{advertiser.retailer.address}" : "#{advertiser.address}"
+      -# %td= link_to 'Show', advertiser

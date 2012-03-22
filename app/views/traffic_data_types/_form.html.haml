@@ -1,0 +1,13 @@
+.grey-form
+  = form_for @traffic_data_type do |f|
+    = f.error_messages
+    %p
+      = f.label :name
+      %br
+      = f.text_field :name
+    %p
+      = f.label :description
+      %br
+      = f.text_field :description
+    %p
+      = submit_button('Submit')

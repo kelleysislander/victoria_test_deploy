@@ -1,0 +1,18 @@
+- title "Redemption Passphrase"
+
+%p
+  %strong Passphrase:
+  = @redemption_passphrase.passphrase
+%p
+  %strong Beg Date:
+  = @redemption_passphrase.beg_date
+%p
+  %strong End Date:
+  = @redemption_passphrase.end_date
+
+%p
+  = link_to "Edit", edit_redemption_passphrase_path(@redemption_passphrase)
+  |
+  = link_to "Destroy", @redemption_passphrase, :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View All", redemption_passphrases_path

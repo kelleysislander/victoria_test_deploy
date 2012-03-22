@@ -1,0 +1,11 @@
+
+<% if @deal.preview_flag == 1 %>
+  <h1>Deal (preview)</h1>
+<% else %>
+  <h1>Deal</h1>
+<% end %>
+
+<%= render 'form' %>
+
+<%= render :partial => "show" %>
+

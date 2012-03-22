@@ -1,0 +1,31 @@
+- title "Traffic Camera"
+.grey-form{:style => "padding:25px"}
+  %p
+    %strong Name:
+    = @traffic_camera.name
+  %p
+    %strong Traffic Flow:
+    = @traffic_camera.compass_point.name
+  %p
+    %strong Address:
+    = @traffic_camera.address
+  %p
+    %strong Latitude:
+    = @traffic_camera.latitude
+  %p
+    %strong Longitude:
+    = @traffic_camera.longitude
+  %p
+    %strong URL
+    = @traffic_camera.url
+  %p
+    %strong Status:
+    = status(@traffic_camera.status)
+
+  %p
+%br
+= link_to "Edit", edit_traffic_camera_path(@traffic_camera)
+|
+= link_to "Destroy", @traffic_camera, :confirm => 'Are you sure?', :method => :delete
+|
+= link_to "View All", traffic_cameras_path

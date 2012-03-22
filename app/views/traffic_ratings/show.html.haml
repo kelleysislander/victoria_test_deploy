@@ -1,0 +1,19 @@
+- title "Traffic Rating"
+.grey-form{:style => "padding:25px"}
+  %p
+    %strong Rating:
+    = @traffic_rating.rating
+  %p
+    %strong Dsescription:
+    = @traffic_rating.dsescription
+  %p
+    %strong Icon Path:
+    = @traffic_rating.icon_path
+
+  %p
+%br
+= link_to "Edit", edit_traffic_rating_path(@traffic_rating)
+|
+= link_to "Destroy", @traffic_rating, :confirm => 'Are you sure?', :method => :delete
+|
+= link_to "View All", traffic_ratings_path

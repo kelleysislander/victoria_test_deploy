@@ -1,0 +1,53 @@
+- title "Traffic Condition"
+
+- if @traffic_condition.traffic_data_type_id.to_s.count(TrafficDataType.other.map(&:id).join(",")) > 0
+  - other_source = true
+  - livecam = false
+- else
+  - other_source = false
+  - livecam = true
+
+- if TrafficDataType.find( @traffic_condition.traffic_data_type_id ).name == "Other:Other"
+  - other_other = true
+- else
+  - other_other = false
+.grey-form{:style => "padding:25px"}
+  %p
+    %strong Traffic Data Type:
+    = @traffic_condition.traffic_data_type.name
+
+  - if livecam
+    %p
+      %strong Traffic Camera:
+      = @traffic_condition.traffic_camera ? @traffic_condition.traffic_camera.name : "na"
+  %p
+    %strong Report Date
+    = disp_date_hms( @traffic_condition.report_date )
+  %p
+    %strong Traffic Rating:
+    = @traffic_condition.traffic_rating.rating
+  %p
+    -# if no @traffic_condition.compass_point then the TrafficDataType was "LiveCam" because the compass_point is in the traffic_camera record
+    -# if there is a @traffic_condition.compass_point the TrafficDataType was some "Other:*" and it was required in the form
+    %strong Traffic Direction:
+    = @traffic_condition.compass_point ? @traffic_condition.compass_point.name : @traffic_condition.traffic_camera.compass_point.name
+  
+  - if other_other
+    %p
+      %strong Other Traffic Data Source:
+      = @traffic_condition.other_source
+  - if other_source
+    %p
+      %strong Other Address:
+      = @traffic_condition.other_address
+    %p
+      %strong Other Descr:
+      = @traffic_condition.other_description
+
+  %p
+%br
+= link_to "Edit", edit_traffic_condition_path(@traffic_condition)
+|
+= link_to "Destroy", @traffic_condition, :confirm => 'Are you sure?', :method => :delete
+|
+= link_to "View All", traffic_conditions_path

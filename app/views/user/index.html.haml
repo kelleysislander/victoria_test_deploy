@@ -1,0 +1,44 @@
+-# = User.find( current_user.id).role? :admin
+
+%h1 Listing Users
+%p
+
+%table
+  %tr
+    %th Email
+    %th Name
+    %th Role
+    %th Account
+    %th Retailers
+    %th Last Signed In
+    %th{:colspan => 3, :style => "text-align:center;"} Actions
+    
+    -# - if can? :manage, User
+    -#   %th= sortable :single_access_token, "Login Token"
+    -# %th{:colspan => 2} Action
+
+    - @users.each do |user|
+      - num_retailers = (user.account) ? user.account.retailers.size : 0
+      %tr{:class => cycle('odd', 'even')}
+        %td= link_to user.email, user
+        %td= user.name
+        %td= user.print_roles
+        %td= (user.account) ? user.account.name : nil
+        %td= (user.account) ? num_retailers : nil
+        %td= user.last_sign_in_at
+        - if can? :show, @user
+          %td= link_to 'Show', user
+        - if can? :update, @user
+          %td= link_to 'Edit', edit_user_path( user )
+        %td= link_to_if (can? :manage, user and User.count > 1 and current_user.is_admin? and num_retailers == 0 and current_user.id != user.id), 'Del', user, :confirm => 'Are you sure?', :method => :delete
+
+= paginate @users
+
+%br
+- if can? :manage, @users
+  -# NOTE:  This allows only an "Admin" to add users rather than the devise default devise behavior of self-registration (users/sign_up)
+  = link_to "Add User", new_user_path
+  -# NOTE:  The link below is the default "devise" method where the user signs themselves up
+  -# = link_to "Add User", new_user_registration_path
+    
+

@@ -1,0 +1,31 @@
+.grey-form{:style => "padding:25px"}
+  %p
+  - title "Account"
+  %p
+    %b Name:
+    = @account.name
+  %p
+    %b Description:
+    = @account.description
+  %p
+    %b Address:
+    = @account.address
+  %p
+    %b City:
+    = @account.city
+  %p
+    %b Country:
+    = @account.state
+  %p
+    %b Zip:
+    = @account.zip
+  %p
+    %b Contact Name:
+    = @account.contact_name
+  %p
+    %b Contact Email:
+    = @account.contact_email
+%br
+= link_to 'Edit', edit_account_path(@account)
+\|
+= link_to 'Back', accounts_path

@@ -1,0 +1,26 @@
+.grey-form
+  = form_for @traffic_condition_historical do |f|
+    -if @traffic_condition_historical.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@traffic_condition_historical.errors.count, "error")} prohibited this Traffic Condition historical from being saved:"
+        %ul
+          - @traffic_condition_historical.errors.full_messages.each do |msg|
+            %li= msg
+  
+    .field
+      = f.label :traffic_camera_id, :id => "traffic_camera_id_label"
+      = f.select :traffic_camera_id, TrafficCamera.find(:all).collect  { |tc| [ "#{tc.name} - #{tc.compass_point.name} - #{tc.address}", tc.id ] }, {:include_blank => "Choose Traffic Cam"}, :style => "width: auto"
+    .field
+      = f.label :day_of_week
+      = f.select :day_of_week, TrafficConditionHistorical::DaysOfWeek, {:include_blank => "Choose Day of Week"}, :style => "width: auto;"
+    .field
+      = f.label :time_of_day
+      = f.select :time_of_day, TrafficConditionHistorical::HoursOfDay, {:include_blank => "Choose Time of Day"}, :style => "width: auto;"
+    .field
+      = f.label :traffic_rating_id
+      = f.select :traffic_rating_id, TrafficRating.find(:all).collect  { |tr| [ "#{tr.rating} - #{tr.description}", tr.id ] }, {:include_blank => "Choose Traffic Rating"}, :style => "width: auto;"
+    .field
+      = f.label :description
+      = f.text_field :description, :size => 80
+    .actions
+      = submit_button('Submit')

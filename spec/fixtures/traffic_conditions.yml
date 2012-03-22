@@ -1,0 +1,13 @@
+one:
+  traffic_camera_id: 1
+  traffic_rating_id: 1
+  traffic_direction_name: MyString
+  traffic_direction_compass: 1
+  status: 1
+
+two:
+  traffic_camera_id: 1
+  traffic_rating_id: 1
+  traffic_direction_name: MyString
+  traffic_direction_compass: 1
+  status: 1

@@ -1,0 +1,46 @@
+Billys-MacBook-Pro ~/Projects/victoria: cap deploy:setup
+******************* deploy.rb: require capistrano_database **********************
+capistano_database.rb: NEXT: db:setup
+capistano_database.rb: NEXT: after deploy:finalize_update, db:symlink
+    triggering start callbacks for `deploy:setup'
+  * executing `multistage:ensure'
+*** Defaulting to `staging'
+  * executing `staging'
+  * executing `deploy:setup'
+  * executing "mkdir -p /var/www/vhosts/victoria.semaphoremobile.com /var/www/vhosts/victoria.semaphoremobile.com/releases /var/www/vhosts/victoria.semaphoremobile.com/shared /var/www/vhosts/victoria.semaphoremobile.com/shared/system /var/www/vhosts/victoria.semaphoremobile.com/shared/log /var/www/vhosts/victoria.semaphoremobile.com/shared/pids"
+    servers: ["50.56.211.64"]
+Password: 
+    [50.56.211.64] executing command
+    command finished in 60ms
+  * executing "chmod g+w /var/www/vhosts/victoria.semaphoremobile.com /var/www/vhosts/victoria.semaphoremobile.com/releases /var/www/vhosts/victoria.semaphoremobile.com/shared /var/www/vhosts/victoria.semaphoremobile.com/shared/system /var/www/vhosts/victoria.semaphoremobile.com/shared/log /var/www/vhosts/victoria.semaphoremobile.com/shared/pids"
+    servers: ["50.56.211.64"]
+    [50.56.211.64] executing command
+    command finished in 34ms
+    triggering after callbacks for `deploy:setup'
+  * executing `db:setup'
+capistrano_database.rb: mkdir -p /var/www/vhosts/victoria.semaphoremobile.com/shared/db
+  * executing "mkdir -p /var/www/vhosts/victoria.semaphoremobile.com/shared/db"
+    servers: ["50.56.211.64"]
+    [50.56.211.64] executing command
+    command finished in 44ms
+capistrano_database.rb: mkdir -p /var/www/vhosts/victoria.semaphoremobile.com/shared/config
+  * executing "mkdir -p /var/www/vhosts/victoria.semaphoremobile.com/shared/config"
+    servers: ["50.56.211.64"]
+    [50.56.211.64] executing command
+    command finished in 37ms
+capistrano_database.rb: 'config.result(binding)', /var/www/vhosts/victoria.semaphoremobile.com/shared/config/database.yml
+Enter MySQL database password: r3dsonia
+    servers: ["50.56.211.64"]
+ ** sftp upload #<StringIO:0x007f887b60c290> -> /var/www/vhosts/victoria.semaphoremobile.com/shared/config/database.yml
+    [50.56.211.64] /var/www/vhosts/victoria.semaphoremobile.com/shared/config/database.yml
+    [50.56.211.64] done
+  * sftp upload complete
+  
+  
+* executing "
+mkdir -p /var/www/vhosts/victoria.semaphoremobile.com 
+         /var/www/vhosts/victoria.semaphoremobile.com/releases 
+         /var/www/vhosts/victoria.semaphoremobile.com/shared 
+         /var/www/vhosts/victoria.semaphoremobile.com/shared/system 
+         /var/www/vhosts/victoria.semaphoremobile.com/shared/log 
+         /var/www/vhosts/victoria.semaphoremobile.com/shared/pids"

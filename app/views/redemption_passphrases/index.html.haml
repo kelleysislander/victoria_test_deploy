@@ -1,0 +1,28 @@
+
+<style type="text/css">#content td {padding: 2px; }</style>
+- title "Redemption Passphrases"
+
+%table
+  %tr
+    %th Passphrase
+    %th Beg date
+    %th End date
+    %th{:colspan => 3, :style => "text-align:center;"} Actions
+
+  - @redemption_passphrases.each_with_index do |rec, idx|
+    -# - for redemption_passphrase in @redemption_passphrases
+    %tr
+      %td= rec.passphrase
+      %td= rec.beg_date
+      %td= rec.end_date
+      %td= link_to 'Show', rec
+      %td= link_to 'Edit', edit_redemption_passphrase_path( rec ) if rec.id == @last_id
+      %td= link_to 'Destroy', rec, :confirm => 'Are you sure?', :method => :delete
+
+= paginate @redemption_passphrases
+
+%br
+
+%p= link_to "New Redemption Passphrase", new_redemption_passphrase_path if current_user.has_role? [:admin, :superadmin]
+
+

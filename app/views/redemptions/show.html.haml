@@ -1,0 +1,24 @@
+- title "Redemption"
+
+%p
+  %strong Deal:
+  = @redemption.deal.name
+
+%p
+  %strong Retailer:
+  = @redemption.deal.retailer.name
+
+%p
+  %strong Date:
+  = disp_date_time(@redemption.created_at)
+
+%p
+  %strong Num Redemptions:
+  = @redemption.num_redeemed
+
+%p
+  = link_to "Edit", edit_redemption_path(@redemption)
+  |
+  = link_to "Destroy", @redemption, :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View All", redemptions_path

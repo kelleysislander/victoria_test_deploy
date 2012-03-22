@@ -1,0 +1,24 @@
+- title "Traffic Condition Historical"
+
+%p
+  %strong Traffic Camera:
+  = @traffic_condition_historical.traffic_camera_id
+%p
+  %strong Traffic Rating:
+  = @traffic_condition_historical.traffic_rating_id
+%p
+  %strong Day Of Week:
+  = @traffic_condition_historical.day_of_week
+%p
+  %strong Time Of Day:
+  = @traffic_condition_historical.time_of_day
+%p
+  %strong Description:
+  = @traffic_condition_historical.description
+
+%p
+  = link_to "Edit", edit_traffic_condition_historical_path(@traffic_condition_historical)
+  |
+  = link_to "Destroy", @traffic_condition_historical, :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View All", traffic_condition_historicals_path

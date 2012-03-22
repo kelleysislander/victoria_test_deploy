@@ -1,0 +1,18 @@
+- title "Traffic Ratings"
+
+%table
+  %tr
+    %th Rating
+    %th Description
+    %th Icon path
+    %th{:colspan => 3} Actions
+  - for traffic_rating in @traffic_ratings
+    %tr
+      %td= traffic_rating.rating
+      %td= traffic_rating.description
+      %td= traffic_rating.icon_path
+      %td= link_to 'Show', traffic_rating
+      %td= link_to 'Edit', edit_traffic_rating_path(traffic_rating)
+      %td= link_to 'Destroy', traffic_rating, :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to "New Traffic Rating", new_traffic_rating_path

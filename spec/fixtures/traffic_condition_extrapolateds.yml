@@ -1,0 +1,13 @@
+one:
+  traffic_camera_id: 1
+  traffic_rating_id: 1
+  day_of_week: 1
+  time_of_day: MyString
+  description: MyString
+
+two:
+  traffic_camera_id: 1
+  traffic_rating_id: 1
+  day_of_week: 1
+  time_of_day: MyString
+  description: MyString

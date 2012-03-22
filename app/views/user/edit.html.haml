@@ -1,0 +1,11 @@
+- title "Edit User"
+
+= form_for @user, :url => user_path do |f| 
+  = render :partial => 'form', :locals => { :f => f }
+
+-# = render 'form'
+
+%p{:class => 'nav-links'}
+  = link_to 'Show', @user
+  \|
+  = link_to 'Back', user_index_path

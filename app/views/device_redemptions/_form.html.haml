@@ -1,0 +1,51 @@
+-# = form_for @device_redemption do |f|
+-#   = f.error_messages
+-#   %p
+-#     = f.label :device_uid
+-#     %br
+-#     = f.text_field :device_uid
+-#   %p
+-#     = f.label :deal_id
+-#     %br
+-#     = f.number_field :deal_id
+-#   %p
+-#     = f.label :redemption_type
+-#     %br
+-#     = f.text_field :redemption_type
+-#   %p
+-#     = f.label :redemption_date
+-#     %br
+-#     = f.date_select :redemption_date
+-#   %p
+-#     = f.submit
+-# 
+-# .grey-form
+-#   = form_for(@device_redemption, :html => { :class => "miiform"} )  do |f|
+-#     -if @device_redemption.errors.any?
+-#       #error_explanation
+-#         %h2= "#{pluralize(@device_redemption.errors.count, "error")} prohibited this Device Redemption from being saved:"
+-#         %ul
+-#           - @redemption_passphrase.errors.full_messages.each do |msg|
+-#             %li= msg
+-# 
+-#     %p
+-#       Please complete the form below. Mandatory fields marked.
+-#       %em
+-#         *
+-#     %fieldset{:id => "main"}
+-#       %legend
+-#         Redemption Passphrase
+-#       %ol
+-#       %li
+-#         %label{:for => "passphrase", :id => "passphrase_label"} Passphrase<em>*</em>
+-#         = f.text_field :passphrase, :size => 40
+-#       %ol
+-#       %li
+-#         %label{:for => "beg_date", :id => "beg_date_label"} Beginning Date<em>*</em>
+-#         = f.text_field :beg_date, :class => 'date_picker start_date small', :value => day_mon_year(@redemption_passphrase.beg_date) || day_mon_year(Date.today)
+-#       %li
+-#         %label{:for => "end_date", :id => "end_date_label"} End Date<em>*</em>
+-#         = f.text_field :end_date, :class => 'date_picker end_date small', :value => day_mon_year(@redemption_passphrase.end_date) || day_mon_year(Date.today)
+-# 
+-#       %li
+-#         = f.submit 'Save', :class => 'miisubmit'

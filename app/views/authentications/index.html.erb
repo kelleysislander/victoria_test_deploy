@@ -1,0 +1,65 @@
+<%#= Rails.env -%><br><br>
+<%#= Rails.configuration.database_configuration[Rails.env] %><br>
+
+<% if @authentications %>
+  <% unless @authentications.empty? %>
+    <p><strong>You can now sign in to this account using:</strong></p>
+    <div class="authentications">
+      <% for authentication in @authentications %>
+        <div class="authentication">
+          <%= image_tag "#{authentication.provider}_32.png", :size => "32x32" %>
+          <div class="provider"><%= authentication.provider.titleize %></div>
+          <div class="uid"><%= authentication.uid %></div>
+          <%= link_to "X", authentication, :confirm => 'Are you sure you want to remove this authentication option?', :method => :delete, :class => "remove" %>
+        </div>
+      <% end %>
+      <div class="clear"></div>
+    </div>
+  <% end %>
+  <p><strong>Add another service to sign in with:</strong></p>
+ <%# else %>
+<!--- <p><strong>Sign in through one of these services or click the "Login" link</strong></p> -->
+<% end %>
+
+<% if !current_user %>
+  <p>
+    <strong>If you have previously signed in through one of these services you may click one of these to Sign In, or click the "Login" link</strong>
+  </p>
+<% end %>
+
+<a href="/auth/twitter" class="auth_provider">
+  <%= image_tag "twitter_64.png", :size => "64x64", :alt => "Twitter" %>
+  Twitter
+</a>
+<a href="/auth/facebook" class="auth_provider">
+  <%= image_tag "facebook_64.png", :size => "64x64", :alt => "Facebook" %>
+  Facebook
+</a>
+<div class="clear"></div>
+
+<!-- <b>Victoria Internal accounts:</b><br>
+superadmin@miinfo.com.gt<br>
+admin@miinfo.com.gt<br>
+deal@miinfo.com.gt<br>
+advertisement@miinfo.com.gt<br>
+retailer@miinfo.com.gt<br>
+advertiser@miinfo.com.gt<br><br>
+traffic1@miinfo.com.gt<br>
+traffic2@miinfo.com.gt<br><br>
+
+Outside "Field" Accounts:
+Redemptions Users can only see their own Deals, Retailers, and  Account
+<b>Redemptions Users:</b><br>
+kohlsredemption@kohls.com<br>
+radioshackredemption@radioshack.com<br>
+searsredemption@sears.com<br>
+bkdk1redemption@sbcglobal.net<br>
+bkdk2redemption@sbcglobal.net<br>
+hpbooksredemption@hpbooks.com<br>
+scubakingredemption@scubaking.com<br>
+walgreensredemptionr@walgreens.com<br>
+homedepotredemption@homedepot.com<br>
+herbsredemption@herbspaintandbody.com<br>
+frysredemption@outpost.com -->
+
+

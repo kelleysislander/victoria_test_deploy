@@ -1,0 +1,108 @@
+- title "Traffic Conditions / Alerts"
+- other_id, cam_id = 0, 0
+-# "Other" traffic data sources listing of the 3 most recent reports per traffic data source
+%table
+  %tr
+    %th{:width => 240} "Other" Traffic Data Sources
+    %th Traffic Direction
+    %th Report Date
+    %th Rating
+    %th{:colspan => 4} Actions
+  - @others_types.each do |oth|
+    - recs = eval("@other_#{oth.id}")
+    - recs.each_with_index do |os, idx|
+      - if other_id != os.traffic_data_type_id
+        %tr
+          %td{:colspan => 8} 
+            %hr
+        %tr
+          %td= os.traffic_data_type ? "#{os.traffic_data_type.name[0..28]}" : "na"
+          %td= os.compass_point.description[0..7]
+          %td= disp_date_hms(os.report_date)
+          %td= os.traffic_rating.rating
+          %td= link_to 'Show', os
+          %td= link_to 'Edit', edit_traffic_condition_path(os)
+          %td= link_to 'Destroy', os, :confirm => 'Are you sure?', :method => :delete
+          %td= link_to 'Create', new_traffic_condition_path( :traffic_data_type_id => os.traffic_data_type_id )
+      - else
+        %tr
+          %td= "&nbsp;".html_safe
+          %td= os.compass_point.description[0..7]
+          %td= disp_date_hms(os.report_date)
+          %td= os.traffic_rating.rating
+          %td= link_to 'Show', os
+          %td= link_to 'Edit', edit_traffic_condition_path(os)
+          %td= link_to 'Destroy', os, :confirm => 'Are you sure?', :method => :delete
+      
+      - other_id = os.traffic_data_type_id
+      
+-# Traffic Cameras listing of the 3 most recent reports per traffic camera
+%table
+  %tr
+    %th{:width => 240} Traffic Cameras Data
+    %th Traffic Direction
+    %th Report Date
+    %th Rating
+    %th{:colspan => 4} Actions
+  - @cams.each do |cam|
+    - eval("@cam_#{cam.id}").each do |tc|
+      - if cam_id != tc.traffic_camera_id
+        %tr
+          %td{:colspan => 8} 
+            %hr
+        %tr
+          %td= tc.traffic_camera ? "#{tc.traffic_camera_id} -  #{tc.traffic_camera.name[0..28]}" : "na"
+          %td= tc.compass_point.description[0..7]
+          %td= disp_date_hms(tc.report_date)
+          %td= tc.traffic_rating.rating
+          %td= link_to 'Show', tc
+          %td= link_to 'Edit', edit_traffic_condition_path(tc)
+          %td= link_to 'Destroy', tc, :confirm => 'Are you sure?', :method => :delete
+          %td= link_to 'Create', new_traffic_condition_path( :traffic_data_type_id => tc.traffic_data_type_id, :traffic_camera_id => tc.traffic_camera_id )
+      - else
+        %tr
+          %td= "&nbsp;".html_safe
+          %td= tc.compass_point.description[0..7]
+          %td= disp_date_hms(tc.report_date)
+          %td= tc.traffic_rating.rating
+          %td= link_to 'Show', tc
+          %td= link_to 'Edit', edit_traffic_condition_path(tc)
+          %td= link_to 'Destroy', tc, :confirm => 'Are you sure?', :method => :delete
+          
+      - cam_id = tc.traffic_camera_id
+
+%p= link_to "New Traffic Condition", new_traffic_condition_path( :traffic_data_type_id => TrafficDataType.where(:name => "LiveCam").first.id)
+
+
+
+
+
+
+
+
+-# @cams.each do |cam|
+-#   eval("@cam_#{cam.id}").each do |cond|
+-#     puts cond.traffic_camera_id, cond.traffic_data_type.name, cond.traffic_camera.name
+-#   end
+-# end
+
+-# Original:
+
+-# %table
+-#   %tr
+-#     %th Source
+-#     %th Cam
+-#     %th Rating
+-#     %th Traffic Direction
+-#     %th{:colspan => 3} Actions
+-#   - for tc in @traffic_conditions
+-#     %tr
+-#       %td= tc.traffic_data_type.name
+-#       %td= tc.traffic_camera ? tc.traffic_camera.name[0..28] : "na"
+-#       %td= tc.traffic_rating.rating
+-#       %td= tc.compass_point.description[0..7]
+-#       %td= link_to 'Show', tc
+-#       %td= link_to 'Edit', edit_traffic_condition_path(tc)
+-#       %td= link_to 'Destroy', tc, :confirm => 'Are you sure?', :method => :delete
+-# 
+-# %p= link_to "New Traffic Condition", new_traffic_condition_path

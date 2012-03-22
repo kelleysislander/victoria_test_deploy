@@ -1,0 +1,69 @@
+// Place all the styles related to the Map controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/*Styles for the deal map infowindows that pop up when the marker is clicked */
+
+#infobubble {
+	background-color: #82E2ED;
+	height: 100px;
+}
+
+#alertbubble {
+	background-color: #90fe90;
+	font-family: arial, sans-serif;
+	font-size: 14px;
+	height: auto;
+	width: 290px;
+}
+
+/* from http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobubble/examples/example.html? */
+
+body {
+  font-size: 83%;
+}
+
+body, input, textarea {
+  font-family: arial, sans-serif;
+}
+
+#map {
+  width: 600px;
+  height: 500px;
+}
+
+#styles, #add-tab {
+  float: left;
+  margin-top: 10px;
+  width: 400px;
+}
+
+#styles label,
+#add-tab label {
+  display: inline-block;
+  width: 130px;
+}
+
+.phoney {
+  background: -webkit-gradient(linear,left top,left bottom,color-stop(0, rgb(112,112,112)),color-stop(0.51, rgb(94,94,94)),color-stop(0.52, rgb(57,57,57)));
+  background: -moz-linear-gradient(center top,rgb(112,112,112) 0%,rgb(94,94,94) 51%,rgb(57,57,57) 52%);
+}
+
+.phoneytext {
+  text-shadow: 0 -1px 0 #000;
+  color: #fff;
+  font-family: Helvetica Neue, Helvetica, arial;
+  font-size: 18px;
+  line-height: 25px;
+  padding: 4px 45px 4px 15px;
+  font-weight: bold;
+  background: url(../images/arrow.png) 95% 50% no-repeat;
+}
+
+.phoneytab {
+  text-shadow: 0 -1px 0 #000;
+  color: #fff;
+  font-family: Helvetica Neue, Helvetica, arial;
+  font-size: 18px;
+  background: rgb(112,112,112) !important;
+}

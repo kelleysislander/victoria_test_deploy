@@ -1,0 +1,51 @@
+<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+= javascript_include_tag "retailers"
+
+.grey-form
+  = form_for @retailer do |f|
+    -if @retailer.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@retailer.errors.count, "error")} prohibited this Retailer from being saved:"
+        %ul
+          - @retailer.errors.full_messages.each do |msg|
+            %li= msg
+
+    .field
+      = f.label :account_id
+      = f.select :account_id, Account.find(:all).collect { |a| [ "#{a.name} - #{a.address}, #{a.city}, #{a.state}", a.id ] }, {:include_blank => "Choose the Retailer's Account"}, :style => "width: auto;"
+    .field
+      = f.label :retailer_category_id
+      = f.select :retailer_category_id, RetailerCategory.find(:all).collect { |r| [ "#{r.retailer_category} - #{r.description[0..84]}", r.id ] }, {:include_blank => "Choose the Retailer Category"}, :style => "width: auto;"
+    .field
+      = f.label :name
+      = f.text_field :name
+    .field
+      = f.label :address
+      = f.text_field :address
+    .field
+      = f.label :city
+      = f.text_field :city
+    .field
+      = f.label :country
+      = f.text_field :state, :value=> "Guatemala", :onblur => "geocode_address( get_address() );"
+    -# .field
+    -#   = f.label :zip
+    -#   = f.text_field :zip
+    .field
+      = f.label :phone
+      = f.text_field :phone
+    .field
+      = f.label :contact_name
+      = f.text_field :contact_name
+    .field
+      = f.label :contact_email
+      = f.text_field :contact_email
+  
+    = f.hidden_field 'latitude'
+    = f.hidden_field 'longitude'
+  
+    .actions
+      = submit_button('Save')
+
+
+  #geocode_results

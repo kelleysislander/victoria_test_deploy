@@ -1,0 +1,135 @@
+<%#= @centerlatlng %>
+<%#= title "Deal Map" %>
+ <% if @locations.first %>
+ 
+  <link href="http://code.google.com/apis/maps/documentation/javascript/examples/default.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?sensor=true"></script>
+<!--    <script type="text/javascript" src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobubble/src/infobubble.js"></script> -->
+  <script type="text/javascript">
+
+    var retailers = [];
+    var titles = [];
+    var markers = [];
+    var iterator = 0;
+
+    var map;
+    var recentered = false;
+  
+    var startloc = new google.maps.LatLng(<%= @center_lat_lng[0] %>, <%= @center_lat_lng[1] %>); // first location
+    var locations = [
+      <% @locations.each_with_index do |loc, idx| %>
+       new google.maps.LatLng(<%=loc.latitude %>, <%=loc.longitude %>),
+      <% end %>
+    ];
+    // one record per retailer with a deal or deals
+    <% @locations.each_with_index do |loc, idx| %>
+      <% address = "#{loc.address}, #{loc.city}, #{loc.state}  #{loc.zip}"  %>
+      retailers.push( "<%= loc.id %>|<div id='infowindow'><%= loc.name %><br><%= address %><br><%= loc.url %><br>" )
+      titles.push( "<%= loc.name %>" )
+      // Now loop through @deals and match up the retailer_id with the loc.id in retailers and add the deals
+      <% @deals.each do |deal| %>
+        <% if deal.retailer_id == loc.id %>
+          retailers[<%= idx %>] = retailers[<%= idx %>] + "Deal: <%= deal.name %><br>"
+         <% end %>
+      <% end  %>
+      // now trim off the loc.id from the front of the string for each array element
+      retailers[<%= idx %>] = retailers[<%= idx %>].substr( retailers[<%= idx %>].indexOf("|") + 1, retailers[<%= idx %>].length );
+      // and add the final "</div>" to end the <div id='infowindow'>
+      retailers[<%= idx %>] = retailers[<%= idx %>] + "</div>"
+    <% end %>
+  
+    function initialize() {
+      var mapOptions = {
+        zoom: 12,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        center: startloc
+      };
+
+      map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+    }
+  
+    function drop() {
+      for (var i = 0; i < locations.length; i++) {
+        setTimeout(function() {
+          addMarker();
+        }, i * 500);
+      }
+    }
+
+    function addMarker() {
+      var marker = new google.maps.Marker(
+        {
+          position: locations[iterator],
+          map: map,
+          draggable: false,
+          animation: google.maps.Animation.DROP,
+          title: titles[iterator]
+        })
+
+     // set up the infowindow;
+     var infowindow = new google.maps.InfoWindow({
+         content: retailers[iterator],
+         maxWidth: 400
+     });
+     // info = retailers[iterator];
+     // alert(retailers[iterator])
+     // attach it to the marker
+     google.maps.event.addListener(marker, 'click', function() {
+       // infowindow.setContent( info ); 
+       infowindow.open(map, marker);
+     });
+
+     markers.push( marker );
+     iterator++;
+    }; // function addMarker()
+
+    function filler(){
+      null // just used to delay the first drop
+    };
+  
+    // function createMarker(latlng, html, title_text, idx) {
+    //   setTimeout(function() {
+    //     var content_string = html;
+    //     var marker = new google.maps.Marker({
+    //       position: latlng,
+    //       map: map,
+    //       title: title_text,
+    //       animation: google.maps.Animation.DROP,
+    //       zIndex: Math.round(latlng.lat()*-100000)<<5
+    //       });
+    // 
+    //     google.maps.event.addListener(marker, 'click', function() {
+    //       infowindow.setContent(content_string); 
+    //       infowindow.open(map,marker);
+    //     });
+    //   }, idx * delay );
+    // }
+
+  </script>
+
+  <body onload="initialize(); setTimeout(function() {filler();}, 200);drop();">
+    <div id="map_canvas" style="width:1000px; height:650px"></div>
+    <!-- <button id="drop" onclick="drop()">Drop Markers</button> -->
+  </body>
+<% else %>
+  There are no qualifying deals, please try another search
+<% end %>
+
+<!--  Retailers:<br>
+  <%# @locations.each do |loc| %>
+    <%# loc.deals.each do |deal| %>
+      <%#= loc.id %>, <%#= deal.retailer.name %>,  <%#= deal.retailer.url %>,<%#= deal.name %>, <%#= deal.beg_date %>, <%#= deal.end_date %>, [<%#= deal.retailer_latitude %>,<%#= deal.retailer.longitude %>]<br>
+    <%# end %>
+  <%# end %>
+
+<%# if @deals %>
+  Deals:<br>
+  <%# @deals.each do |d| %>
+  <%#=  d.retailer.name %><br>
+  <%#=  d.inspect %><br>
+  <%#=  d.retailer.inspect %><br>
+  <%# end %>
+<%# end %> -->
+  <!-- @center_lat_lng: <%#= @center_lat_lng %> -->
+
+

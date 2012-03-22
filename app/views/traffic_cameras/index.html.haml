@@ -1,0 +1,31 @@
+- title "Traffic Cameras"
+
+%table
+  %tr
+    %th Name
+    %th Traffic Flow
+    %th Address
+    %th Lat
+    %th Long
+    %th URL
+    %th Status
+    %th{:colspan => 3, :style => "text-align:center;"} Actions
+    
+  - for traffic_camera in @traffic_cameras
+    %tr
+      %td= traffic_camera.name
+      %td= traffic_camera.compass_point.name
+      %td= traffic_camera.address[0..40]
+      %td= traffic_camera.latitude
+      %td= traffic_camera.longitude
+      %td= traffic_camera.url
+      %td= status(traffic_camera.status)
+      %td= link_to 'Show', traffic_camera
+      %td= link_to 'Edit', edit_traffic_camera_path(traffic_camera)
+      %td= link_to 'Destroy', traffic_camera, :confirm => 'Are you sure?', :method => :delete
+
+= paginate @traffic_cameras
+
+%br
+
+%p= link_to "New Traffic Camera", new_traffic_camera_path

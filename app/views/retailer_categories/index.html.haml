@@ -1,0 +1,21 @@
+- title "Retailer Categories"
+
+%table
+  %tr
+    %th Name
+    %th Description
+    %th{:colspan => 3, :style => "text-align:center;"} Actions
+
+  - @retailer_categories.each do |retailer_category|
+    %tr
+      %td= retailer_category.retailer_category
+      %td= retailer_category.description
+      %td= link_to 'Show', retailer_category
+      %td= link_to 'Edit', edit_retailer_category_path(retailer_category)
+      %td= link_to 'Destroy', retailer_category, :confirm => 'Are you sure?', :method => :delete
+
+= paginate @retailer_categories
+
+%br
+
+= link_to 'New Retailer category', new_retailer_category_path

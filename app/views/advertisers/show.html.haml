@@ -1,0 +1,33 @@
+.grey-form{:style => "padding:25px"}
+  %p
+    - title "Advertiser"
+
+  %p
+    %b Name:
+    = (@advertiser.retailer_id) ? "#{@advertiser.retailer.name} (R)" : "#{@advertiser.name} (A)"
+  %p
+    %b Address:
+    = (@advertiser.retailer_id) ? "#{@advertiser.retailer.address}" : "#{@advertiser.address}"
+  %p
+    %b City:
+    = (@advertiser.retailer_id) ? "#{@advertiser.retailer.city}" : "#{@advertiser.city}"
+  %p
+    %b Country:
+    = (@advertiser.retailer_id) ? "#{@advertiser.retailer.state}" : "#{@advertiser.state}"
+  -# %p
+  -#   %b Address:
+  -#   = (@advertiser.retailer_id) ? "#{@advertiser.retailer.zip}" : "#{@advertiser.zip}"
+
+  %p
+    %b Advertiser type:
+    = @advertiser.advertiser_type.advertiser_type
+%br
+= link_to 'Edit', edit_advertiser_path(@advertiser)
+\|
+= link_to 'Back', advertisers_path
+
+-# - @advertisers.each do |advertiser|
+-#   %tr
+-#     %td= (advertiser.retailer_id) ? "#{advertiser.retailer.name} (R)" : "#{advertiser.name} (A)"
+-#     %td= (advertiser.retailer_id) ? "#{advertiser.retailer.address}" : "#{advertiser.address}"
+-#     %td= advertiser.advertiser_type.advertiser_type

@@ -1,0 +1,88 @@
+- title "Traffic Condition Historicals"
+- cam_id, day_of_week_id = 0, 0
+- time_of_day = TrafficConditionHistorical::HoursOfDay[1][0]
+%table
+  %tr
+    %th{:width => 260} Traffic Camera
+    %th Traffic Flow Direction
+    %th Day of Week
+    %th Time of Day
+    %th Rating
+    %th{:colspan => 4} Actions
+  - @cams.each do |cam|
+    - eval("@cam_#{cam.id}").each do |tch|
+      - if cam_id != tch.traffic_camera_id
+        %tr
+          %td{:colspan => 8} 
+            %hr
+        %tr
+        - if cam_id != tch.traffic_camera_id
+          %td
+            %strong
+              = tch.traffic_camera ? "#{tch.traffic_camera_id} -  #{tch.traffic_camera.name[0..28]}" : "na"
+              
+          %td
+            %strong
+              = tch.traffic_camera.compass_point.description[0..7]
+          %td
+            %strong
+              = TrafficConditionHistorical::DayOfWeek[tch.day_of_week]
+          %td= tch.time_of_day
+          -# %td= mil_to_std(tch.time_of_day)
+          %td= tch.traffic_rating.rating
+          -# %td= link_to 'Show', tch
+          %td= link_to 'Edit', edit_traffic_condition_historical_path(tch)
+          %td= link_to 'Destroy', tch, :confirm => 'Are you sure?', :method => :delete
+          %td= link_to 'Create', new_traffic_condition_historical_path( :traffic_camera_id => tch.traffic_camera_id, :day_of_week => tch.day_of_week )
+        -# - else
+        -#   %td{:colspan => 2}
+        -#   %td= TrafficConditionHistorical::DayOfWeek[tch.day_of_week]
+        -#   %td= mil_to_std(tch.time_of_day)
+        -#   %td= tch.traffic_rating.rating
+        -#   -# %td= link_to 'Show', tch
+        -#   %td= link_to 'Edit', edit_traffic_condition_historical_path(tch)
+        -#   %td= link_to 'Destroy', tch, :confirm => 'Are you sure?', :method => :delete
+        -#   %td= link_to 'Daddy-O!!!', new_traffic_condition_historical_path( :traffic_camera_id => tch.traffic_camera_id )
+      - else
+
+        - if day_of_week_id != tch.day_of_week 
+          
+          %tr
+          - if day_of_week_id != 6
+            %td{:colspan => 8}
+              %hr
+          %tr
+          - if cam_id == tch.traffic_camera_id && tch.day_of_week != 0
+            %td
+              %strong
+                = tch.traffic_camera ? "#{tch.traffic_camera_id} -  #{tch.traffic_camera.name[0..28]}" : "na"
+              
+            %td
+              %strong
+                = tch.traffic_camera.compass_point.description[0..7]
+            %td
+              %strong
+                = TrafficConditionHistorical::DayOfWeek[tch.day_of_week]
+            %td= tch.time_of_day
+            -# %td= mil_to_std(tch.time_of_day)
+            %td= tch.traffic_rating.rating
+            -# %td= link_to 'Show', tch
+            %td= link_to 'Edit', edit_traffic_condition_historical_path(tch)
+            %td= link_to 'Destroy', tch, :confirm => 'Are you sure?', :method => :delete
+            %td= link_to 'Create', new_traffic_condition_historical_path( :traffic_camera_id => tch.traffic_camera_id, :day_of_week => tch.day_of_week )
+        - else
+          %tr
+            %td= "&nbsp;".html_safe
+            %td{:colspan => 2}
+            %td= tch.time_of_day
+            -# %td= mil_to_std(tch.time_of_day)
+            %td= tch.traffic_rating.rating
+            -# %td= link_to 'Show', tch
+            %td= link_to 'Edit', edit_traffic_condition_historical_path(tch)
+            %td= link_to 'Destroy', tch, :confirm => 'Are you sure?', :method => :delete
+          
+        - day_of_week_id = tch.day_of_week
+          
+      - cam_id = tch.traffic_camera_id
+
+%p= link_to "New Traffic Condition Historical", new_traffic_condition_historical_path

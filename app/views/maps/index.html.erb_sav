@@ -1,0 +1,170 @@
+<%#= @centerlatlng %>
+<%#= title "Deal Map" %>
+<% if @locations.first %>
+
+  <% @locations.each do |loc| %>
+    <% loc.deals.each do |deal| %>
+      <%= deal.retailer.name %>,  <%= deal.name %>, <%= deal.beg_date %>, <%= deal.end_date %><br>
+    <% end %>
+  <% end %>
+
+<% if @deals %>
+  deals:<br>
+  <% @deals.each do |d| %>
+  <%=  d.retailer.name %><br>
+  <%=  d.inspect %><br>
+  <%=  d.retailer.inspect %><br>
+  <% end %>
+<% end %>
+  <!-- @center_lat_lng: <%#= @center_lat_lng %> -->
+
+
+  <link href="http://code.google.com/apis/maps/documentation/javascript/examples/default.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?sensor=true"></script>
+
+  <script type="text/javascript">
+
+    var retailers = [];
+    var deals = [];
+    var markers = [];
+    var iterator = 0;
+
+    var map;
+    var recentered = false;
+  
+    var startloc = new google.maps.LatLng(<%= @center_lat_lng[0] %>, <%= @center_lat_lng[1] %>); // first location
+    // var startloc = new google.maps.LatLng(<%#= @locations[0].latitude %>, <%#= @locations[0].longitude %>); // first location
+    var locations = [
+      <% @locations.each_with_index do |loc, idx| %>
+       new google.maps.LatLng(<%=loc.latitude %>, <%=loc.longitude %>),
+      <% end %>
+    ];
+    <% @locations.each_with_index do |loc, idx| %>
+      retailers.push("<%= loc.name %>");
+      deals.push("<%= loc.deals.size %>")
+    <% end %>
+  
+    function initialize() {
+      var mapOptions = {
+        zoom: 12,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        center: startloc
+      };
+
+      map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+    }
+  
+    function drop() {
+      for (var i = 0; i < locations.length; i++) {
+        setTimeout(function() {
+          addMarker();
+        }, i * 500);
+      }
+    }
+
+    function addMarker() {
+      var marker = new google.maps.Marker(
+        {
+          position: locations[iterator],
+          map: map,
+          draggable: false,
+          animation: google.maps.Animation.DROP,
+          title: retailers[iterator]
+        })
+
+     // set up the infowindow;
+     var infowindow = new google.maps.InfoWindow({
+         // content: retailers[iterator],
+         maxWidth: 400
+     });
+     info = retailers[iterator];
+     // alert(retailers[iterator])
+     // attach it to the marker
+     google.maps.event.addListener(marker, 'click', function() {
+       infowindow.setContent( info ); 
+       infowindow.open(map, marker);
+     });
+
+     markers.push( marker );
+     iterator++;
+    }; // function addMarker()
+
+    function filler(){
+      null // just used to delay the first drop
+    };
+  
+    // function createMarker(latlng, html, title_text, idx) {
+    //   setTimeout(function() {
+    //     var content_string = html;
+    //     var marker = new google.maps.Marker({
+    //       position: latlng,
+    //       map: map,
+    //       title: title_text,
+    //       animation: google.maps.Animation.DROP,
+    //       zIndex: Math.round(latlng.lat()*-100000)<<5
+    //       });
+    // 
+    //     google.maps.event.addListener(marker, 'click', function() {
+    //       infowindow.setContent(content_string); 
+    //       infowindow.open(map,marker);
+    //     });
+    //   }, idx * delay );
+    // }
+
+  </script>
+
+  <body onload="initialize(); setTimeout(function() {filler();}, 200);drop();">
+    <div id="map_canvas" style="width:1000px; height:650px"></div>
+    <!-- <button id="drop" onclick="drop()">Drop Markers</button> -->
+  </body>
+<% else %>
+  There are no qualifying deals, please try another search
+<% end %>
+<!-- -# = @deals[1].advertisements.count
+-# = @tmp
+-# %br
+-# %br
+-# = @deals[0].deals.inspect
+-# %h1 Listing Deals
+-# 
+-# %table
+-#   %tr
+-#   %th Retailer
+-#   %th Advertiser
+-#   %th Name
+-#   %th{:style => "width : 260px;"} Description
+-#   %th Content
+-#   %th Beg Date
+-#   %th End Date
+-#   %th{:colspan => 3} Actions
+-# 
+-#   - @deals.each do |deal|
+-#     %tr
+-#       %td= deal.retailer.name
+-#       %td= (deal.advertiser.name) ? "#{deal.advertiser.name} (A)" : "#{deal.retailer.name} (R)"
+-#       %td= deal.name
+-#       %td= deal.description
+-#       %td= deal.content
+-#       %td= disp_date(deal.beg_date)
+-#       %td= disp_date(deal.end_date)
+-#       %td= link_to 'Show', deal
+-#       %td= link_to 'Edit', edit_deal_path(deal)
+-#       %td= link_to 'Destroy', deal, :confirm => 'Are you sure?', :method => :delete
+-# 
+-# = paginate @deals
+
+-# = params
+-# %br
+-# search_conditions =>
+-# = @search_conditions
+-# -# %br
+-# -# @tmp[:location_addr] =>
+-# -# = @tmp[:location_addr]
+-# %br
+-# = @map.inspect
+-# %br
+-# -# = @search.inspect
+-# %br
+-# -# = @map.radius_distance
+-# -# => {"search"=>{"advertiser_name"=>"", "location_addr"=>"", "radius_distance"=>"", "retailer_addr"=>"", "retailer_category_id"=>"", "retailer_name"=>""}, "action"=>"index", "controller"=>"maps"} 
+-#  -->

@@ -1,0 +1,99 @@
+<!-- <%#= @locations.size %>
+<%# @locations.each do |loc| %>
+  <%#= loc.latitude %>
+
+<%# end %> -->
+
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
+
+<script type="text/javascript">
+  var latitudes = []; var longitudes = []; 
+  var retailernames = []; var dealcounts = [];
+  var lat = 0.0; var lon = 0.0; var i = 0;
+  <% @locations.each_with_index do |loc, idx| %>
+    // alert("<%= loc.name %>")
+    latitudes.push(<%=loc.latitude %>);
+    longitudes.push(<%=loc.longitude %>);
+    retailernames.push("<%= loc.name %>" );
+    dealcounts.push(<%= loc.deals.size %>);
+    // alert(retailernames[<%= idx %>])
+  <% end %>
+  // document.write( coords )
+
+  function initialize() {
+    // alert( coords )
+    var latlng = new google.maps.LatLng( latitudes[0], longitudes[0] ); // the first data location
+    var gmapOptions = {
+      zoom: 12,
+      center: latlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    var gmap = new google.maps.Map(document.getElementById("map_canvas"), gmapOptions);
+    
+    // probably want to recenter on the first marker, so lets use a flag
+    recentered = false;
+    // iterate through your coordinates
+    for (i in latitudes) {
+      lat = latitudes[i];
+      lon = longitudes[i];
+      retailername = retailernames[i];
+
+      position = new google.maps.LatLng(lat,lon);
+      markerOptions = {
+        map: gmap, // if you do not set this here then the "marker.setMap(gmap)" statement, below, will do it later
+        position: position,
+        title: retailername,
+        animation: google.maps.Animation.DROP
+      };
+
+        //create your marker(s) on the map
+        var marker = new google.maps.Marker(markerOptions);
+        
+        // // for (var y =0; y < retailernames.length; y++) {
+        //   setTimeout(function() {
+        //     position = new google.maps.LatLng(lat,lon);
+        //     markerOptions = {
+        //       // map: gmap, // if you do not set this here then the "marker.setMap(gmap)" statement, below, will do it later
+        //       position: position,
+        //       title: retailername,
+        //       animation: google.maps.Animation.DROP
+        //     };
+        //     var marker = new google.maps.Marker(markerOptions);
+        //     // alert("marker.setMap(gmap);")
+        //     marker.setMap(gmap);
+        //   }, i * 200);
+        // // }
+        
+        // marker.setMap(gmap)
+        //     
+        //recenter that thang if it hasnt been already
+        if (!recentered){
+          gmap.setCenter(position);
+          recentered = true;
+        }
+      }  // for (i in latitudes)
+    
+      // alert(latitudes.length)
+    
+    // // add a marker to each coordinate set
+    // position = new google.maps.LatLng(lat,lon); 
+    // var marker = new google.maps.Marker({
+    //   position: position,
+    //   title:"Hello World!, my Lat/Long is: " + lat + " / " + lon + " and I have " + 
+    // });
+    // // To add the marker to the map, call setMap();
+    // marker.setMap(gmap);
+    
+    
+  } // function
+  
+  function plot_points(){
+    
+  }
+
+</script>
+
+<body onload="initialize()">
+  <div id="map_canvas" style="width:1000px; height:650px"></div>
+</body>
+

@@ -1,0 +1,193 @@
+<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+
+= form_for @traffic_condition do |f|
+  -if @traffic_condition.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@traffic_condition.errors.count, "error")} prohibited this Traffic Condition / Alert from being saved:"
+      %ul
+        - @traffic_condition.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :traffic_data_type_id
+    -# NOTE: the "str=this.options[selectedIndex].text;hide_or_show_traffic_condition(str.substring(0, str.indexOf(' - ')));" extracts the #{tdt.name} part to parm into the hide_or_show_traffic_condition() function
+    
+    = f.select :traffic_data_type_id, TrafficDataType.find(:all).collect { |tdt| [ "#{tdt.name} - #{tdt.description}", tdt.id ] }, {:include_blank => false}, :style => "width: auto"
+    -# = f.select :traffic_data_type_id, TrafficDataType.find(:all).collect { |tdt| [ "#{tdt.name} - #{tdt.description}", tdt.id ] }, {:include_blank => false}, :style => "width: auto", :onchange => "str=this.options[selectedIndex].text;hide_or_show_traffic_condition(str.substring(0, str.indexOf(' - ')));"
+  #camera
+    .field
+    -# = f.label :traffic_camera_id, :id => "traffic_camera_id_label"
+    -# = f.select :traffic_camera_id, TrafficCamera.find(:all).collect { |tc| [ "#{tc.name} - #{tc.address}", tc.id ] }, {:include_blank => "Choose Traffic Cam"}, :style => "width: auto"
+  -# .field
+  -#   = f.label :traffic_camera_id, :id => "traffic_camera_id_label"
+  -#   = f.select :traffic_camera_id, TrafficCamera.find(:all).collect { |tc| [ "#{tc.name} - #{tc.address}", tc.id ] }, {:include_blank => "Choose Traffic Cam"}, :style => "width: auto"
+  .field
+    = f.label :report_date
+    = f.datetime_select :report_date, :default => 1.minutes.ago, :minute_step => 1, :order => [:month, :day, :year]
+  .field
+    = f.label :traffic_rating_id
+    = f.select :traffic_rating_id, TrafficRating.find(:all).collect { |tr| [ "#{tr.rating} - #{tr.description}", tr.id ] }, {:include_blank => "Choose Traffic Rating"}, :style => "width: auto;"
+  .field
+    = f.label :traffic_direction
+    = f.select :compass_point_id, CompassPoint.find(:all).collect { |cp| [ "#{cp.name} - #{cp.description}", cp.id ] }, {:include_blank => "Choose Traffic Direction"}, :style => "width: auto;"
+  #source
+    .field
+    -# .field
+    -#   = f.label :other_source, :id => "other_source_label"
+    -#   = f.text_field :other_source, :size => 50
+  #address
+    .field
+    -#   = f.label :other_address, :id => "other_address_label"
+    -#   = f.text_field :other_address, :size => 50, :onblur => "geocode_other_address( this.value )"
+  #description
+    .field
+    -#   = f.label :other_description, :id => "other_description_label"
+    -#   = f.text_field :other_description, :size => 50
+
+  = f.hidden_field 'other_latitude'
+  = f.hidden_field 'other_longitude'
+  
+  .actions
+    = submit_button('Save')
+
+  #geocode_results
+  
+  -# NOTE: This AJAX technique has a TrafficConditionsController#test_populate_div() method that then renders the view "test_populate_div.html.haml" into the div "test_populate_div"
+  -# #test_populate_div
+  -# works: 
+  -# <a href="#" onclick="$('#test_populate_div').load('/traffic_conditions/test_populate_div?param1=billy%20kiskin')">test_populate_div</a>
+  -# NOTE: This one has a TrafficConditionsController#test_populate_div_2() method, then a "test_populate_div_2.js.haml" that then renders the partial "_test_populate_div_2.html.haml" into the div "test_populate_div_2"
+  -# #test_populate_div_2
+  -# works: 
+  -# = link_to "test_populate_div_2", traffic_conditions_test_populate_div_2_path(:param1 => "param_1"), { :remote => true }
+  -# both of these have routes declared in config/routes.rb
+
+  -# configure the fields based on the traffic_data_type (ie. "LiveCam", "Other:Tweet", etc)
+  -# - traffic_data_type_name = TrafficDataType.find(params[:traffic_data_type_id]).name
+
+  -# %body{ :onload => "hide_or_show_traffic_condition( '#{TrafficDataType.find(params[:traffic_data_type_id]).name}' );" }
+  
+  -# <select id="deal_advertiser_id" name="deal[advertiser_id]" style="width: auto;"><option value="">Choose Advertiser</option>
+  -# - Advertiser.find(:all, :include => :retailer).each do |a|
+  -#   - if a.retailer_id # if the Advertiser record has a retailer_id then we show that Advertiser as "selected"
+  -#   -# <option value="#{a.retailer.id}" #{(a.retailer.id == @advertisement.retailer_id) ? selected="selected" : ""}>#{a.retailer.name} (R)</option>
+  -#   <option value="#{a.id}" #{(a.retailer.id == @deal.retailer_id) ? selected="selected" : ""}>#{a.retailer.name} (R)</option>
+  -#   - else # The Advertiser does not have a retailer_id so we show as "selected" where the Advertiser.id == @advertisement.advertiser_id
+  -#     <option value="#{a.id}" #{(a.id == @deal.advertiser_id) ? selected="selected" : ""}>#{a.name} (A)</option>
+  -# </select>
+
+
+
+:javascript
+
+  var opts = "";
+  
+  function create_inputs( opt_val ) {
+  	alert( opt_val );
+  }
+  
+  function show_label( elem_div, model_name, elem_name, label_class, label_text ) {
+    if ( (eval("$('label." + label_class + "')")).length == 0) {
+      var new_label = $( "<label />",{ "class": label_class, for: model_name + "_" + elem_name, html: label_text} );
+      $(eval("'#" + elem_div +  " .field'")).append( new_label );
+    }
+  }
+  
+  // function show_input( elem_div, model_name, elem_name, elem_class, elem_size ) {
+  function show_input( elem_div, model_name, elem_name, elem_class, elem_size ) {
+    if ( (eval("$('input." + elem_class + "')")).length == 0) {
+      html_str = '<input type="text" class="' + elem_class + '" id="' + model_name + "_" + elem_name + '" name="' + model_name + '[' + elem_name + ']" size="' + elem_size + '">';
+      var new_elem = $("<div />", { "class": "source", html: html_str });
+      $(eval("'#" + elem_div +  " .field'")).append( new_elem );
+    }
+  }
+  
+  function show_select( elem_div, model_name, elem_name, elem_class ) {
+    alert(elem_div, model_name, elem_name, elem_class);
+    if ( (eval("$('select." + elem_class + "')")).length == 0) {
+      html_str_beg = '<select class="camera" id="traffic_condition_traffic_camera_id" name="traffic_condition[traffic_camera_id]" style="width: auto">';
+      options = "";
+      html_str_end = '</select>';
+      var new_elem = $("<div />", { "class": "camera", html: html_str_beg + html_str_end });
+      $(eval("'#" + elem_div +  " .field'")).append( new_elem );
+    }
+  }
+  
+  // attach function to the selectbox "traffic_condition_traffic_data_type_id" that when clicked conditionally creates the new input elements
+  $('#traffic_condition_traffic_data_type_id').click(function() {
+    var sel_text = $('#traffic_condition_traffic_data_type_id option:selected').text();
+    sel_text = sel_text.substring(0, sel_text.indexOf(' - '))
+    
+    if ( sel_text == "LiveCam" || sel_text == "Historical" ) {
+      
+      show_label("camera", "traffic_condition", "traffic_camera_id", "camera", "Traffic camera");
+      show_select("camera", "traffic_condition", "traffic_camera_id", "camera")
+      // works:
+      // show_label("source", "traffic_condition", "other_source", "source", "Other source" ); // elem_div,  model_name, elem_name, elem_class, label_text
+      // show_input( "source", "traffic_condition", "other_source", "other_source", "40" ); // elem_div, model_name, elem_name, elem_class, elem_size
+
+      // $('#traffic_condition_traffic_camera_id').show()   // required
+      // $('#traffic_camera_id_label').show()               // required
+
+      
+      $('#source .other_source').live('blur',
+      function() {
+        alert('Howdy, Folks! Geocoding here...');
+        return false;
+      });
+      // if ( sel_text == "LiveCam" || sel_text == "Historical" )
+    } else if ( sel_text == "Other:Other" ) {
+      // works:
+      show_label("source", "traffic_condition", "other_source", "source", "Other source" ); // elem_div,  model_name, elem_name, elem_class, label_text
+      show_input( "source", "traffic_condition", "other_source", "other_source", "40" ); // elem_div, model_name, elem_name, elem_class, elem_size
+  	}
+  	
+    return false; 
+    
+  });
+
+
+
+    // show_title( 'label.source', "traffic_condition_other_source", "Other source" );
+    // works
+    // if ( $('input.source').length == 0) {
+    //   var new_label = $( "<label />",{ for: "traffic_condition_other_source", html: "Other source"} );
+    //   $('#source .field').append( new_label );
+    //   var new_elem = $("<div />", {"class": "source", html: '<input type="text" class="source" id="traffic_condition_other_source" name="traffic_condition[other_source]"\>'});
+    //   $('#source .field').append( new_elem );
+    // }
+
+    // works:
+    // if ( $('input.source').length == 0) {
+    //   var new_label = $( "<label />",{ for: "traffic_condition_traffic_data_type_id", html: "Traffic Data Type"} );
+    //   $('#source .field').append( new_label );
+    //   var new_elem = $("<div />", {"class": "source", html: '<input type="text" class="source" id="traffic_condition_other_source" name="traffic_condition[other_source]"\>'});
+    //   $('#source .field').append( new_elem );
+    // }
+    
+
+    /*
+    if ( opt_val == "LiveCam" || opt_val == "Historical" ) {
+
+      $('#traffic_condition_traffic_camera_id').show() 	// required
+      $('#traffic_camera_id_label').show() 							// required
+
+      $('#traffic_condition_other_source').hide() 			// not required
+      $('#other_source_label').hide() 									// not required
+
+      $('#traffic_condition_other_address').hide() 			// not required
+      $('#other_address_label').hide() 									// not required
+
+      $('#traffic_condition_other_description').hide() 	// not required 
+      $('#other_description_label').hide() 							// not required 
+    }
+
+    */
+  // works
+  // $('.source').live('blur',
+  // function() {
+  //   alert('Howdy, Folks!');
+  //   return false;
+  // });
+  
+  

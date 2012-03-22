@@ -1,0 +1,71 @@
+<script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js?ver=3.3.1'></script>
+
+<div id="form-div-1">
+  
+  <form id="main">
+
+    <input type="text" id="main-textfield-1" value="Hello World!">
+    
+    <div id="good-div">
+      <a href="#" class="target">link class="target" 1</a><br>
+      <a href="#" class="target">link class="target" 2</a><br>
+      <a href="#" class="target">link class="target" 3</a>
+    </div>
+    <br>
+    <div id="bad_target">
+      <a href="#" class="target">link class="bad_target" 1</a><br>
+      <a href="#" class="target">link class="bad_target" 2</a><br>
+      <a href="#" class="target">link class="bad_target" 3</a>
+    </div>
+  
+  </form>
+  
+</div>
+
+<div id="form-div-2">
+  
+  <form url="/traffic_conditions/test_populate_div">
+    <input type="hidden" id="bkfield"/>
+    <input type="hidden" id="param1"/>
+    <!-- <a href="#">link to attach function to</a> -->
+    
+    <p>
+      <button class="alert">Alert!</button>
+    </p>
+    <p>
+      <a id="create-button" href="#">create the button</a>
+    </p>
+    
+  </form>
+</div>
+
+<script language="javascript">
+  // alert("do it!")
+  $(function(){
+  	$('#good-div .target').click(function(e) {
+  		e.preventDefault(); 
+  		alert("Pretty slick, eh?");
+  	 });
+   });
+  
+  $(document).ready(function() {
+    $('button.alert').click(function() {
+      alert('this is an alert message');
+    });
+  });
+
+  $('#create-button').click(function() {
+    if ( $('button.alert').length <2) {
+      var new_elem = $("<div />", {"class": "new_class", html: '<button class="alert">jquery is really cool</button>'});
+      $('#form-div-2').append(new_elem);
+    }
+    return false;
+  });
+
+  $('.new_class').live('click',
+  function() {
+    alert('Howdy, Folks!');
+    return false;
+  });
+  
+</script>

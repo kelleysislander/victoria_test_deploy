@@ -1,0 +1,141 @@
+<!-- <table>
+  <tr>
+    <td width="100"><h1>Deal</h1></td>
+    <!-- -# %td
+    -#   = image_tag( @deal.badge_path )
+    -#   = image_tag( @deal.image_url )
+    -# %td #{image_tag(@deal.badge_path, :size => '75x75')} -->
+  <!-- </tr>
+</table> -->
+<div id="main">
+  <div id="iphone">
+    <%= image_tag( "iphone.png" ) %>
+  </div>
+  <!-- fixed elements at top and bottom -->
+  <!-- <div id="carrier_bar">
+    <%#= image_tag( "carrier_bar.png" ) %>
+  </div> -->
+  
+  <div id="details_top">
+    <%= image_tag( "details_top.png" ) %>
+    <div id="share_to_unlock_pct"><%= @deal.share_to_unlock_pct %></div>
+  </div>
+
+  <!-- end of fixed element at top and bottom -->
+  
+  <div id="retailer_name" class="retailer_name">
+    <%= (@deal.retailer) ? @deal.retailer.name : "" %>&nbsp;&nbsp;<span class="facebook_like"><%= image_tag( "facebook_like.png" ) %></span>
+  </div>
+  <div id="retailer_address">
+    <span class="retailer_address"><%= (@deal.retailer) ? "#{@deal.retailer.address}, #{@deal.retailer.city}, #{@deal.retailer.state}, #{@deal.retailer.zip}" : "" %></span>
+  </div>
+  
+  <div id="deal_duration_image">
+    <%= image_tag("duration_background.png", :size => "#{size(Victoria::Application::DealDurationDisp)}" ) %>
+    <div id="deal_duration_top" class="deal_duration">
+      <%= days_left_1( @deal )%>
+    </div>
+    <div id="deal_duration_bot" class="deal_duration">
+      <%= days_left_2( @deal )%> 
+    </div>
+  </div>
+  
+  <div id="deal_image_border">
+    <div id="deal_image_show">
+      <%= image_tag(@deal.image_url, :size => "#{size(Victoria::Application::DealImage)}" ) %>
+    </div>
+  </div>
+  
+  <div id="deal_tag">
+    <%#= image_tag("deal_tag.png", :size => "#{size(Victoria::Application::DealTag)}" ) %>
+    <% if deal_tag_text( @deal ).first %> <!-- ie, "GET IT $29" was split into the left and right parts at the "$" sign -->
+      <span class="deal_tag_text_left">
+        <%= deal_tag_text( @deal ).first %>
+      </span>
+      <span class="deal_tag_text_right">
+        <%= deal_tag_text( @deal ).last %>
+      </span>
+    <!-- There was not "$" sign to split -->
+    <% else %> 
+      <%= @deal.deal_tag_text %>
+    <% end %>
+  </div>
+  
+  <div id="discount_amount">
+    <span class="discount_amount_text_top">
+      Savings
+    </span>
+    <span class="discount_amount_text_bot">
+      <%= @deal.discount_amount_text %>
+    </span>
+  </div>
+  
+  <div id="deal_bar">
+    <div class="part_1_top">
+      Discount<br><span class="part_1_bot"><%= @deal.discount_percent_text %></span>
+    </div>
+    <div class="part_2_top">
+      Deal Price<br><span class="part_2_bot"><%= @deal.price_text %></span>
+    </div>
+    <div class="part_3_top">Distance<br><span class="part_3_bot">1.2k</span></div>
+  </div> 
+
+  <div id="num_redeemed">
+    <%= image_tag("num_redeemed.png") %>
+    <span class="num_redeemed_check_mark">&nbsp;</span>
+    <span class="num_redeemed_text">
+      <b><%= @deal.num_redeemed %></b> purchased
+    </span>
+  </div>
+  
+  <div id="deal_description_show" class="break_normal">
+    <%= @deal.description %>
+  </div>
+  
+  <!-- <div id="tab_bar">
+    <%#= image_tag( "tab_bar.png" ) %>
+  </div> -->
+</div>
+
+
+<!-- <br><br><br><br>
+%p
+  %b Account:
+  = (@deal.retailer) ? @deal.retailer.account.name : ""
+%p
+  %b Retailer:
+  = (@deal.retailer) ? @deal.retailer.name : ""
+%p
+  %b Advertiser:
+  = (@deal.advertiser) ? @deal.advertiser.name : ""
+%p
+  %b Name:
+  = @deal.name
+%p
+  %b Featured:
+  = featured( @deal.featured_flag )
+%p
+  %b Num Offered
+  = @deal.num_offered
+%p
+  %b Num Available
+  = @deal.num_available
+%p
+  %b Description:
+  = @deal.description
+%p
+  %b Content:
+  %br 
+  = text_area_tag( "content", @deal.content, :rows => 10, :cols => 20 )
+%p
+  %b Effective Date:
+  = @deal.beg_date
+%p
+  %b End Date:
+  = @deal.end_date
+
+- if @deal.preview_flag == 0
+  = link_to 'Edit', edit_deal_path(@deal)
+  \|
+  = link_to 'Back', deals_path
+ -->

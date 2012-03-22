@@ -1,0 +1,163 @@
+!!!
+%html
+
+  %head
+    %title
+      = yield(:title) || "Untitled"
+    %meta{"http-equiv"=>"Content-Type", :content=>"text/html; charset=utf-8"}/
+
+    = stylesheet_link_tag "application"
+    = javascript_include_tag "application"
+
+    = csrf_meta_tag
+    = yield(:head)
+  
+  %body
+    #container
+      #header
+        #homelink.clear
+          = link_to image_tag("miinfo-logo.png"), root_url
+          -# %br
+          -# %br
+          -# %br
+          -# %br
+          
+        #user_status
+          = render 'devise/menu/login_items'
+          - if signed_in?
+            = render 'devise/menu/registration_items'
+            %br
+            %p Logged in as: #{current_user.email} [#{current_user.print_roles}]
+            -# = current_user.email
+            -# = "[#{current_user.print_roles}]"
+            -# = current_user.role? :redemption
+        #navigation
+          - if user_signed_in?
+            %ul 
+              - if can?( :manage, Retailer ) || current_user.has_role?([:redemption])
+                %li
+                  = link_to 'Retailers', retailers_path
+                  
+              - if can? :manage, Advertiser
+                %li
+                  = link_to 'Advertisers', advertisers_path
+                  
+              - if can?( [:manage], Deal ) || current_user.has_role?([:redemption, :deal])
+                %li
+                  = link_to 'Deals', deals_path
+                  
+              - if can?( [:manage], Deal ) || current_user.has_role?([:deal])
+                %li
+                  = link_to 'Deals (Preview)', deals_path(:preview => 1)
+              -# - if can? [:index,:show], Deal
+              -#   %li
+              -#     = link_to 'Deals', deals_path
+
+              - if can? :manage, Advertisement
+                %li
+                  = link_to 'Advertisements', advertisements_path
+                  
+              - if can? :manage, Redemption
+                %li
+                  = link_to 'Redemptions', redemptions_path
+
+              - if current_user.has_role?([:admin,:superadmin]) 
+                %li
+                  = link_to 'Admin', admin_index_path
+              - if current_user.has_role?([:traffic,:admin,:superadmin]) 
+                %li
+                  = link_to 'Traffic', traffic_conditions_path
+              - if current_user.has_role?([:admin,:superadmin,:deal]) 
+                %li
+                  = link_to 'Deal Map', new_map_path
+              - if current_user.has_role?([:admin,:superadmin,:deal]) 
+                %li
+                  = link_to 'Deal List', deals_with_ads_api_index_path
+              - if current_user.has_role?([:admin,:superadmin,:deal]) 
+                %li
+                  = link_to 'Alerts', traffic_alerts_api_index_path
+              - if current_user.has_role?([:admin,:superadmin,:deal]) 
+                %li
+                  = link_to 'Zones Map', zones_maps_path
+
+              -# %li
+              -#   = link_to 'InfoWinMulti', infowindow_multiple_maps_path
+              -# %li
+              -#   = link_to 'InfoWin', infowindow_simple_maps_path
+
+              -# - if can? :manage, @users
+              -#   -# NOTE:  This allows only an "Admin" to add users rather than the devise default devise behavior of self-registration (users/sign_up)
+              -#   =# using the user_controller (not "users_controller") which was expressly added to circumvent the default actions running through the registrations_controller
+              -#   = link_to "Add User", new_user_path
+              -#   -# NOTE:  The link below is the default "devise" method where the user sings themselves up
+              -#   -# = link_to "Add User", new_user_registration_path
+                -# %li
+                -#   = link_to 'Basic', basic_map_index_path
+                -# %li
+                -#   = link_to 'Points', points_map_index_path
+                -# %li
+                -# = link_to 'Overlays', overlays_map_index_path
+                -# %li
+                -# = link_to 'InfoWin', infowindow_simple_map_index_path
+                -# %li
+                -# = link_to 'InfoWinMulti', infowindow_multiple_map_index_path
+
+              
+      #content
+        - flash.each do |name, msg|
+          = content_tag :div, msg, :id => "flash_#{name}"
+    
+        - if show_title?
+          %h1= yield(:title)
+ 
+        = yield
+      
+      #footer
+        #copyright
+          © 2012 Miinfo
+          -# = link_to " Developed by Semaphore Mobile", "http://www.semaphoremobile.com"
+
+
+          -# <!DOCTYPE html>
+          -# <html>
+          -#   <head>
+          -#     <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+          -#     <%= stylesheet_link_tag "application" %>
+          -#     <%= javascript_include_tag :defaults %>
+          -#     <%= csrf_meta_tag %>
+          -#     <%= yield(:head) %>
+          -#   </head>
+          -#   <body>
+          -#     <div id="container">
+          -#       <% flash.each do |name, msg| %>
+          -#         <%= content_tag :div, msg, :id => "flash_#{name}" %>
+          -#       <% end %>
+          -#       <% if user_signed_in? %>
+          -#         <div class="admin">
+          -#           <% if can? :manage, @users %>
+          -#             <%= link_to "Add User", new_user_path %>
+          -#           <% end %>
+          -#           <%= link_to "My Account", edit_user_registration_path %>
+          -#           <%= link_to "logout", destroy_user_session_path %>
+          -#         </div>
+          -#       <% end %>
+          -#       <%= content_tag :h1, yield(:title) if show_title? %>
+          -#       <%= yield %>
+          -#     </div>
+          -#   </body>
+          -# </html>
+
+-# <!DOCTYPE html>
+-# <html>
+-# <head>
+-#   <title>Victoria</title>
+-#   <%= stylesheet_link_tag    "application" %>
+-#   <%= javascript_include_tag "application" %>
+-#   <%= csrf_meta_tags %>
+-# </head>
+-# <body>
+-# 
+-# <%= yield %>
+-# 
+-# </body>
+-# </html>

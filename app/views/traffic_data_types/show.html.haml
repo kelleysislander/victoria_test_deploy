@@ -1,0 +1,16 @@
+- title "Traffic Data Type"
+.grey-form{:style => "padding:25px"}
+  %p
+    %strong Name:
+    = @traffic_data_type.name
+  %p
+    %strong Description:
+    = @traffic_data_type.description
+
+  %p
+%br
+= link_to "Edit", edit_traffic_data_type_path(@traffic_data_type)
+|
+= link_to "Destroy", @traffic_data_type, :confirm => 'Are you sure?', :method => :delete
+|
+= link_to "View All", traffic_data_types_path
