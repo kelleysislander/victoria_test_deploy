@@ -1,5 +1,4 @@
 Billys-MacBook-Pro ~/Projects/victoria_test_deploy: cap deploy:setup
-
 ENV['rvm_path']
 rvm_path => /Volumes/MainHD/Users/billy/.rvm
 END ENV['rvm_path']
@@ -14,8 +13,8 @@ END ENV['rvm_path']
     servers: ["10.0.1.160"]
 Password: 
     [10.0.1.160] executing command
-    command finished in 1762ms
+    command finished in 1742ms
   * executing "chmod g+w /var/www/vhosts/victoria_test_deploy.semaphoremobile.com /var/www/vhosts/victoria_test_deploy.semaphoremobile.com/releases /var/www/vhosts/victoria_test_deploy.semaphoremobile.com/shared /var/www/vhosts/victoria_test_deploy.semaphoremobile.com/shared/system /var/www/vhosts/victoria_test_deploy.semaphoremobile.com/shared/log /var/www/vhosts/victoria_test_deploy.semaphoremobile.com/shared/pids"
     servers: ["10.0.1.160"]
     [10.0.1.160] executing command
-    command finished in 1732ms
+    command finished in 1738ms

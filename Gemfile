@@ -13,15 +13,15 @@ gem 'geocoder' # https://github.com/alexreisner/geocoder#readme
 gem 'omniauth'
 gem "jquery-rails"
 gem 'kaminari' # rails g kaminari:views default
-gem 'nifty-generators', :group => :development # rails g nifty:scaffold authentication user_id:integer provider:string uid:string index create destroy
-gem 'omniauth-twitter' # needed for rails 3.1
-gem 'omniauth-facebook' # needed for rails 3.1
-gem 'nifty-generators' # rails g nifty:scaffold authentication user_id:integer provider:string uid:string index create destroy
-gem 'date_validator' # used in deal.rb
-gem 'mini_magick' # used with deal.badge_text and a background starburst to create the deal badge, a graphical icon (ie. "$50.00 off!" or "20% off!")
-gem 'rmagick' # as above
-gem 'carrierwave'
-gem 'therubyracer', :require => 'v8'
+# gem 'nifty-generators', :group => :development # rails g nifty:scaffold authentication user_id:integer provider:string uid:string index create destroy
+# gem 'omniauth-twitter' # needed for rails 3.1
+# gem 'omniauth-facebook' # needed for rails 3.1
+# gem 'nifty-generators' # rails g nifty:scaffold authentication user_id:integer provider:string uid:string index create destroy
+# gem 'date_validator' # used in deal.rb
+# gem 'mini_magick' # used with deal.badge_text and a background starburst to create the deal badge, a graphical icon (ie. "$50.00 off!" or "20% off!")
+# gem 'rmagick' # as above
+# gem 'carrierwave'
+# gem 'therubyracer', :require => 'v8'
 
 =begin
 Omniauth
